@@ -25,7 +25,7 @@ public class Game implements Serializable {
     
     }
 
-    public Boolean getEnemyCapitalCaptured() {
+    public Boolean isEnemyCapitalCaptured() {
         return enemyCapitalCaptured;
     }
 

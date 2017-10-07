@@ -19,6 +19,7 @@ public class Game implements Serializable {
     private Map map;
     private Questionnaire quiz;
     private Player player;
+    private Army army;
     private ArrayList<Resource> resources = new ArrayList<>();
     
     public Game() {

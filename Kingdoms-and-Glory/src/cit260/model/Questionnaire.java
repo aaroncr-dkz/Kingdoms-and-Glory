@@ -6,7 +6,6 @@
 package cit260.model;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  *
@@ -16,7 +15,6 @@ public class Questionnaire implements Serializable {
     
     private int numToAnswer = 6;
     private int quizResult;
-    private Game game;
     
     public Questionnaire() {
     }
@@ -37,25 +35,16 @@ public class Questionnaire implements Serializable {
         this.quizResult = quizResult;
     }
 
-    public Game getGame() {
-        return game;
-    }
-
-    public void setGame(Game game) {
-        this.game = game;
-    }
-
     @Override
     public String toString() {
-        return "Questionnaire{" + "numToAnswer=" + numToAnswer + ", quizResult=" + quizResult + ", game=" + game + '}';
+        return "Questionnaire{" + "numToAnswer=" + numToAnswer + ", quizResult=" + quizResult + '}';
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 83 * hash + this.numToAnswer;
-        hash = 83 * hash + this.quizResult;
-        hash = 83 * hash + Objects.hashCode(this.game);
+        int hash = 7;
+        hash = 89 * hash + this.numToAnswer;
+        hash = 89 * hash + this.quizResult;
         return hash;
     }
 
@@ -77,14 +66,8 @@ public class Questionnaire implements Serializable {
         if (this.quizResult != other.quizResult) {
             return false;
         }
-        if (!Objects.equals(this.game, other.game)) {
-            return false;
-        }
         return true;
     }
 
-    
-    
-    
     
 }

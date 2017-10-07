@@ -12,13 +12,13 @@ import java.util.Objects;
  *
  * @author aaroncr-dkz
  */
-public class Actor implements Serializable {
+public class Resource implements Serializable {
     
     private String name;
-    private String description;
-    private Territory location;
+    private int amountOwned;
+    private Game game;
     
-    public Actor() {
+    public Resource() {
     }
 
     public String getName() {
@@ -29,33 +29,33 @@ public class Actor implements Serializable {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public int getAmountOwned() {
+        return amountOwned;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setAmountOwned(int amountOwned) {
+        this.amountOwned = amountOwned;
     }
 
-    public Territory getLocation() {
-        return location;
+    public Game getGame() {
+        return game;
     }
 
-    public void setLocation(Territory location) {
-        this.location = location;
+    public void setGame(Game game) {
+        this.game = game;
     }
 
     @Override
     public String toString() {
-        return "Actor{" + "name=" + name + ", description=" + description + ", location=" + location + '}';
+        return "Resource{" + "name=" + name + ", amountOwned=" + amountOwned + ", game=" + game + '}';
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + Objects.hashCode(this.name);
-        hash = 67 * hash + Objects.hashCode(this.description);
-        hash = 67 * hash + Objects.hashCode(this.location);
+        int hash = 5;
+        hash = 89 * hash + Objects.hashCode(this.name);
+        hash = 89 * hash + this.amountOwned;
+        hash = 89 * hash + Objects.hashCode(this.game);
         return hash;
     }
 
@@ -70,14 +70,14 @@ public class Actor implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Actor other = (Actor) obj;
+        final Resource other = (Resource) obj;
+        if (this.amountOwned != other.amountOwned) {
+            return false;
+        }
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
-        if (!Objects.equals(this.description, other.description)) {
-            return false;
-        }
-        if (!Objects.equals(this.location, other.location)) {
+        if (!Objects.equals(this.game, other.game)) {
             return false;
         }
         return true;

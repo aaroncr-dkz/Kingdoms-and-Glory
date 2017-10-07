@@ -6,6 +6,7 @@
 package cit260.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -15,13 +16,16 @@ import java.util.Objects;
 public class Game implements Serializable {
     
     private Boolean enemyCapitalCaptured;
-    private Map map = new Map();
+    private Map map;
+    private Questionnaire quiz;
+    private Player player;
+    private ArrayList<Resource> resources = new ArrayList<>();
     
     public Game() {
     
-}
+    }
 
-    public Boolean isEnemyCapitalCaptured() {
+    public Boolean getEnemyCapitalCaptured() {
         return enemyCapitalCaptured;
     }
 
@@ -36,18 +40,44 @@ public class Game implements Serializable {
     public void setMap(Map map) {
         this.map = map;
     }
-    
-    
+
+    public Questionnaire getQuiz() {
+        return quiz;
+    }
+
+    public void setQuiz(Questionnaire quiz) {
+        this.quiz = quiz;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public ArrayList<Resource> getResources() {
+        return resources;
+    }
+
+    public void setResources(ArrayList<Resource> resources) {
+        this.resources = resources;
+    }
 
     @Override
     public String toString() {
-        return "Game{" + "enemyCapitalCaptured=" + enemyCapitalCaptured + '}';
+        return "Game{" + "enemyCapitalCaptured=" + enemyCapitalCaptured + ", map=" + map + ", quiz=" + quiz + ", player=" + player + ", resources=" + resources + '}';
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.enemyCapitalCaptured);
+        hash = 79 * hash + Objects.hashCode(this.enemyCapitalCaptured);
+        hash = 79 * hash + Objects.hashCode(this.map);
+        hash = 79 * hash + Objects.hashCode(this.quiz);
+        hash = 79 * hash + Objects.hashCode(this.player);
+        hash = 79 * hash + Objects.hashCode(this.resources);
         return hash;
     }
 
@@ -66,9 +96,20 @@ public class Game implements Serializable {
         if (!Objects.equals(this.enemyCapitalCaptured, other.enemyCapitalCaptured)) {
             return false;
         }
+        if (!Objects.equals(this.map, other.map)) {
+            return false;
+        }
+        if (!Objects.equals(this.quiz, other.quiz)) {
+            return false;
+        }
+        if (!Objects.equals(this.player, other.player)) {
+            return false;
+        }
+        if (!Objects.equals(this.resources, other.resources)) {
+            return false;
+        }
         return true;
     }
-    
-    
+
     
 }

@@ -14,14 +14,14 @@ import java.util.Objects;
  */
 public class ArmyMember implements Serializable {
     
-    private int power;
-    private String classification;
-    private Army army;
-    
     public ArmyMember() {
         
     }
-
+    
+    private int power;
+    private String classification;
+    private Army army; 
+   
     public int getPower() {
         return power;
     }
@@ -45,44 +45,6 @@ public class ArmyMember implements Serializable {
     public void setArmy(Army army) {
         this.army = army;
     }
-
-    @Override
-    public String toString() {
-        return "armyMember{" + "power=" + power + ", classification=" + classification + ", army=" + army + '}';
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + this.power;
-        hash = 79 * hash + Objects.hashCode(this.classification);
-        hash = 79 * hash + Objects.hashCode(this.army);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final ArmyMember other = (ArmyMember) obj;
-        if (this.power != other.power) {
-            return false;
-        }
-        if (!Objects.equals(this.classification, other.classification)) {
-            return false;
-        }
-        if (!Objects.equals(this.army, other.army)) {
-            return false;
-        }
-        return true;
-    }
-    
-    
-}
+  
+   
+} 

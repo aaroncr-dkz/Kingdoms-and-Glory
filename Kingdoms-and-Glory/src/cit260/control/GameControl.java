@@ -16,11 +16,11 @@ public class GameControl {
         int attitude;
 
         if (charisma + diplomacy + strategy > 6) {
-            return "Error";
+            return "error";
         } else if (charisma < 0 || diplomacy < 0 || strategy < 0) {
-            return "Error";
+            return "error";
         } else if (charisma > 6 || diplomacy > 6 || strategy > 6) {
-            return "Error";
+            return "error";
         }
 
         attitude = (diplomacy - strategy) + charisma * 2;

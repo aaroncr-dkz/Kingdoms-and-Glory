@@ -7,10 +7,14 @@ package kingdoms.and.glory;
 
 
 import cit260.model.Game;
-//import cit260.model.Map;
+import cit260.model.Questionnaire;
 import cit260.model.Question;
 import cit260.model.Player;
 import cit260.model.Actor;
+import cit260.model.PlayerActor;
+import cit260.model.Map;
+import cit260.model.Territory;
+import cit260.model.Resource;
 import cit260.model.Army;
 import cit260.model.ArmyMember;
 import cit260.model.AttackScene;
@@ -18,11 +22,6 @@ import cit260.model.DefaultScene;
 import cit260.model.ExamineCityScene;
 import cit260.model.ExamineScene;
 import cit260.model.ExamineWildernesScene;
-import cit260.model.Map;
-import cit260.model.PlayerActor;
-import cit260.model.Territory;
-import cit260.model.Resource;
-import cit260.model.Questionnaire;
 
 
 /**

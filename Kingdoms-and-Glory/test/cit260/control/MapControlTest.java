@@ -240,7 +240,109 @@ public class MapControlTest {
         result = MapControl.determineExploreResult(charisma, diplomacy, isGood, randAmount);
         
         // test to see if the result returned equals the expected result
-        assertEquals(expResult, result);
+        assertEquals(expResult, result);          
     }
+
+    /**
+     * Test of determineWinOrLose method, of class MapControl.
+     */
+    @Test
+    public void testDetermineWinOrLose() {
+        
+        System.out.println("determineWinOrLose");
+        
+        // Test case 1
+        System.out.println("\tTest case 1");
+        
+        int leaderValue = 3;
+        int armyValue = 6;
+        int resourceBonus = 1;
+        int cityValue = 8;
+        int enemyLeaderValue = 1;
+        int enemyResourceBonus = 0;
+        String expResult = "Win";
+        
+        String result = MapControl.determineWinOrLose(leaderValue, armyValue, resourceBonus, cityValue, enemyLeaderValue, enemyResourceBonus);
+        
+        assertEquals(expResult, result);
+        
+         // Test case 2
+        System.out.println("\tTest case 2");
+        
+        leaderValue = 6;
+        armyValue = 3;
+        resourceBonus = 1;
+        cityValue = 5;
+        enemyLeaderValue = 4;
+        enemyResourceBonus = 0;
+        expResult = "error";
+        
+        result = MapControl.determineWinOrLose(leaderValue, armyValue, resourceBonus, cityValue, enemyLeaderValue, enemyResourceBonus);
+        
+        assertEquals(expResult, result);
+        
+         // Test case 3
+        System.out.println("\tTest case 3");
+        
+        leaderValue = -1;
+        armyValue = 3;
+        resourceBonus = 1;
+        cityValue = 5;
+        enemyLeaderValue = -1;
+        enemyResourceBonus = 0;
+        expResult = "error";
+        
+        result = MapControl.determineWinOrLose(leaderValue, armyValue, resourceBonus, cityValue, enemyLeaderValue, enemyResourceBonus);
+        
+        assertEquals(expResult, result);
+        
+         // Test case 4
+        System.out.println("\tTest case 4");
+        
+        leaderValue = 2;
+        armyValue = 11;
+        resourceBonus = 1;
+        cityValue = 8;
+        enemyLeaderValue = 2;
+        enemyResourceBonus = 0;
+        expResult = "error";
+        
+        result = MapControl.determineWinOrLose(leaderValue, armyValue, resourceBonus, cityValue, enemyLeaderValue, enemyResourceBonus);
+        
+        assertEquals(expResult, result);
+        
+         // Test case 5
+        System.out.println("\tTest case 5");
+        
+        leaderValue = 3;
+        armyValue = 10;
+        resourceBonus = 1;
+        cityValue = 1;
+        enemyLeaderValue = 1;
+        enemyResourceBonus = 0;
+        expResult = "Win";
+        
+        result = MapControl.determineWinOrLose(leaderValue, armyValue, resourceBonus, cityValue, enemyLeaderValue, enemyResourceBonus);
+        
+        assertEquals(expResult, result);
+        
+         // Test case 6
+        System.out.println("\tTest case 6");
+        
+        leaderValue = 1;
+        armyValue = 1;
+        resourceBonus = 0;
+        cityValue = 10;
+        enemyLeaderValue = 3;
+        enemyResourceBonus = 1;
+        expResult = "Lose";
+        
+        result = MapControl.determineWinOrLose(leaderValue, armyValue, resourceBonus, cityValue, enemyLeaderValue, enemyResourceBonus);
+        
+        assertEquals(expResult, result);
+      
+    }
+    
+    
     
 }

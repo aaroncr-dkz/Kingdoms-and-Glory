@@ -5,11 +5,32 @@
  */
 package cit260.control;
 
+import cit260.model.Player;
+import kingdoms.and.glory.KingdomsAndGlory;
+
 /**
  *
  * @author aaroncr-dkz
  */
 public class GameControl {
+    
+    public static void createNewGame(Player player) {
+        
+    }
+    
+    public static Player savePlayer(String name) {
+        if (name == null || name.length() < 1) {
+            return null;
+        }
+        
+        Player player = new Player();
+        player.setName(name);
+        
+        KingdomsAndGlory.setPlayer(player);
+        
+        System.out.println("*** savePlayer() called ***");
+                return player;
+    }
 
     public static String determineTitle(int charisma, int diplomacy, int strategy) {
         String title = "";

@@ -6,8 +6,6 @@
 package cit260.view;
 
 import cit260.control.GameControl;
-import cit260.model.Game;
-import cit260.model.Player;
 import java.util.Scanner;
 import kingdoms.and.glory.KingdomsAndGlory;
 
@@ -16,6 +14,10 @@ import kingdoms.and.glory.KingdomsAndGlory;
  * @author bradclegg
  */
 public class MainMenuView {
+    
+    public MainMenuView() {
+        
+    }
 
     public void displayMainMenuView() {
         Boolean endView = false;
@@ -33,6 +35,7 @@ public class MainMenuView {
         System.out.println("**** getInputs() called ***");
 
         String[] inputs = new String[1];
+        
         // display menu
         System.out.println("G - Start New Game");
         System.out.println("L - Load Saved Game");

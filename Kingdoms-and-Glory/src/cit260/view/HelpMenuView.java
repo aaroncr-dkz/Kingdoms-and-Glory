@@ -12,6 +12,10 @@ import java.util.Scanner;
  * @author bradclegg
  */
 public class HelpMenuView {
+    
+    public HelpMenuView() {
+        
+    }
 
     public void displayHelpMenuView() {
         Boolean endView = false;

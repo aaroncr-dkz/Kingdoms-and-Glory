@@ -10,6 +10,11 @@ package cit260.view;
  * @author bradclegg
  */
 public class GameMenuView {
+    
+    public GameMenuView() {
+        
+    }
+    
     public void displayGameMenuView() {
         
     }

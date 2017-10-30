@@ -6,6 +6,7 @@
 package cit260.control;
 
 import cit260.model.Player;
+import cit260.model.Question;
 import kingdoms.and.glory.KingdomsAndGlory;
 
 /**
@@ -30,6 +31,29 @@ public class GameControl {
         
         System.out.println("*** savePlayer() called ***");
                 return player;
+    }
+    
+    public static String acquireQuestion(int questionNum) {
+        
+        String questionText;
+        
+        switch (questionNum) {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+        }
+        
+        
+        return "hello";
     }
 
     public static String determineTitle(int charisma, int diplomacy, int strategy) {

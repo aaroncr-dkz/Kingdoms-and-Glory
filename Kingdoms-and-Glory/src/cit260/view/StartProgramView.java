@@ -35,7 +35,11 @@ public class StartProgramView {
         System.out.println("**** getInputs() called ***");
 
         String[] inputs = new String[1];
+        
         // display Welcome
+        System.out.println("=============================\n"
+                         + "*"
+                         + "*");
 
         Boolean valid = false;
         Scanner inFile;

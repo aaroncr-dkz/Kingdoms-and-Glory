@@ -28,7 +28,7 @@ public class AttackSceneResultView {
         String[] inputs;
         do {
             inputs = getInputs();
-            if (inputs.length < 1 || inputs[0].toUpperCase().equals("B")) {
+            if (inputs.length < 1 || inputs[0].toUpperCase().equals("E")) {
                 return;
             }
             endView = doAction(inputs);
@@ -51,7 +51,7 @@ public class AttackSceneResultView {
         System.out.println("A - Loot Resources");
         System.out.println("S - Pillage");
         System.out.println("D - Loot and Pillage");
-        System.out.println("B - Go Back"); 
+        System.out.println("E - Exit to game menu"); 
 
         Boolean valid = false;
         Scanner inFile;
@@ -79,7 +79,7 @@ public class AttackSceneResultView {
     }
 
     private Boolean doAction(String[] inputs) {
-          System.out.println("**** doAction() called ***");
+        System.out.println("**** doAction() called ***");
         System.out.println("\tinputs = " + inputs[0]);
 
         String command = inputs[0].toUpperCase();
@@ -90,7 +90,7 @@ public class AttackSceneResultView {
                 break;
             case "S":
                 System.out.println("Pillaging City");
-                break;
+                 break;
             case "D":
                 System.out.println("Looting and Pillaging City");
                 break;

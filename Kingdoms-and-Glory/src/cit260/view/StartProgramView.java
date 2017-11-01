@@ -32,14 +32,26 @@ public class StartProgramView {
     }
 
     public String[] getInputs() {
-        System.out.println("**** getInputs() called ***");
 
         String[] inputs = new String[1];
         
         // display Welcome
-        System.out.println("=============================\n"
-                         + "*"
-                         + "*");
+        System.out.println("======================================================\n"
+                         + "* The kingdom of Zenobia has been a place of peace   *\n"
+                         + "* and prosperity for over 100 years, thanks to you   *\n"
+                         + "* and your fathers before you. In the last several   *\n"
+                         + "* months, tensions between your kingdom and the      *\n"
+                         + "* Ruffians has been growing. The Ruffians, known for *\n"
+                         + "* stealing from others for their own gain, have been *\n"
+                         + "* pillaging and plundering the outskirt cities.      *\n"
+                         + "* Zenobia, being a peaceful land with few fortifica- *\n"
+                         + "* tions, was not prepared for such an attack. As a   *\n"
+                         + "* result, the Ruffians overtook five cities but by   *\n"
+                         + "* searching the rest of your land and collecting     *\n"
+                         + "* resources, you should be able to take back all of  *\n"
+                         + "* your cities. How you move, attack and build your   *\n"
+                         + "* resources is up to you.                            *\n"
+                         + "======================================================\n");
 
         Boolean valid = false;
         Scanner inFile;
@@ -61,8 +73,6 @@ public class StartProgramView {
     }
 
     public Boolean doAction(String[] inputs) {
-        System.out.println("**** doAction() called ***");
-        System.out.println("\tinputs = " + inputs[0]);
 
         String playerName = inputs[0];
         Player player = GameControl.savePlayer(playerName);

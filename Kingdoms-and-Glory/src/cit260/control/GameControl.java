@@ -33,27 +33,51 @@ public class GameControl {
                 return player;
     }
     
-    public static String acquireQuestion(int questionNum) {
+    public static String[] acquireQuestion(int questionNum) {
         
-        String questionText;
+        String[] text = new String[4];
         
         switch (questionNum) {
             case 0:
+                text[0] = Question.Emperor.getQuestion();
+                text[1] = Question.Emperor.getAnswerCharisma();
+                text[2] = Question.Emperor.getAnswerDiplomacy();
+                text[3] = Question.Emperor.getAnswerStratagy();
                 break;
             case 1:
+                text[0] = Question.Chariot.getQuestion();
+                text[1] = Question.Chariot.getAnswerCharisma();
+                text[2] = Question.Chariot.getAnswerDiplomacy();
+                text[3] = Question.Chariot.getAnswerStratagy();
                 break;
             case 2:
+                text[0] = Question.Fortune.getQuestion();
+                text[1] = Question.Fortune.getAnswerCharisma();
+                text[2] = Question.Fortune.getAnswerDiplomacy();
+                text[3] = Question.Fortune.getAnswerStratagy();
                 break;
             case 3:
+                text[0] = Question.Justice.getQuestion();
+                text[1] = Question.Justice.getAnswerCharisma();
+                text[2] = Question.Justice.getAnswerDiplomacy();
+                text[3] = Question.Justice.getAnswerStratagy();
                 break;
             case 4:
+                text[0] = Question.Death.getQuestion();
+                text[1] = Question.Death.getAnswerCharisma();
+                text[2] = Question.Death.getAnswerDiplomacy();
+                text[3] = Question.Death.getAnswerStratagy();
                 break;
             case 5:
+                text[0] = Question.Star.getQuestion();
+                text[1] = Question.Star.getAnswerCharisma();
+                text[2] = Question.Star.getAnswerDiplomacy();
+                text[3] = Question.Emperor.getAnswerStratagy();
                 break;
         }
         
         
-        return "hello";
+        return text;
     }
 
     public static String determineTitle(int charisma, int diplomacy, int strategy) {

@@ -27,7 +27,7 @@ public enum Question {
           "Banish him forever","Permanently disfigure him","Kill the traitor"),
     
     Star("Stars shoot across the night sky, for what do you wish?",
-         "Happiness for myslef","Peace for the world","Success for my friends");
+         "Happiness for myself","Peace for the world","Success for my friends");
     
     private String question;
     private String answerCharisma;

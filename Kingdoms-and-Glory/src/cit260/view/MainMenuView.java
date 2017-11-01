@@ -32,12 +32,11 @@ public class MainMenuView {
     }
 
     private String[] getInputs() {
-        System.out.println("**** getInputs() called ***");
 
         String[] inputs = new String[1];
         
         // display menu
-        System.out.println("G - Start New Game");
+        System.out.println("\nG - Start New Game");
         System.out.println("L - Load Saved Game");
         System.out.println("B - Background Story");
         System.out.println("H - Get help on how to play the game");
@@ -46,6 +45,7 @@ public class MainMenuView {
         Boolean valid = false;
         Scanner inFile;
         inFile = new Scanner(System.in);
+        
         while (valid == false) {
             System.out.println("Select item from menu by entering the appropriate letter: ");
             String name = inFile.nextLine();
@@ -62,8 +62,6 @@ public class MainMenuView {
     }
 
     private Boolean doAction(String[] inputs) {
-        System.out.println("**** doAction() called ***");
-        System.out.println("\tinputs = " + inputs[0]);
 
         String command = inputs[0].toUpperCase();
 
@@ -88,14 +86,14 @@ public class MainMenuView {
                 return true;
         }
 
-        //  MainMenuView mainMenuView = new MainMenuView();
-        //  mainMenuView.displayMainMenuView();
-        System.out.println("not valid");
         return false;
     }
 
     private void startNewGame() {
         GameControl.createNewGame(KingdomsAndGlory.getPlayer());
+        
+        StartNewGameView startNewGameView = new StartNewGameView();
+        startNewGameView.displayStartNewGameView();
         
         GameMenuView gameMenuView = new GameMenuView();
         gameMenuView.displayGameMenuView();

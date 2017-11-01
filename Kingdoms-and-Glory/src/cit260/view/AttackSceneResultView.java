@@ -64,7 +64,7 @@ public class AttackSceneResultView {
             if (name.length() < 1 || !name.toUpperCase().equals("A")
                                   && !name.toUpperCase().equals("S")
                                   && !name.toUpperCase().equals("D")
-                                  && !name.toUpperCase().equals("B")) {
+                                  && !name.toUpperCase().equals("E")) {
                 System.out.println("You must enter a valid letter");
                 System.out.println("A - Loot Resources");
                 System.out.println("S - Pillage");

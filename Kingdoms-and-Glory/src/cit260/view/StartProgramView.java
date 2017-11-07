@@ -7,30 +7,18 @@ package cit260.view;
 
 import cit260.control.GameControl;
 import cit260.model.Player;
-import java.util.Scanner;
 
 /**
  *
  * @author bradclegg
  */
-public class StartProgramView {
+public class StartProgramView extends View {
 
     public StartProgramView() {
 
     }
 
-    public void displayStartProgramView() {
-        Boolean endView = false;
-        String[] inputs;
-        do {
-            inputs = getInputs();
-            if (inputs.length < 1 || inputs[0].toUpperCase().equals("Q")) {
-                return;
-            }
-            endView = doAction(inputs);
-        } while (endView != true);
-    }
-
+    @Override
     public String[] getInputs() {
 
         String[] inputs = new String[1];
@@ -53,25 +41,11 @@ public class StartProgramView {
                          + "* resources is up to you.                            *\n"
                          + "======================================================\n");
 
-        Boolean valid = false;
-        Scanner inFile;
-        inFile = new Scanner(System.in);
-        while (valid == false) {
-            System.out.println("Enter the player's name: ");
-            String name = inFile.nextLine();
-            name = name.trim();
-
-            if (name.length() < 1) {
-                System.out.println("You must enter a value");
-                continue;
-            }
-            inputs[0] = name;
-            valid = true;
-        }
+        inputs[0] = this.getInput("Enter the player's name: ");
         return inputs;
-
     }
 
+    @Override
     public Boolean doAction(String[] inputs) {
 
         String playerName = inputs[0];
@@ -84,7 +58,7 @@ public class StartProgramView {
         System.out.println("Welcome to the game " + playerName + " We hope you have a lot of fun");
 
         MainMenuView mainMenuView = new MainMenuView();
-        mainMenuView.displayMainMenuView();
+        mainMenuView.display();
 
         return true;
 

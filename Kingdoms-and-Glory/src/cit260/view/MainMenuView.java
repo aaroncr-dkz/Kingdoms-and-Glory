@@ -6,32 +6,20 @@
 package cit260.view;
 
 import cit260.control.GameControl;
-import java.util.Scanner;
 import kingdoms.and.glory.KingdomsAndGlory;
 
 /**
  *
  * @author bradclegg
  */
-public class MainMenuView {
+public class MainMenuView extends View {
     
     public MainMenuView() {
         
     }
 
-    public void displayMainMenuView() {
-        Boolean endView = false;
-        String[] inputs;
-        do {
-            inputs = getInputs();
-            if (inputs.length < 1 || inputs[0].toUpperCase().equals("E")) {
-                return;
-            }
-            endView = doAction(inputs);
-        } while (endView != true);
-    }
-
-    private String[] getInputs() {
+    @Override
+    public String[] getInputs() {
 
         String[] inputs = new String[1];
         
@@ -41,27 +29,13 @@ public class MainMenuView {
         System.out.println("B - Background Story");
         System.out.println("H - Get help on how to play the game");
         System.out.println("E - Exit");
-
-        Boolean valid = false;
-        Scanner inFile;
-        inFile = new Scanner(System.in);
         
-        while (valid == false) {
-            System.out.println("Select item from menu by entering the appropriate letter: ");
-            String name = inFile.nextLine();
-            name = name.trim();
-
-            if (name.length() < 1) {
-                System.out.println("You must enter a valid letter");
-                continue;
-            }
-            inputs[0] = name;
-            valid = true;
-        }
+        inputs[0] = this.getInput("Select item from menu by entering the appropriate letter: ");
         return inputs;
     }
 
-    private Boolean doAction(String[] inputs) {
+    @Override
+    public Boolean doAction(String[] inputs) {
 
         String command = inputs[0].toUpperCase();
 
@@ -110,7 +84,7 @@ public class MainMenuView {
 
     private void getHelp() {
         HelpMenuView helpMenuView = new HelpMenuView();
-        helpMenuView.displayHelpMenuView();
+        helpMenuView.display();
     }
 
 }

@@ -5,39 +5,18 @@
  */
 package cit260.view;
 
-import java.util.Scanner;
-
 /**
  *
  * @author bradclegg
  */
-public class HelpMenuView {
+public class HelpMenuView extends View {
     
     public HelpMenuView() {
         
     }
 
-    public void displayHelpMenuView() {
-        Boolean endView = false;
-        String[] inputs;
-        
-        do {
-            inputs = getInputs();
-            
-            if (inputs.length < 1 || !inputs[0].toUpperCase().equals("A")
-                                  && !inputs[0].toUpperCase().equals("R")
-                                  && !inputs[0].toUpperCase().equals("M")
-                                  && !inputs[0].toUpperCase().equals("C")
-                                  && !inputs[0].toUpperCase().equals("B")) {
-                System.out.println("\nPlease enter a valid command");
-                continue;
-            }
-            endView = doAction(inputs);
-        } while (endView != true);
-
-    }
-
-    private String[] getInputs() {
+    @Override
+    public String[] getInputs() {
 
         String[] inputs = new String[1];
         // display menu
@@ -46,24 +25,13 @@ public class HelpMenuView {
         System.out.println("M - Learn about the map and movement");
         System.out.println("C - Learn about waging war and conquering cities");
         System.out.println("B - Go back");
-
-        Boolean valid = false;
-        Scanner inFile;
-        inFile = new Scanner(System.in);
         
-        while (valid == false) {
-            System.out.println("Select item from menu by entering the appropriate letter: ");
-            
-            String name = inFile.nextLine();
-            name = name.trim();
-            
-            inputs[0] = name;
-            valid = true;
-        }
+        inputs[0] = this.getInput("Select item from menu by entering the appropriate letter: ");
         return inputs;
     }
 
-    private Boolean doAction(String[] inputs) {
+    @Override
+    public Boolean doAction(String[] inputs) {
 
         String command = inputs[0].toUpperCase();
 

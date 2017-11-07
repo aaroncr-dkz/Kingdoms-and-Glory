@@ -313,7 +313,7 @@ public class MapControlTest {
          // Test case 5
         System.out.println("\tTest case 5");
         
-        leaderValue = 3;
+        leaderValue = 5;
         armyValue = 10;
         resourceBonus = 1;
         cityValue = 1;
@@ -332,7 +332,7 @@ public class MapControlTest {
         armyValue = 1;
         resourceBonus = 0;
         cityValue = 10;
-        enemyLeaderValue = 3;
+        enemyLeaderValue = 5;
         enemyResourceBonus = 1;
         expResult = "Lose";
         

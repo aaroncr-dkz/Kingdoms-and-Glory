@@ -69,7 +69,7 @@ public class AttackSceneResultView {
                 System.out.println("A - Loot Resources");
                 System.out.println("S - Pillage");
                 System.out.println("D - Loot and Pillage");
-                System.out.println("B - Go Back"); 
+                System.out.println("E - Exit to game menu"); 
                 continue;
             }
             inputs[0] = name;
@@ -94,7 +94,7 @@ public class AttackSceneResultView {
             case "D":
                 System.out.println("Looting and Pillaging City");
                 break;
-            case "B":
+            case "E":
                 return true;
         }
         return false;

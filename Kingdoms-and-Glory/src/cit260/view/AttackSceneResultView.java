@@ -13,11 +13,6 @@ import cit260.control.MapControl;
  */
 public class AttackSceneResultView extends View{
     
-      public static void main(String[] args) {
-          AttackSceneResultView attackSceneResultView = new AttackSceneResultView();
-          attackSceneResultView.display();
-      }
-    
     public AttackSceneResultView() {
         
     }

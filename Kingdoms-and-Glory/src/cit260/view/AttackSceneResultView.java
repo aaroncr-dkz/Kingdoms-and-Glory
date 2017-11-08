@@ -6,43 +6,29 @@
 package cit260.view;
 
 import cit260.control.MapControl;
-import java.util.Scanner;
 
 /**
  *
  * @author bradclegg
  */
-public class AttackSceneResultView {
+public class AttackSceneResultView extends View{
     
       public static void main(String[] args) {
           AttackSceneResultView attackSceneResultView = new AttackSceneResultView();
-          attackSceneResultView.DisplayAttackSceneResultView();
+          attackSceneResultView.display();
       }
     
     public AttackSceneResultView() {
         
     }
-    
-    public void DisplayAttackSceneResultView() {
-         Boolean endView = false;
-        String[] inputs;
-        do {
-            inputs = getInputs();
-            if (inputs.length < 1 || inputs[0].toUpperCase().equals("E")) {
-                return;
-            }
-            endView = doAction(inputs);
-        } while (endView != true);
 
-    }
-
-    private String[] getInputs() {
-        System.out.println("**** getInputs() called ***");
+    @Override
+    public String[] getInputs() {
 
         String[] inputs = new String[1];
         // display menu
         if (MapControl.determineWinOrLose(5, 10, 1, 10, 4, 0).equals("Win")) {
-            System.out.println("Congrdulations, YOU WIN");
+            System.out.println("Congratulations, YOU WIN");
         }
         else {
             System.out.println("Sorry you lose");
@@ -53,34 +39,12 @@ public class AttackSceneResultView {
         System.out.println("D - Loot and Pillage");
         System.out.println("E - Exit to game menu"); 
 
-        Boolean valid = false;
-        Scanner inFile;
-        inFile = new Scanner(System.in);
-        while (valid == false) {
-            System.out.println("Select item from menu by entering the appropriate letter: ");
-            String name = inFile.nextLine();
-            name = name.trim();
-
-            if (name.length() < 1 || !name.toUpperCase().equals("A")
-                                  && !name.toUpperCase().equals("S")
-                                  && !name.toUpperCase().equals("D")
-                                  && !name.toUpperCase().equals("E")) {
-                System.out.println("You must enter a valid letter");
-                System.out.println("A - Loot Resources");
-                System.out.println("S - Pillage");
-                System.out.println("D - Loot and Pillage");
-                System.out.println("E - Exit to game menu"); 
-                continue;
-            }
-            inputs[0] = name;
-            valid = true;
-        }
+        inputs[0] = this.getInput("Select item from menu by entering the appropriate letter: ");
         return inputs;
     }
 
-    private Boolean doAction(String[] inputs) {
-        System.out.println("**** doAction() called ***");
-        System.out.println("\tinputs = " + inputs[0]);
+    @Override
+    public Boolean doAction(String[] inputs) {
 
         String command = inputs[0].toUpperCase();
 

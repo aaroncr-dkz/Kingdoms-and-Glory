@@ -5,37 +5,18 @@
  */
 package cit260.view;
 
-import java.util.Scanner;
-
 /**
  *
  * @author bradclegg
  */
-public class GameMenuView {
+public class GameMenuView extends View {
     
     public GameMenuView() {
         
     }
-    
-    public void displayGameMenuView() {
-        
-        Boolean endView = false;
-        String[] inputs;
-        
-        do {
-            inputs = getInputs();
-            
-            if (inputs.length < 1 || inputs[0].toUpperCase().equals("E")) {
-                return;
-            }
-            
-            endView = doAction(inputs);
-            
-        } while (endView != true);
-        
-    }
 
-    private String[] getInputs() {
+    @Override
+    public String[] getInputs() {
         String[] inputs = new String[1];
         
         // display menu
@@ -46,26 +27,56 @@ public class GameMenuView {
         System.out.println("S - Save Game");
         System.out.println("E - Exit without Saving");
 
-        Boolean valid = false;
-        Scanner inFile;
-        inFile = new Scanner(System.in);
-        while (valid == false) {
-            System.out.println("Select item from menu by entering the appropriate letter: ");
-            String name = inFile.nextLine();
-            name = name.trim();
-
-            if (name.length() < 1) {
-                System.out.println("You must enter a valid letter");
-                continue;
-            }
-            inputs[0] = name;
-            valid = true;
-        }
+        inputs[0] = this.getInput("Select item from menu by entering the appropriate letter: ");
         return inputs;
     }
 
-    private Boolean doAction(String[] inputs) {
-        return true;
+    @Override
+    public Boolean doAction(String[] inputs) {
+        
+        String command = inputs[0].toUpperCase();
+        
+        switch (command) {
+            case "A":
+                manageArmy();
+                System.out.println("manage army");
+                break;
+            case "R":
+                manageResources();
+                System.out.println("manage resources");
+                break;
+            case "M":
+                viewMap();
+                System.out.println("view map");
+                break;
+            case "H":
+                getHelp();
+                break;
+            case "S":
+                System.out.println("saving game");
+                break;
+            case "E":
+                return true;
+        }
+        
+        return false;
+    }
+    
+    private void getHelp() {
+        HelpMenuView helpMenuView = new HelpMenuView();
+        helpMenuView.display();
+    }
+
+    private void manageArmy() {
+       
+    }
+
+    private void manageResources() {
+        
+    }
+
+    private void viewMap() {
+        
     }
     
     

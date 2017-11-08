@@ -28,7 +28,7 @@ public class MainMenuView extends View {
         System.out.println("L - Load Saved Game");
         System.out.println("B - Background Story");
         System.out.println("H - Get help on how to play the game");
-        System.out.println("E - Exit");
+        System.out.println("E - Exit Program");
         
         inputs[0] = this.getInput("Select item from menu by entering the appropriate letter: ");
         return inputs;
@@ -70,12 +70,12 @@ public class MainMenuView extends View {
         startNewGameView.displayStartNewGameView();
         
         GameMenuView gameMenuView = new GameMenuView();
-        gameMenuView.displayGameMenuView();
+        gameMenuView.display();
     }
 
     private void loadGame() {
         StartExistingGameView startExistingGameView = new StartExistingGameView();
-        startExistingGameView.displayStartExisitingGameView();
+        startExistingGameView.display();
     }
 
     private void displayStory() {

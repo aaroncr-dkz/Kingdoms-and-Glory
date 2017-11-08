@@ -9,10 +9,23 @@ package cit260.view;
  *
  * @author bradclegg
  */
-public class StartExistingGameView {
+public class StartExistingGameView extends View {
     
-    public void displayStartExisitingGameView() {
+    public StartExistingGameView() {
         
+    }
+
+    @Override
+    public String[] getInputs() {
+        String[] inputs = new String[1];
+
+        inputs[0] = this.getInput("");
+        return inputs;
+    }
+
+    @Override
+    public Boolean doAction(String[] inputs) {
+        return true;
     }
     
 }

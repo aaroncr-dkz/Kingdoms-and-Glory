@@ -11,12 +11,7 @@ import cit260.control.MapControl;
  *
  * @author bradclegg
  */
-public class AttackSceneResultView extends View{
-    
-      public static void main(String[] args) {
-          AttackSceneResultView attackSceneResultView = new AttackSceneResultView();
-          attackSceneResultView.display();
-      }
+public class AttackSceneResultView extends View {
     
     public AttackSceneResultView() {
         
@@ -34,7 +29,7 @@ public class AttackSceneResultView extends View{
             System.out.println("Sorry you lose");
         }
         
-        System.out.println("A - Loot Resources");
+        System.out.println("\nA - Loot Resources");
         System.out.println("S - Pillage");
         System.out.println("D - Loot and Pillage");
         System.out.println("E - Exit to game menu"); 

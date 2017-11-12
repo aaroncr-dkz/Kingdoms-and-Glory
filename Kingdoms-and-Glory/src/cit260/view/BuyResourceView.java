@@ -21,7 +21,7 @@ public class BuyResourceView extends View {
         String[] inputs = new String[1];
         
         // display menu
-        System.out.println("\nW - Wood: 50$");
+        System.out.println("\nW - Wood: 100$");
         System.out.println("M - Buy Metal: 350$");
         System.out.println("S - Buy Stone 200$");
         System.out.println("C - Buy Cloth: 25$");

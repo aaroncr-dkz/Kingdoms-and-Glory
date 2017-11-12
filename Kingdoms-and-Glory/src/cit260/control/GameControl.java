@@ -116,4 +116,7 @@ public class GameControl {
         return title;
     }
 
+    public static void retrieveArmyData() {
+        
+    }
 }

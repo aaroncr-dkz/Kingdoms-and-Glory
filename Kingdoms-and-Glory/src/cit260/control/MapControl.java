@@ -5,19 +5,39 @@
  */
 package cit260.control;
 
+import cit260.view.StartNewGameView;
+
 /**
  *
  * @author aaroncr-dkz
  */
 public class MapControl {
+    
+    public int example() {
+        StartNewGameView newView = new StartNewGameView();
+        int charisma = 3;
+        int diplomacy = 2;
+        Boolean isGood = false;
+        int randAmount = 30;
+        
+        determineExploreResult(charisma, diplomacy, isGood, randAmount);
+        another(newView);
+        return 0;
+    }
+    
+    public int another(StartNewGameView newView) {
+        return 0;
+    }
 
     public static int determineExploreResult(int charisma, int diplomacy, Boolean isGood, int randAmount) {
 
         if (charisma < 0 || diplomacy < 0) {
             return -100;
-        } else if (charisma > 6 || diplomacy > 6) {
+        } 
+        else if (charisma > 6 || diplomacy > 6) {
             return -100;
-        } else if (randAmount < 20 || randAmount > 50) {
+        } 
+        else if (randAmount < 20 || randAmount > 50) {
             return -100;
         }
 
@@ -25,7 +45,8 @@ public class MapControl {
 
         if (isGood) {
             finalAmount = randAmount + (charisma * 2);
-        } else {
+        } 
+        else {
             finalAmount = (randAmount * -1) + (diplomacy * 3);
         }
 

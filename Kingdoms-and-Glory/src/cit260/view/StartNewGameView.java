@@ -10,7 +10,7 @@ import cit260.control.GameControl;
 
 /**
  *
- * @author bradclegg
+ * @author aaroncr-dkz
  */
 public class StartNewGameView {
 

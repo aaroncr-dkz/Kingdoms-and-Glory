@@ -7,7 +7,7 @@ package cit260.view;
 
 /**
  *
- * @author bradclegg
+ * @author aaroncr-dkz
  */
 public interface ViewInterface {
     

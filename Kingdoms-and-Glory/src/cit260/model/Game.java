@@ -15,7 +15,7 @@ import java.util.Objects;
  */
 public class Game implements Serializable {
     
-    private Boolean enemyCapitalCaptured;
+    private Boolean enemyCapitalCaptured = false;
     private Map map;
     private Questionnaire quiz;
     private Player player;
@@ -58,6 +58,14 @@ public class Game implements Serializable {
         this.player = player;
     }
 
+    public Army getArmy() {
+        return army;
+    }
+
+    public void setArmy(Army army) {
+        this.army = army;
+    }
+
     public ArrayList<Resource> getResources() {
         return resources;
     }
@@ -65,20 +73,22 @@ public class Game implements Serializable {
     public void setResources(ArrayList<Resource> resources) {
         this.resources = resources;
     }
-
+    
+    
     @Override
     public String toString() {
-        return "Game{" + "enemyCapitalCaptured=" + enemyCapitalCaptured + ", map=" + map + ", quiz=" + quiz + ", player=" + player + ", resources=" + resources + '}';
+        return "Game{" + "enemyCapitalCaptured=" + enemyCapitalCaptured + ", map=" + map + ", quiz=" + quiz + ", player=" + player + ", army=" + army + ", resources=" + resources + '}';
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.enemyCapitalCaptured);
-        hash = 79 * hash + Objects.hashCode(this.map);
-        hash = 79 * hash + Objects.hashCode(this.quiz);
-        hash = 79 * hash + Objects.hashCode(this.player);
-        hash = 79 * hash + Objects.hashCode(this.resources);
+        hash = 97 * hash + Objects.hashCode(this.enemyCapitalCaptured);
+        hash = 97 * hash + Objects.hashCode(this.map);
+        hash = 97 * hash + Objects.hashCode(this.quiz);
+        hash = 97 * hash + Objects.hashCode(this.player);
+        hash = 97 * hash + Objects.hashCode(this.army);
+        hash = 97 * hash + Objects.hashCode(this.resources);
         return hash;
     }
 
@@ -106,11 +116,15 @@ public class Game implements Serializable {
         if (!Objects.equals(this.player, other.player)) {
             return false;
         }
+        if (!Objects.equals(this.army, other.army)) {
+            return false;
+        }
         if (!Objects.equals(this.resources, other.resources)) {
             return false;
         }
         return true;
     }
 
+    
     
 }

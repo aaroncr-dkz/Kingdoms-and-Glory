@@ -5,8 +5,13 @@
  */
 package cit260.control;
 
+import cit260.model.Actor;
+import cit260.model.Game;
+import cit260.model.Map;
 import cit260.model.Player;
+import cit260.model.PlayerActor;
 import cit260.model.Question;
+import cit260.model.Territory;
 import kingdoms.and.glory.KingdomsAndGlory;
 
 /**
@@ -15,7 +20,34 @@ import kingdoms.and.glory.KingdomsAndGlory;
  */
 public class GameControl {
     
-    public static void createNewGame(Player player) {
+    public static int createNewGame(Player player) {
+        if (player == null) {
+            return -1;
+        }
+        
+        // create a game object
+        Game game = new Game();
+        game.setPlayer(player);
+        KingdomsAndGlory.setCurrentGame(game);
+        
+
+        // create the player's actor
+        Actor opinionLeader = new PlayerActor();
+        player.setPlayerCharacter(opinionLeader);
+        
+        // create the resource deposits
+        
+        
+        // create the map
+        Map map = MapControl.createMap(5, 5);
+        if (map == null) {
+            return -1;
+        }
+        
+        game.setMap(map);
+        
+        return 1;
+        
         
     }
     
@@ -119,4 +151,5 @@ public class GameControl {
     public static void retrieveArmyData() {
         
     }
+
 }

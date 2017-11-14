@@ -5,30 +5,45 @@
  */
 package cit260.control;
 
-import cit260.view.StartNewGameView;
+import cit260.model.Map;
+import cit260.model.Territory;
 
 /**
  *
  * @author aaroncr-dkz
  */
 public class MapControl {
-    
-    public int example() {
-        StartNewGameView newView = new StartNewGameView();
-        int charisma = 3;
-        int diplomacy = 2;
-        Boolean isGood = false;
-        int randAmount = 30;
-        
-        determineExploreResult(charisma, diplomacy, isGood, randAmount);
-        another(newView);
-        return 0;
-    }
-    
-    public int another(StartNewGameView newView) {
-        return 0;
-    }
 
+    public static Map createMap(int numOfRows, int numOfColumns) {
+        if (numOfRows < 0 || numOfColumns < 0) {
+            return null;
+        }
+        
+        Map map = new Map();
+        //save rows
+        //save columns
+        
+        Territory[][] locations = createLocations(numOfRows, numOfColumns);
+        map.setMap(locations);
+        return map;
+    }
+    
+    // create all the territories in the game
+    private static Territory[][] createLocations(int numOfRows, int numOfColumns) {
+        if (numOfRows < 0 || numOfColumns < 0) {
+            return null;
+        }
+        
+        Territory[][] locations = new Territory[numOfRows][numOfColumns];
+        for (int i = 0; i < numOfRows; i++) {
+            for (int j = 0; j <numOfColumns; j++) {
+                Territory location = new Territory(i, j);
+                locations[i][j] = location;
+            }
+        }
+        return locations;
+    }
+    
     public static int determineExploreResult(int charisma, int diplomacy, Boolean isGood, int randAmount) {
 
         if (charisma < 0 || diplomacy < 0) {
@@ -93,4 +108,6 @@ public class MapControl {
             return "Lose";
         }
     }
+
+   
 }

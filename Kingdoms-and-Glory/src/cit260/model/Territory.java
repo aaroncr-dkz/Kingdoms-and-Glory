@@ -20,6 +20,12 @@ public class Territory implements Serializable {
     
     public Territory() {
     }
+    
+    public Territory(int row, int column) {
+        this.row = row;
+        this.column = column;
+        this.visited = false;
+    }
 
     public int getRow() {
         return row;

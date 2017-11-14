@@ -20,6 +20,12 @@ public class Actor implements Serializable {
     
     public Actor() {
     }
+    
+    public Actor(String name, String description) {
+        this.name = name;
+        this.description = description;
+        this.location = null;
+    }
 
     public String getName() {
         return name;

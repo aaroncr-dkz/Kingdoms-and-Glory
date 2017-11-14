@@ -64,7 +64,11 @@ public class MainMenuView extends View {
     }
 
     private void startNewGame() {
-        GameControl.createNewGame(KingdomsAndGlory.getPlayer());
+        // create a new game
+        int returnValue = GameControl.createNewGame(KingdomsAndGlory.getPlayer());
+        if (returnValue < 0) {
+            System.out.println("ERROR - failed to create new game");
+        }
         
         StartNewGameView startNewGameView = new StartNewGameView();
         startNewGameView.displayStartNewGameView();

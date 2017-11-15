@@ -15,6 +15,7 @@ import java.util.Objects;
 public class DefaultScene implements Serializable{
     
     private String description;
+    private Resource resource;
     
     public DefaultScene() {
         
@@ -26,6 +27,14 @@ public class DefaultScene implements Serializable{
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Resource getResource() {
+        return resource;
+    }
+
+    public void setResource(Resource resource) {
+        this.resource = resource;
     }
 
     @Override

@@ -17,6 +17,7 @@ public class Territory implements Serializable {
     private int row;
     private int column;
     private Boolean visited;
+    private DefaultScene[] scenes = new DefaultScene[3];
     
     public Territory() {
     }
@@ -51,6 +52,14 @@ public class Territory implements Serializable {
         this.visited = visited;
     }
 
+    public DefaultScene[] getScenes() {
+        return scenes;
+    }
+
+    public void setScenes(DefaultScene[] scenes) {
+        this.scenes = scenes;
+    }
+    
     @Override
     public String toString() {
         return "Territory{" + "row=" + row + ", column=" + column + ", visited=" + visited + '}';

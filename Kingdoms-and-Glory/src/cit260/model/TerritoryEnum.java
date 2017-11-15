@@ -30,7 +30,7 @@ public enum TerritoryEnum {
     Fort_Allamoot(1, 3),
     Ryhean_Sea(0, 4),
     Shrine_of_Kulyn(0, 3),
-    Dalhmud_Desert(1, 0),
+    Dahlmud_Desert(1, 0),
     Fort_Shulamana(1, 2),
     Xanadu(0, 2),
     Zeteginea(0, 1),
@@ -44,11 +44,11 @@ public enum TerritoryEnum {
         this.column = column;
     }
 
-    public int getRows() {
+    public int getX() {
         return row;
     }
 
-    public int getColumns() {
+    public int getY() {
         return column;
     }
     

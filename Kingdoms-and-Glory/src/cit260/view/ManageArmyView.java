@@ -20,7 +20,7 @@ public class ManageArmyView extends View {
     @Override
     public String[] getInputs() {
         
-        GameControl.retrieveArmyData();
+        String armyData = GameControl.retrieveArmyData();
         
         
 
@@ -31,10 +31,8 @@ public class ManageArmyView extends View {
         System.out.println("B - Go Back");
         
         
-        System.out.println("\nArmy Compisition:");
-        System.out.println("Footmen - 300");
-        System.out.println("Siege - 12");
-        System.out.println("Specialists - 100");
+        System.out.println(armyData);
+
         
         
         

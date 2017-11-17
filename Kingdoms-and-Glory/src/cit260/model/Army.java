@@ -6,6 +6,8 @@
 package cit260.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
@@ -15,9 +17,15 @@ public class Army implements Serializable{
     
     private long numSoldiers;
     private int militaryPower;
+    private ArrayList<ArmyMember> armyMembers;
     
     public Army() {
+        this.armyMembers = new ArrayList<>();
+        ArmyMember[] uniques = new ArmyMember[25];
+        
+        
     }
+    
 
     public long getNumSoldiers() {
         return numSoldiers;
@@ -35,16 +43,25 @@ public class Army implements Serializable{
         this.militaryPower = militaryPower;
     }
 
+    public ArrayList<ArmyMember> getArmyMembers() {
+        return armyMembers;
+    }
+
+    public void setArmyMembers(ArrayList<ArmyMember> armyMembers) {
+        this.armyMembers = armyMembers;
+    }
+
     @Override
     public String toString() {
-        return "Army{" + "numSoldiers=" + numSoldiers + ", militaryPower=" + militaryPower + '}';
+        return "Army{" + "numSoldiers=" + numSoldiers + ", militaryPower=" + militaryPower + ", armyMembers=" + armyMembers + '}';
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 37 * hash + (int) (this.numSoldiers ^ (this.numSoldiers >>> 32));
-        hash = 37 * hash + this.militaryPower;
+        int hash = 7;
+        hash = 97 * hash + (int) (this.numSoldiers ^ (this.numSoldiers >>> 32));
+        hash = 97 * hash + this.militaryPower;
+        hash = 97 * hash + Objects.hashCode(this.armyMembers);
         return hash;
     }
 
@@ -66,9 +83,11 @@ public class Army implements Serializable{
         if (this.militaryPower != other.militaryPower) {
             return false;
         }
+        if (!Objects.equals(this.armyMembers, other.armyMembers)) {
+            return false;
+        }
         return true;
     }
-    
-    
+
     
 }

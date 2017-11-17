@@ -15,7 +15,7 @@ public class Map implements Serializable{
     
     private int currentRow;
     private int currentColumn;
-    private Territory[][] map;
+    private Territory[][] territories;
     
     public Map() {
         
@@ -37,12 +37,12 @@ public class Map implements Serializable{
         this.currentColumn = currentColumn;
     }
 
-    public Territory[][] getMap() {
-        return map;
+    public Territory[][] getTerritories() {
+        return territories;
     }
 
-    public void setMap(Territory[][] map) {
-        this.map = map;
+    public void setTerritories(Territory[][] territories) {
+        this.territories = territories;
     }
 
     @Override

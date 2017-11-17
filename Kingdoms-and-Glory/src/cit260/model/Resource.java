@@ -15,10 +15,14 @@ import java.util.Objects;
 public class Resource implements Serializable {
     
     private String name;
-    private int amountOwned;
-    private Game game;
+    private int amount;
     
     public Resource() {
+    }
+    
+    public Resource(String name, int amount) {
+        this.name = name;
+        this.amount = amount; 
     }
 
     public String getName() {
@@ -29,33 +33,24 @@ public class Resource implements Serializable {
         this.name = name;
     }
 
-    public int getAmountOwned() {
-        return amountOwned;
+    public int getAmount() {
+        return amount;
     }
 
-    public void setAmountOwned(int amountOwned) {
-        this.amountOwned = amountOwned;
-    }
-
-    public Game getGame() {
-        return game;
-    }
-
-    public void setGame(Game game) {
-        this.game = game;
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     @Override
     public String toString() {
-        return "Resource{" + "name=" + name + ", amountOwned=" + amountOwned + ", game=" + game + '}';
+        return "Resource{" + "name=" + name + ", amountOwned=" + amount + '}';
     }
 
     @Override
     public int hashCode() {
         int hash = 5;
         hash = 89 * hash + Objects.hashCode(this.name);
-        hash = 89 * hash + this.amountOwned;
-        hash = 89 * hash + Objects.hashCode(this.game);
+        hash = 89 * hash + this.amount;
         return hash;
     }
 
@@ -71,13 +66,10 @@ public class Resource implements Serializable {
             return false;
         }
         final Resource other = (Resource) obj;
-        if (this.amountOwned != other.amountOwned) {
+        if (this.amount != other.amount) {
             return false;
         }
         if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
-        if (!Objects.equals(this.game, other.game)) {
             return false;
         }
         return true;

@@ -44,7 +44,6 @@ public class GameMenuView extends View {
         switch (command) {
             case "A":
                 manageArmy();
-                System.out.println("manage army");
                 break;
             case "R":
                 manageResources();
@@ -52,7 +51,6 @@ public class GameMenuView extends View {
                 break;
             case "M":
                 viewMap();
-                System.out.println("view map");
                 break;
             case "H":
                 getHelp();
@@ -73,7 +71,8 @@ public class GameMenuView extends View {
     }
 
     private void manageArmy() {
-       
+       ManageArmyView manageArmyView = new ManageArmyView();
+       manageArmyView.display();
     }
 
     private void manageResources() {
@@ -81,40 +80,7 @@ public class GameMenuView extends View {
     }
 
     private void viewMap() {
-       Game game = new Game();
-       
-       KingdomsAndGlory.getCurrentGame();
-       
-       game.getMap();
-       
-       Map map = new Map();
-       map.getMap();
-       
-       System.out.println("-----Zenobia-----");
-       System.out.println("1   2   3   4   5");
-       
-       int numOfRows = 5;
-       int numOfColumns = 5;
-       int k = 1;
-       int row = k++;
-       Territory[][] territorysInMap = new Territory[numOfRows][numOfColumns];
-       
-               
-       for (int i = 0; i < territorysInMap.length; i++) {
-           System.out.println("-----------------");
-           System.out.println("\n" + row);
-           
-           for (int j = 0; j < territorysInMap[i].length; j++) {
-               System.out.println("|");
-               if (territorysInMap.equals(true)) {
-                   System.out.print(" XX ");
-               }
-               else {
-                   System.out.print(" ?? ");
-               }
-            }
-           System.out.print("|");
-        }
-       System.out.print("-----------------");
+       MapMenuView mapMenuView = new MapMenuView();
+       mapMenuView.display();
     }
 }

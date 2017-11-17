@@ -20,6 +20,10 @@ public class AttackScene extends DefaultScene implements Serializable{
     
     public AttackScene() {
     }
+    
+    public AttackScene(Resource resource) {
+        
+    }
 
     public int getEnemyStrength() {
         return enemyStrength;

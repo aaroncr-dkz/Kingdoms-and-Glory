@@ -19,8 +19,7 @@ public class ArmyMember implements Serializable {
     }
     
     private int power;
-    private String classification;
-    private Army army; 
+    private String classification; 
    
     public int getPower() {
         return power;
@@ -38,25 +37,17 @@ public class ArmyMember implements Serializable {
         this.classification = classification;
     }
 
-    public Army getArmy() {
-        return army;
-    }
-
-    public void setArmy(Army army) {
-        this.army = army;
-    }
 
     @Override
     public String toString() {
-        return "ArmyMember{" + "power=" + power + ", classification=" + classification + ", army=" + army + '}';
+        return "ArmyMember{" + "power=" + power + ", classification=" + classification + '}';
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
         hash = 13 * hash + this.power;
-        hash = 13 * hash + Objects.hashCode(this.classification);
-        hash = 13 * hash + Objects.hashCode(this.army);
+        hash = 13 * hash + Objects.hashCode(this.classification);;
         return hash;
     }
 
@@ -76,9 +67,6 @@ public class ArmyMember implements Serializable {
             return false;
         }
         if (!Objects.equals(this.classification, other.classification)) {
-            return false;
-        }
-        if (!Objects.equals(this.army, other.army)) {
             return false;
         }
         return true;

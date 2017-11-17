@@ -6,12 +6,15 @@
 package cit260.control;
 
 import cit260.model.Actor;
+import cit260.model.Army;
+import cit260.model.ArmyMember;
 import cit260.model.Game;
 import cit260.model.Map;
 import cit260.model.Player;
 import cit260.model.PlayerActor;
 import cit260.model.Question;
-import cit260.model.Territory;
+import cit260.model.Resource;
+import java.util.ArrayList;
 import kingdoms.and.glory.KingdomsAndGlory;
 
 /**
@@ -35,10 +38,11 @@ public class GameControl {
         Actor opinionLeader = new PlayerActor();
         player.setPlayerCharacter(opinionLeader);
         
-        // create the resource deposits
+        // create an empty army and assign it
+        Army army = new Army();
+        game.setArmy(army);
         
-        
-        // create the map
+        // create the map, pass it the resource array
         Map map = MapControl.createMap(5, 5);
         if (map == null) {
             return -1;
@@ -148,8 +152,58 @@ public class GameControl {
         return title;
     }
 
-    public static void retrieveArmyData() {
+    public static String retrieveArmyData() {
+          ArrayList<ArmyMember> army = KingdomsAndGlory.getCurrentGame().getArmy().getArmyMembers();
+          
+          String returnString = "\n";
+          
+          String footmen = "Footmen: ";
+          String siege = "Siege: ";
+          String specialists = "Specialists: ";
+          
+          int numFootmen = 0;
+          int numSiege = 0;
+          int numSpecialist = 0;
+          
+          int powFootmen = 0;
+          int powSiege = 0;
+          int powSpecialist = 0;
+                  
         
+        for (ArmyMember member : army) {
+            switch(member.getClassification()) {
+                case "Footman":
+                    numFootmen += 1;
+                    powFootmen += member.getPower();
+                    break;
+                case "Siege":
+                    numSiege += 1;
+                    powSiege += member.getPower();
+                    break;
+                case "Specialist":
+                    numSpecialist += 1;
+                    powSpecialist += member.getPower();
+                    break;
+                case "Unique":
+                    
+                    break;
+                    
+            }
+        }
+        
+        KingdomsAndGlory.getCurrentGame().getArmy().setNumSoldiers(numFootmen + numSiege + numSpecialist);
+        KingdomsAndGlory.getCurrentGame().getArmy().setMilitaryPower(powFootmen + powSiege + powSpecialist);
+        
+        long totalNum = KingdomsAndGlory.getCurrentGame().getArmy().getNumSoldiers();
+        int totalPow = KingdomsAndGlory.getCurrentGame().getArmy().getMilitaryPower();
+        
+        footmen += (numFootmen + "\n  Power: " + powFootmen);
+        siege += (numSiege  + "\nPower: " + powSiege);
+        specialists += (numSpecialist  + "\n      Power: " + powSpecialist);
+        
+        returnString += (footmen + "\n\n" + siege + "\n\n" + specialists + "\n\n" + "Total Army Size: "
+                        + totalNum + "\nTotal Militray Power: " + totalPow + "\n");
+        
+        return returnString;
     }
-
 }

@@ -154,6 +154,9 @@ public class GameControl {
 
     public static String retrieveArmyData() {
           ArrayList<ArmyMember> army = KingdomsAndGlory.getCurrentGame().getArmy().getArmyMembers();
+          if (army == null) {
+              return "error";
+          }
           
           String returnString = "\n";
           

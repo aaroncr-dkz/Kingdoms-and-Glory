@@ -30,13 +30,9 @@ public class ManageArmyView extends View {
         System.out.println("S - Sell Army");
         System.out.println("B - Go Back");
         
-        
         System.out.println(armyData);
 
-        
-        
-        
-        inputs[0] = this.getInput("Select item from menu by entering the appropriate letter: ");
+        inputs[0] = this.getInput("Select item from the menu by entering the appropriate letter: ");
         return inputs;
     }
 

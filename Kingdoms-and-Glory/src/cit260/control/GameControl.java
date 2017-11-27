@@ -13,7 +13,7 @@ import cit260.model.Map;
 import cit260.model.Player;
 import cit260.model.PlayerActor;
 import cit260.model.Question;
-import cit260.model.Resource;
+import cit260.model.TerritoryEnum;
 import java.util.ArrayList;
 import kingdoms.and.glory.KingdomsAndGlory;
 
@@ -48,6 +48,12 @@ public class GameControl {
             return -1;
         }
         
+        // set the player's starting location
+        player.getPlayerCharacter().setLocation(map.getTerritories()
+                                   [TerritoryEnum.Castle_of_Warren.getX()]
+                                   [TerritoryEnum.Castle_of_Warren.getY()]);
+        
+        // set the map to the game
         game.setMap(map);
         
         return 1;
@@ -65,8 +71,7 @@ public class GameControl {
         
         KingdomsAndGlory.setPlayer(player);
         
-        System.out.println("*** savePlayer() called ***");
-                return player;
+        return player;
     }
     
     public static String[] acquireQuestion(int questionNum) {

@@ -55,7 +55,7 @@ public class StartProgramView extends View {
             System.out.println("Could not create the player. Enter a differnt name");
             return false;
         }
-        System.out.println("Welcome to the game " + playerName + " We hope you have a lot of fun");
+        System.out.println("\nWelcome to the game, " + playerName + ". We hope you have a lot of fun");
 
         MainMenuView mainMenuView = new MainMenuView();
         mainMenuView.display();

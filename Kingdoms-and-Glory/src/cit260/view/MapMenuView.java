@@ -15,10 +15,6 @@ import kingdoms.and.glory.KingdomsAndGlory;
  */
 public class MapMenuView extends View {
 
-//    public static void main(String[] args) {
-//          MapMenuView mapMenuView = new MapMenuView();
-//          mapMenuView.display();
-//      }
     public MapMenuView() {
 
     }
@@ -34,8 +30,6 @@ public class MapMenuView extends View {
         System.out.println("*      1     2     3     4     5  *");
         System.out.println("*   ------------------------------*");
 
-        int numOfRows = 5;
-        int numOfColumns = 5;
         int i;
         Map map = KingdomsAndGlory.getCurrentGame().getMap();
         Territory[][] territories = map.getTerritories();
@@ -46,7 +40,7 @@ public class MapMenuView extends View {
             for (int j = 0; j < territories[i].length; j++) {
                 System.out.print("|");
                 if (territories[i][j].getVisited()) {
-                    System.out.print(" XXX ");
+                    System.out.print(" " + territories[i][j].getSymbol() + " ");
                 } else {
                     System.out.print(" ??? ");
                 }
@@ -77,7 +71,8 @@ public class MapMenuView extends View {
 
         switch (command) {
             case "V":
-                System.out.println("You are viewing a territory");
+                MapTerritoryView mapTerritoryView = new MapTerritoryView();
+                mapTerritoryView.display();
                 break;
             case "C":
                 System.out.println("You are attacking a territory");

@@ -6,7 +6,6 @@
 package cit260.model;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  *
@@ -14,49 +13,21 @@ import java.util.Objects;
  */
 public class CapturedScene extends DefaultScene implements Serializable {
     
-    private String description;
+    private Boolean captured;
     
     public CapturedScene() {
         
     }
 
-    @Override
-    public String getDescription() {
-        return description;
+    public Boolean isCaptured() {
+        return captured;
     }
 
-    @Override
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCaptured(Boolean captured) {
+        this.captured = captured;
     }
+    
+    
 
-    @Override
-    public String toString() {
-        return "CapturedScene{" + "description=" + description + '}';
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.description);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final CapturedScene other = (CapturedScene) obj;
-        if (!Objects.equals(this.description, other.description)) {
-            return false;
-        }
-        return true;
-    }   
+    
 }

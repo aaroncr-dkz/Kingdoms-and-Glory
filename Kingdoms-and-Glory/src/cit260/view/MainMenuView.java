@@ -42,7 +42,6 @@ public class MainMenuView extends View {
         switch (command) {
             case "G":
                 startNewGame();
-                System.out.println("Starting new game");
                 break;
             case "L":
                 loadGame();
@@ -54,7 +53,6 @@ public class MainMenuView extends View {
                 break;
             case "H":
                 getHelp();
-                System.out.println("getting help");
                 break;
             case "E":
                 return true;

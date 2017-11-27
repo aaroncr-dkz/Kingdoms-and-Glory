@@ -14,6 +14,8 @@ import cit260.model.Player;
 import cit260.model.PlayerActor;
 import cit260.model.Question;
 import cit260.model.TerritoryEnum;
+import cit260.model.Resource;
+import cit260.model.ResourceEnum;
 import java.util.ArrayList;
 import kingdoms.and.glory.KingdomsAndGlory;
 
@@ -213,5 +215,60 @@ public class GameControl {
                         + totalNum + "\nTotal Militray Power: " + totalPow + "\n");
         
         return returnString;
+    }
+    
+    public static String retriveResourceData() {
+        ArrayList<Resource> resource = KingdomsAndGlory.getCurrentGame().getResources();
+        if (resource == null) {
+              return "error";
+          }
+        
+        String cloth = "Cloth: ";
+        String wood = "Wood: ";
+        String stone = "Stone: ";
+        String metal = "Metal: ";
+        String gold = "Gold: ";
+        
+        int numCloth = 0;
+        int numWood = 0;
+        int numStone = 0;
+        int numMetal = 0;
+        int numGold = 0;
+        
+        
+        
+        for (Resource resourceType : resource) {
+            switch(resourceType.toString()) {
+                case "Cloth":
+                    numCloth += 1;
+                    break;
+                case "Wood":
+                    numWood += 1;
+                    break;
+                case "Stone":
+                    numStone += 1;
+                    break;
+                case "Metal":
+                    numMetal += 1;
+                    break;
+                case "Gold":
+                    numGold += 1;
+                    break;   
+            }
+        }
+        
+         KingdomsAndGlory.getCurrentGame().setResources(resource);
+         
+         ArrayList<Resource> totalResources = KingdomsAndGlory.getCurrentGame().getResources();
+         
+         cloth += (": " + numCloth);
+         wood += (": " + numWood);
+         stone += (": " + numStone);
+         metal += (": " + numMetal);
+         gold += (": " + numGold);
+         
+         String returnString = (cloth + "\n" + wood + "\n" + stone + "\n" + metal + "\n" + gold);
+         
+         return returnString;
     }
 }

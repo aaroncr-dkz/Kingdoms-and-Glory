@@ -49,11 +49,18 @@ public class MapTerritoryView extends View {
     }
     
     private void examine() {
+        
+        // create some method variables
         int[] inputs = {-1, -1};
         String command;
+        
+        // acquire the player's current row and column
         int playerRow = KingdomsAndGlory.getPlayer().getPlayerCharacter().getLocation().getRow();
         int playerCol = KingdomsAndGlory.getPlayer().getPlayerCharacter().getLocation().getColumn();
+        
+        // acquie the two-dimensional array of territories
         Territory[][] territories = KingdomsAndGlory.getCurrentGame().getMap().getTerritories();
+        
         
         // get the row number for the territory
         while((inputs[0] < 0 || inputs[0] > 4) 

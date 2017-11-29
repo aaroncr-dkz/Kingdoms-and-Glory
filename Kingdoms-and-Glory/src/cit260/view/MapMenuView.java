@@ -80,7 +80,8 @@ public class MapMenuView extends View {
                 System.out.println("You are attacking a territory");
                 break;
             case "X":
-                System.out.println("Moving");
+                MoveActorView moveActorView = new MoveActorView();
+                moveActorView.display();
                 break;
             case "B":
                 return true;

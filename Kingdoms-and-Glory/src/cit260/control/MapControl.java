@@ -5,6 +5,8 @@
  */
 package cit260.control;
 
+import cit260.exception.MapControlException;
+import cit260.model.Actor;
 import cit260.model.AttackScene;
 import cit260.model.CapturedScene;
 import cit260.model.Map;
@@ -12,6 +14,7 @@ import cit260.model.Territory;
 import cit260.model.DefaultScene;
 import cit260.model.ExamineCityScene;
 import cit260.model.ExamineWildernesScene;
+import cit260.model.Game;
 import cit260.model.Resource;
 import cit260.model.SceneArrayEnum;
 import cit260.model.SceneEnum;
@@ -50,6 +53,33 @@ public class MapControl {
         System.out.println(map.getTerritories()[TerritoryEnum.Castle_of_Warren.getX()][TerritoryEnum.Castle_of_Warren.getY()].getScenes()[SceneArrayEnum.CapturedScene.ordinal()].getDescription());
 
         return map;
+    }
+    
+    public static DefaultScene movePlayerActor(Actor actor, int newRow, int newColumn) throws MapControlException {
+        if(actor == null) {
+            throw new MapControlException("ERROR: That actor does not exist. Try moving a differnt actor");
+        }
+        
+        if (newRow < 1 || newRow > 5 || newColumn < 1 || newColumn > 5) {
+            throw new MapControlException("ERROR: Selected destination is out of bounds. Enter a destination that is greater then 1 and less then 5 for both row and column");
+        }
+        
+        Game game = KingdomsAndGlory.getCurrentGame();
+        Map map = game.getMap();
+        Territory[][] locations = map.getTerritories();
+        
+        int currentRow = acquirePlayerCurrentRow();
+        int currentColumn = acquirePlayerCurrentColumn();
+        Territory oldLocation = locations[currentRow][currentColumn];
+        
+        Territory newLocation = locations[newRow][newColumn];
+        
+        actor.setLocation(newLocation);
+        
+        DefaultScene scene = newLocation.getScenes()[0];
+        
+        return scene;
+        
     }
 
     public static int determineExploreResult(int charisma, int diplomacy, Boolean isGood, int randAmount) {

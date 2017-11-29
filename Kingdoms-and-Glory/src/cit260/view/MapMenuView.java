@@ -106,7 +106,14 @@ public class MapMenuView extends View {
         while((inputs[0] < 0 || inputs[0] > 4) 
            || (inputs[0] < (playerRow - 1) || inputs[0] > (playerRow + 1))) {
             command = this.getInput("\nEnter the row number for the territory you wish to examine: ");
-            inputs[0] = (Integer.parseInt(command) - 1);
+            
+            try {
+                inputs[0] = (Integer.parseInt(command) - 1);
+            }
+            catch (NumberFormatException nfe) {
+                System.out.println("Value entered was not an integer");
+            }
+            
             
             if(inputs[0] < 0 || inputs[0] > 4) {
                 System.out.println("\nThat value is outside the allowed range. Pick a number between 1 and 5");
@@ -122,7 +129,13 @@ public class MapMenuView extends View {
         while((inputs[1] < 0 || inputs[1] > 4) 
            || (inputs[1] < (playerCol - 1) || inputs[1] > (playerCol + 1))) {
             command = this.getInput("\nEnter the column number for the territory you wish to examine: ");
-            inputs[1] = (Integer.parseInt(command) - 1);
+            
+            try {
+                inputs[1] = (Integer.parseInt(command) - 1);
+            }
+            catch (NumberFormatException nfe) {
+                System.out.println("Value entered was not an integer");
+            }
             
             if(inputs[1] < 0 || inputs[1] > 4) {
                 System.out.println("\nThat value is outside the allowed range. Pick a number between 1 and 5");

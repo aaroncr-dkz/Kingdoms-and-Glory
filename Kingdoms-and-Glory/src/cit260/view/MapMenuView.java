@@ -114,11 +114,12 @@ public class MapMenuView extends View {
                 System.out.println("Value entered was not an integer");
             }
             
-            
+            // check if the row entered is within the map size
             if(inputs[0] < 0 || inputs[0] > 4) {
                 System.out.println("\nThat value is outside the allowed range. Pick a number between 1 and 5");
             }
             
+            // check to see if the user entered column they are on or adjacent to
             else if(inputs[0] < (playerRow - 1) || inputs[0] > (playerRow + 1)) {
                 System.out.println("\nThat territory is not adjacent to you currently. Please pick an adjacent territory.");
                 System.out.println("Current Location: " + (playerRow + 1) + ":" + (playerCol + 1));
@@ -137,10 +138,12 @@ public class MapMenuView extends View {
                 System.out.println("Value entered was not an integer");
             }
             
+            // check if the column entered is within the map size
             if(inputs[1] < 0 || inputs[1] > 4) {
                 System.out.println("\nThat value is outside the allowed range. Pick a number between 1 and 5");
             }
             
+            // check to see if the user entered column they are on or adjacent to
             else if(inputs[1] < (playerCol - 1) || inputs[1] > (playerCol + 1)) {
                 System.out.println("\nThat territory is not adjacent to you currently. Please pick an adjacent territory.");
                 System.out.println("Current Location: " + (playerRow + 1) + ":" + (playerCol + 1));

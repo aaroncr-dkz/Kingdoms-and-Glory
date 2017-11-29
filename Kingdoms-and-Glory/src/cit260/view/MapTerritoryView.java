@@ -5,11 +5,10 @@
  */
 package cit260.view;
 
+import cit260.control.MapControl;
 import cit260.model.DefaultScene;
-import cit260.model.Map;
 import cit260.model.SceneArrayEnum;
 import cit260.model.Territory;
-import kingdoms.and.glory.KingdomsAndGlory;
 
 /**
  *
@@ -55,11 +54,11 @@ public class MapTerritoryView extends View {
         String command;
         
         // acquire the player's current row and column
-        int playerRow = KingdomsAndGlory.getPlayer().getPlayerCharacter().getLocation().getRow();
-        int playerCol = KingdomsAndGlory.getPlayer().getPlayerCharacter().getLocation().getColumn();
+        int playerRow = MapControl.acquirePlayerCurrentRow();
+        int playerCol = MapControl.acquirePlayerCurrentColumn();
         
         // acquie the two-dimensional array of territories
-        Territory[][] territories = KingdomsAndGlory.getCurrentGame().getMap().getTerritories();
+        Territory[][] territories = MapControl.acquireGameTerritories();
         
         
         // get the row number for the territory

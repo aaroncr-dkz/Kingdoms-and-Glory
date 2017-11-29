@@ -6,6 +6,7 @@
 package cit260.view;
 
 import cit260.control.GameControl;
+import cit260.exception.GameControlException;
 import kingdoms.and.glory.KingdomsAndGlory;
 
 /**
@@ -63,10 +64,12 @@ public class MainMenuView extends View {
 
     private void startNewGame() {
         // create a new game
-        int returnValue = GameControl.createNewGame(KingdomsAndGlory.getPlayer());
-        if (returnValue < 0) {
-            System.out.println("ERROR - failed to create new game");
+        try {
+            GameControl.createNewGame(KingdomsAndGlory.getPlayer());
         }
+        catch(GameControlException e) {
+           System.out.println(e.getMessage()); 
+        } 
         
         StartNewGameView startNewGameView = new StartNewGameView();
         startNewGameView.displayStartNewGameView();

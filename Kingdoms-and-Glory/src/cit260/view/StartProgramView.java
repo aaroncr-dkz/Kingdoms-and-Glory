@@ -6,6 +6,7 @@
 package cit260.view;
 
 import cit260.control.GameControl;
+import cit260.exception.GameControlException;
 import cit260.model.Player;
 
 /**
@@ -49,7 +50,15 @@ public class StartProgramView extends View {
     public Boolean doAction(String[] inputs) {
 
         String playerName = inputs[0];
-        Player player = GameControl.savePlayer(playerName);
+        Player player = null;
+                
+        try {
+            player = GameControl.savePlayer(playerName);
+        } 
+        catch(GameControlException e) {
+           System.out.println(e.getMessage()); 
+        }
+
 
         if (player == null) {
             System.out.println("Could not create the player. Enter a differnt name");

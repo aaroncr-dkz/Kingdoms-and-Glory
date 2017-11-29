@@ -6,6 +6,7 @@
 package cit260.view;
 
 import cit260.control.GameControl;
+import cit260.exception.GameControlException;
 
 /**
  *
@@ -20,9 +21,14 @@ public class ManageArmyView extends View {
     @Override
     public String[] getInputs() {
         
-        String armyData = GameControl.retrieveArmyData();
+        String armyData = "";
         
-        
+        try {
+            armyData = GameControl.retrieveArmyData();
+        }
+        catch(GameControlException e) {
+           System.out.println(e.getMessage()); 
+        }
 
         String[] inputs = new String[1];
         // display menu

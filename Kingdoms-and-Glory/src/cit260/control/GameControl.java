@@ -5,6 +5,7 @@
  */
 package cit260.control;
 
+import cit260.exception.GameControlException;
 import cit260.model.Actor;
 import cit260.model.Army;
 import cit260.model.ArmyMember;
@@ -25,9 +26,11 @@ import kingdoms.and.glory.KingdomsAndGlory;
  */
 public class GameControl {
     
-    public static int createNewGame(Player player) {
+    public static void createNewGame(Player player) throws GameControlException 
+    {
         if (player == null) {
-            return -1;
+            throw new GameControlException("ERROR: An object failed to create. "
+                                         + "Try restarting the program.");
         }
         
         // create a game object
@@ -47,7 +50,8 @@ public class GameControl {
         // create the map, pass it the resource array
         Map map = MapControl.createMap(5, 5);
         if (map == null) {
-            return -1;
+            throw new GameControlException("ERROR: An object failed to create. "
+                                         + "Try restarting the program.");
         }
         
         // set the player's starting location
@@ -57,15 +61,13 @@ public class GameControl {
         
         // set the map to the game
         game.setMap(map);
-        
-        return 1;
-        
-        
     }
     
-    public static Player savePlayer(String name) {
+    public static Player savePlayer(String name) throws GameControlException 
+    {
         if (name == null || name.length() < 1) {
-            return null;
+            throw new GameControlException("ERROR: The name you entered was not "
+                                         + "saved. Try restarting the program.");
         }
         
         Player player = new Player();
@@ -123,16 +125,22 @@ public class GameControl {
         return text;
     }
 
-    public static String determineTitle(int charisma, int diplomacy, int strategy) {
+    public static String determineTitle(int charisma, int diplomacy, int strategy) throws GameControlException
+    {
         String title = "";
         int attitude;
 
         if (charisma + diplomacy + strategy > 6) {
-            return "error";
+            throw new GameControlException("ERROR: A value is outside of its "
+                                         + "allowed bounds. Try restarting the program.");
+            
         } else if (charisma < 0 || diplomacy < 0 || strategy < 0) {
-            return "error";
+            throw new GameControlException("ERROR: A value is outside of its "
+                                         + "allowed bounds. Try restarting the program.");
+            
         } else if (charisma > 6 || diplomacy > 6 || strategy > 6) {
-            return "error";
+            throw new GameControlException("ERROR: A value is outside of its "
+                                         + "allowed bounds. Try restarting the program.");
         }
 
         attitude = (diplomacy - strategy) + charisma * 2;
@@ -159,10 +167,12 @@ public class GameControl {
         return title;
     }
 
-    public static String retrieveArmyData() {
+    public static String retrieveArmyData() throws GameControlException
+    {
           ArrayList<ArmyMember> army = KingdomsAndGlory.getCurrentGame().getArmy().getArmyMembers();
           if (army == null) {
-              return "error";
+              throw new GameControlException("ERROR: An object failed to create. "
+                                           + "Try restarting the program.");
           }
           
           String returnString = "\n";
@@ -217,10 +227,12 @@ public class GameControl {
         return returnString;
     }
     
-    public static String retriveResourceData() {
+    public static String retriveResourceData() throws GameControlException 
+    {
         ArrayList<Resource> resource = KingdomsAndGlory.getCurrentGame().getResources();
         if (resource == null) {
-              return "error";
+              throw new GameControlException("ERROR: An object failed to create. "
+                                           + "Try restarting the program.");
           }
         
         String cloth = "Cloth: ";

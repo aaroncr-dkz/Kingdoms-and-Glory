@@ -166,66 +166,6 @@ public class GameControl {
 
         return title;
     }
-
-    public static String retrieveArmyData() throws GameControlException
-    {
-          ArrayList<ArmyMember> army = KingdomsAndGlory.getCurrentGame().getArmy().getArmyMembers();
-          if (army == null) {
-              throw new GameControlException("ERROR: An object failed to create. "
-                                           + "Try restarting the program.");
-          }
-          
-          String returnString = "\n";
-          
-          String footmen = "Footmen: ";
-          String siege = "Siege: ";
-          String specialists = "Specialists: ";
-          
-          int numFootmen = 0;
-          int numSiege = 0;
-          int numSpecialist = 0;
-          
-          int powFootmen = 0;
-          int powSiege = 0;
-          int powSpecialist = 0;
-                  
-        
-        for (ArmyMember member : army) {
-            switch(member.getClassification()) {
-                case "Footman":
-                    numFootmen += 1;
-                    powFootmen += member.getPower();
-                    break;
-                case "Siege":
-                    numSiege += 1;
-                    powSiege += member.getPower();
-                    break;
-                case "Specialist":
-                    numSpecialist += 1;
-                    powSpecialist += member.getPower();
-                    break;
-                case "Unique":
-                    
-                    break;
-                    
-            }
-        }
-        
-        KingdomsAndGlory.getCurrentGame().getArmy().setNumSoldiers(numFootmen + numSiege + numSpecialist);
-        KingdomsAndGlory.getCurrentGame().getArmy().setMilitaryPower(powFootmen + powSiege + powSpecialist);
-        
-        long totalNum = KingdomsAndGlory.getCurrentGame().getArmy().getNumSoldiers();
-        int totalPow = KingdomsAndGlory.getCurrentGame().getArmy().getMilitaryPower();
-        
-        footmen += (numFootmen + "\n  Power: " + powFootmen);
-        siege += (numSiege  + "\nPower: " + powSiege);
-        specialists += (numSpecialist  + "\n      Power: " + powSpecialist);
-        
-        returnString += (footmen + "\n\n" + siege + "\n\n" + specialists + "\n\n" + "Total Army Size: "
-                        + totalNum + "\nTotal Militray Power: " + totalPow + "\n");
-        
-        return returnString;
-    }
     
     public static String retriveResourceData() throws GameControlException 
     {

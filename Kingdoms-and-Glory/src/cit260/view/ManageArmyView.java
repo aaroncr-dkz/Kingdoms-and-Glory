@@ -5,8 +5,8 @@
  */
 package cit260.view;
 
-import cit260.control.GameControl;
-import cit260.exception.GameControlException;
+import cit260.control.ArmyControl;
+import cit260.exception.ArmyControlException;
 
 /**
  *
@@ -24,9 +24,9 @@ public class ManageArmyView extends View {
         String armyData = "";
         
         try {
-            armyData = GameControl.retrieveArmyData();
+            armyData = ArmyControl.retrieveArmyData();
         }
-        catch(GameControlException e) {
+        catch(ArmyControlException e) {
            System.out.println(e.getMessage()); 
         }
 
@@ -49,7 +49,8 @@ public class ManageArmyView extends View {
 
         switch (command) {
             case "G":
-                System.out.println("buying army");
+                BuyArmyView buyArmyView = new BuyArmyView();
+                buyArmyView.display();
                 break;
             case "S":
                 System.out.println("selling army");
@@ -59,4 +60,6 @@ public class ManageArmyView extends View {
         }
         return false;
     }
+    
+   
 }

@@ -18,6 +18,11 @@ public class ArmyMember implements Serializable {
         
     }
     
+    public ArmyMember(int power, String classification) {
+        this.power = power;
+        this.classification = classification;
+    }
+    
     private int power;
     private String classification; 
    

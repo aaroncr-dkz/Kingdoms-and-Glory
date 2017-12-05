@@ -19,6 +19,7 @@ import cit260.model.Resource;
 import cit260.model.SceneArrayEnum;
 import cit260.model.SceneEnum;
 import cit260.model.TerritoryEnum;
+import java.util.Random;
 import kingdoms.and.glory.KingdomsAndGlory;
 
 /**
@@ -40,6 +41,9 @@ public class MapControl {
         // create all the territories in the game
         Territory[][] locations = createLocations(numOfRows, numOfColumns);
 
+        // set the names for each location
+        setLocationNames(locations);
+        
         // set the symbols for each location
         setLocationSymbols(locations);
 
@@ -50,8 +54,6 @@ public class MapControl {
         DefaultScene[] scenes = createScenes();
         assignScenesToLocations(map, scenes);
 
-        System.out.println(map.getTerritories()[TerritoryEnum.Castle_of_Warren.getX()][TerritoryEnum.Castle_of_Warren.getY()].getScenes()[SceneArrayEnum.CapturedScene.ordinal()].getDescription());
-
         return map;
     }
     
@@ -60,8 +62,8 @@ public class MapControl {
             throw new MapControlException("ERROR: That actor does not exist. Try moving a differnt actor");
         }
         
-        if (newRow < 1 || newRow > 5 || newColumn < 1 || newColumn > 5) {
-            throw new MapControlException("ERROR: Selected destination is out of bounds. Enter a destination that is greater then 1 and less then 5 for both row and column");
+        if (newRow < 0 || newRow > 4 || newColumn < 0 || newColumn > 4) {
+            throw new MapControlException("ERROR: Selected destination is out of bounds.");
         }
         
         Game game = KingdomsAndGlory.getCurrentGame();
@@ -76,10 +78,29 @@ public class MapControl {
         
         actor.setLocation(newLocation);
         
+        // go through the process of moving into a new territory
+        if(newLocation.getVisited() != true) {
+            
+            // we cannot move into a city we haven't conquered
+            if(newLocation.getScenes()[SceneArrayEnum.AttackScene.ordinal()] != null) {
+                throw new MapControlException("ERROR: You must attack an enemy controlled territory before you can move into it\n");
+            }
+            
+            // we have entered a wilderness
+            else {
+                Random rand = new Random();
+                int  n = rand.nextInt(30) + 20; // random number from 20 to 50
+                
+                int result = determineExploreResult(2, 2, true, n);
+                newLocation.setVisited(true);
+            }
+            
+        }
+        
+        
         DefaultScene scene = newLocation.getScenes()[0];
         
         return scene;
-        
     }
 
     public static int determineExploreResult(int charisma, int diplomacy, Boolean isGood, int randAmount) {
@@ -171,8 +192,36 @@ public class MapControl {
 
         return locations;
     }
+    
+    private static void setLocationNames(Territory[][] locations) {
+        locations[TerritoryEnum.Castle_of_Warren.getX()][TerritoryEnum.Castle_of_Warren.getY()].setName(TerritoryEnum.Castle_of_Warren.getName());
+        locations[TerritoryEnum.Borders_of_Sharom.getX()][TerritoryEnum.Borders_of_Sharom.getY()].setName(TerritoryEnum.Borders_of_Sharom.getName());
+        locations[TerritoryEnum.Sharom_District.getX()][TerritoryEnum.Sharom_District.getY()].setName(TerritoryEnum.Sharom_District.getName());
+        locations[TerritoryEnum.Lake_Jansenia.getX()][TerritoryEnum.Lake_Jansenia.getY()].setName(TerritoryEnum.Lake_Jansenia.getName());
+        locations[TerritoryEnum.Pogrom_Forest.getX()][TerritoryEnum.Pogrom_Forest.getY()].setName(TerritoryEnum.Pogrom_Forest.getName());
+        locations[TerritoryEnum.Denebs_Garden.getX()][TerritoryEnum.Denebs_Garden.getY()].setName(TerritoryEnum.Denebs_Garden.getName());
+        locations[TerritoryEnum.Slums_of_Zenobia.getX()][TerritoryEnum.Slums_of_Zenobia.getY()].setName(TerritoryEnum.Slums_of_Zenobia.getName());
+        locations[TerritoryEnum.Island_Avalon.getX()][TerritoryEnum.Island_Avalon.getY()].setName(TerritoryEnum.Island_Avalon.getName());
+        locations[TerritoryEnum.Kalbi_Peninsula.getX()][TerritoryEnum.Kalbi_Peninsula.getY()].setName(TerritoryEnum.Kalbi_Peninsula.getName());
+        locations[TerritoryEnum.Kastolation_Sea.getX()][TerritoryEnum.Kastolation_Sea.getY()].setName(TerritoryEnum.Kastolation_Sea.getName());
+        locations[TerritoryEnum.Diaspola.getX()][TerritoryEnum.Diaspola.getY()].setName(TerritoryEnum.Diaspola.getName());
+        locations[TerritoryEnum.Balmorian_Ruins.getX()][TerritoryEnum.Balmorian_Ruins.getY()].setName(TerritoryEnum.Balmorian_Ruins.getName());
+        locations[TerritoryEnum.Valley_of_Kastro.getX()][TerritoryEnum.Valley_of_Kastro.getY()].setName(TerritoryEnum.Valley_of_Kastro.getName());
+        locations[TerritoryEnum.City_of_Malano.getX()][TerritoryEnum.City_of_Malano.getY()].setName(TerritoryEnum.City_of_Malano.getName());
+        locations[TerritoryEnum.Anatalia.getX()][TerritoryEnum.Anatalia.getY()].setName(TerritoryEnum.Anatalia.getName());
+        locations[TerritoryEnum.Antanjyl.getX()][TerritoryEnum.Antanjyl.getY()].setName(TerritoryEnum.Antanjyl.getName());
+        locations[TerritoryEnum.The_Tundra.getX()][TerritoryEnum.The_Tundra.getY()].setName(TerritoryEnum.The_Tundra.getName());
+        locations[TerritoryEnum.Fort_Allamoot.getX()][TerritoryEnum.Fort_Allamoot.getY()].setName(TerritoryEnum.Fort_Allamoot.getName());
+        locations[TerritoryEnum.Ryhean_Sea.getX()][TerritoryEnum.Ryhean_Sea.getY()].setName(TerritoryEnum.Ryhean_Sea.getName());
+        locations[TerritoryEnum.Shrine_of_Kulyn.getX()][TerritoryEnum.Shrine_of_Kulyn.getY()].setName(TerritoryEnum.Shrine_of_Kulyn.getName());
+        locations[TerritoryEnum.Dahlmud_Desert.getX()][TerritoryEnum.Dahlmud_Desert.getY()].setName(TerritoryEnum.Dahlmud_Desert.getName());
+        locations[TerritoryEnum.Fort_Shulamana.getX()][TerritoryEnum.Fort_Shulamana.getY()].setName(TerritoryEnum.Fort_Shulamana.getName());
+        locations[TerritoryEnum.Xanadu.getX()][TerritoryEnum.Xanadu.getY()].setName(TerritoryEnum.Xanadu.getName());
+        locations[TerritoryEnum.Zeteginea.getX()][TerritoryEnum.Zeteginea.getY()].setName(TerritoryEnum.Zeteginea.getName());
+        locations[TerritoryEnum.Temple_Shalina.getX()][TerritoryEnum.Temple_Shalina.getY()].setName(TerritoryEnum.Temple_Shalina.getName());
+    }
 
-    private static Territory[][] setLocationSymbols(Territory[][] locations) {
+    private static void setLocationSymbols(Territory[][] locations) {
         locations[TerritoryEnum.Castle_of_Warren.getX()][TerritoryEnum.Castle_of_Warren.getY()].setSymbol(TerritoryEnum.Castle_of_Warren.getSymbol());
         locations[TerritoryEnum.Borders_of_Sharom.getX()][TerritoryEnum.Borders_of_Sharom.getY()].setSymbol(TerritoryEnum.Borders_of_Sharom.getSymbol());
         locations[TerritoryEnum.Sharom_District.getX()][TerritoryEnum.Sharom_District.getY()].setSymbol(TerritoryEnum.Sharom_District.getSymbol());
@@ -198,8 +247,6 @@ public class MapControl {
         locations[TerritoryEnum.Xanadu.getX()][TerritoryEnum.Xanadu.getY()].setSymbol(TerritoryEnum.Xanadu.getSymbol());
         locations[TerritoryEnum.Zeteginea.getX()][TerritoryEnum.Zeteginea.getY()].setSymbol(TerritoryEnum.Zeteginea.getSymbol());
         locations[TerritoryEnum.Temple_Shalina.getX()][TerritoryEnum.Temple_Shalina.getY()].setSymbol(TerritoryEnum.Temple_Shalina.getSymbol());
-
-        return locations;
     }
 
     private static DefaultScene[] createScenes() {
@@ -282,8 +329,12 @@ public class MapControl {
         ExamineCityScene SoZ_Examine = new ExamineCityScene();
         AttackScene SoZ_Attack = new AttackScene();
         CapturedScene SoZ_Captured = new CapturedScene();
+        
         Resource SoZ = new Resource("Gold", 300);
         SoZ_Attack.setResource(SoZ);
+        SoZ_Examine.setDescription("The old capital of Zenobia. The city has quickly " + 
+                                   "fallen into decay and is now a shadow of its " + 
+                                   "former glory");
 
         scenes[SceneEnum.SoZ_Examine.ordinal()] = SoZ_Examine;
         scenes[SceneEnum.SoZ_Attack.ordinal()] = SoZ_Attack;
@@ -294,7 +345,11 @@ public class MapControl {
            **-----------------------------------------------------------------*/
         ExamineWildernesScene IA_Examine = new ExamineWildernesScene();
         Resource IA = new Resource("Metal", 1);
+        
         IA_Examine.setResource(IA);
+        IA_Examine.setDescription("Neutral island inhabited by monks and priests " + 
+                                  "of the Church of Roshfel");
+        
         scenes[SceneEnum.IA_Examine.ordinal()] = IA_Examine;
 
         /*-------------------------------------------------------------------
@@ -302,7 +357,11 @@ public class MapControl {
            **-----------------------------------------------------------------*/
         ExamineWildernesScene KP_Examine = new ExamineWildernesScene();
         Resource KP = new Resource("Stone", 2);
+        
         KP_Examine.setResource(KP);
+        KP_Examine.setDescription("This peninsula has been eternally locked in an " + 
+                                  "endless winter");
+        
         scenes[SceneEnum.KP_Examine.ordinal()] = KP_Examine;
 
         /*-------------------------------------------------------------------
@@ -310,7 +369,10 @@ public class MapControl {
            **-----------------------------------------------------------------*/
         ExamineWildernesScene KS_Examine = new ExamineWildernesScene();
         Resource KS = new Resource("Cloth", 4);
+        
         KS_Examine.setResource(KS);
+        KS_Examine.setDescription("This sea is home to many mermaids");
+        
         scenes[SceneEnum.KS_Examine.ordinal()] = KS_Examine;
 
         /*-------------------------------------------------------------------
@@ -319,8 +381,12 @@ public class MapControl {
         ExamineCityScene D_Examine = new ExamineCityScene();
         AttackScene D_Attack = new AttackScene();
         CapturedScene D_Captured = new CapturedScene();
+        
         Resource Dias = new Resource("Gold", 350);
         D_Attack.setResource(Dias);
+        D_Examine.setDescription("Political dissidents and other criminals were " + 
+                                 "sentenced here for life in prison. Many innocent " + 
+                                 "of any crime");
 
         scenes[SceneEnum.D_Examine.ordinal()] = D_Examine;
         scenes[SceneEnum.D_Attack.ordinal()] = D_Attack;
@@ -331,7 +397,12 @@ public class MapControl {
            **-----------------------------------------------------------------*/
         ExamineWildernesScene BR_Examine = new ExamineWildernesScene();
         Resource BR = new Resource("Gold", 100);
+        
         BR_Examine.setResource(BR);
+        BR_Examine.setDescription("Ruins of an ancient civilization dot this family. " + 
+                                  " Wizards frequent this place in a quest to find " +
+                                  "great secrets of magic.");
+        
         scenes[SceneEnum.BR_Examine.ordinal()] = BR_Examine;
 
         /*-------------------------------------------------------------------
@@ -339,7 +410,11 @@ public class MapControl {
            **-----------------------------------------------------------------*/
         ExamineWildernesScene VoK_Examine = new ExamineWildernesScene();
         Resource VoK = new Resource("Wood", 5);
+        
         VoK_Examine.setResource(VoK);
+        VoK_Examine.setDescription("The Kastro river flows from the land of Palatinus " + 
+                                   "in the west into this valley");
+        
         scenes[SceneEnum.VoK_Examine.ordinal()] = VoK_Examine;
 
         /*-------------------------------------------------------------------
@@ -348,8 +423,10 @@ public class MapControl {
         ExamineCityScene CoM_Examine = new ExamineCityScene();
         AttackScene CoM_Attack = new AttackScene();
         CapturedScene CoM_Captured = new CapturedScene();
+        
         Resource CoM = new Resource("Gold", 400);
         CoM_Attack.setResource(CoM);
+        CoM_Examine.setDescription("");
 
         scenes[SceneEnum.CoM_Examine.ordinal()] = CoM_Examine;
         scenes[SceneEnum.CoM_Attack.ordinal()] = CoM_Attack;
@@ -361,8 +438,11 @@ public class MapControl {
         ExamineCityScene Ana_Examine = new ExamineCityScene();
         AttackScene Ana_Attack = new AttackScene();
         CapturedScene Ana_Captured = new CapturedScene();
+        
         Resource Ana = new Resource("Gold", 400);
         Ana_Attack.setResource(Ana);
+        Ana_Examine.setDescription("This region was a forbidden land, now overrun " +
+                                   "by the undead.");
 
         scenes[SceneEnum.Ana_Examine.ordinal()] = Ana_Examine;
         scenes[SceneEnum.Ana_Attack.ordinal()] = Ana_Attack;
@@ -374,8 +454,11 @@ public class MapControl {
         ExamineCityScene Ant_Examine = new ExamineCityScene();
         AttackScene Ant_Attack = new AttackScene();
         CapturedScene Ant_Captured = new CapturedScene();
+        
         Resource Ant = new Resource("Gold", 450);
         Ant_Attack.setResource(Ant);
+        Ant_Examine.setDescription("Rumors speak of a demon sealed within the mountains " +
+                                   "of this realm.");
 
         scenes[SceneEnum.Ant_Examine.ordinal()] = Ant_Examine;
         scenes[SceneEnum.Ant_Attack.ordinal()] = Ant_Attack;
@@ -386,7 +469,11 @@ public class MapControl {
            **-----------------------------------------------------------------*/
         ExamineWildernesScene TT_Examine = new ExamineWildernesScene();
         Resource TT = new Resource("Metal", 2);
+        
         TT_Examine.setResource(TT);
+        TT_Examine.setDescription("A frozen wasteland where it is said a fallen " + 
+                                  "angel weeps");
+        
         scenes[SceneEnum.TT_Examine.ordinal()] = TT_Examine;
 
         /*-------------------------------------------------------------------
@@ -395,8 +482,11 @@ public class MapControl {
         ExamineCityScene FA_Examine = new ExamineCityScene();
         AttackScene FA_Attack = new AttackScene();
         CapturedScene FA_Captured = new CapturedScene();
+        
         Resource FA = new Resource("Gold", 300);
         FA_Attack.setResource(FA);
+        FA_Examine.setDescription("Built to guard the way to the north, this citadel " + 
+                                  "has never fallen");
 
         scenes[SceneEnum.FA_Examine.ordinal()] = FA_Examine;
         scenes[SceneEnum.FA_Attack.ordinal()] = FA_Attack;
@@ -407,7 +497,11 @@ public class MapControl {
            **-----------------------------------------------------------------*/
         ExamineWildernesScene RS_Examine = new ExamineWildernesScene();
         Resource RS = new Resource("Stone", 2);
+        
         RS_Examine.setResource(RS);
+        RS_Examine.setDescription("The region is known as the gateway to the north. " + 
+                                  "Sailors travel to distant lands starting here");
+        
         scenes[SceneEnum.RS_Examine.ordinal()] = RS_Examine;
 
         /*-------------------------------------------------------------------
@@ -415,7 +509,10 @@ public class MapControl {
            **-----------------------------------------------------------------*/
         ExamineWildernesScene SoK_Examine = new ExamineWildernesScene();
         Resource SoK = new Resource("Metal", 1);
+        
         SoK_Examine.setResource(SoK);
+        SoK_Examine.setDescription("An old sanctuary to an unknown diety.");
+        
         scenes[SceneEnum.SoK_Examine.ordinal()] = SoK_Examine;
 
         /*-------------------------------------------------------------------
@@ -423,7 +520,12 @@ public class MapControl {
            **-----------------------------------------------------------------*/
         ExamineWildernesScene DD_Examine = new ExamineWildernesScene();
         Resource DD = new Resource("Stone", 1);
+        
         DD_Examine.setResource(DD);
+        DD_Examine.setDescription("This burning desert was once home to an another, " + 
+                                  "older kingdom which has long since been buried " + 
+                                  "beneath the sands");
+        
         scenes[SceneEnum.DD_Examine.ordinal()] = DD_Examine;
 
         /*-------------------------------------------------------------------
@@ -432,8 +534,11 @@ public class MapControl {
         ExamineCityScene FS_Examine = new ExamineCityScene();
         AttackScene FS_Attack = new AttackScene();
         CapturedScene FS_Captured = new CapturedScene();
+        
         Resource FS = new Resource("Gold", 500);
         FS_Attack.setResource(FS);
+        FS_Examine.setDescription("A fortress built by the northerners. Surrounded " + 
+                                  "by volcanos");
 
         scenes[SceneEnum.FS_Examine.ordinal()] = FS_Examine;
         scenes[SceneEnum.FS_Attack.ordinal()] = FS_Attack;
@@ -445,8 +550,11 @@ public class MapControl {
         ExamineCityScene X_Examine = new ExamineCityScene();
         AttackScene X_Attack = new AttackScene();
         CapturedScene X_Captured = new CapturedScene();
+        
         Resource Xana = new Resource("Gold", 500);
         X_Attack.setResource(Xana);
+        X_Examine.setDescription("A royal city, built to house the officers and " + 
+                                 "knights of the kingdom");
 
         scenes[SceneEnum.X_Examine.ordinal()] = X_Examine;
         scenes[SceneEnum.X_Attack.ordinal()] = X_Attack;
@@ -458,8 +566,11 @@ public class MapControl {
         ExamineCityScene Z_Examine = new ExamineCityScene();
         AttackScene Z_Attack = new AttackScene();
         CapturedScene Z_Captured = new CapturedScene();
+        
         Resource Zete = new Resource("Gold", 750);
         Z_Attack.setResource(Zete);
+        Z_Examine.setDescription("The new capital, built by an old queen who was " + 
+                                 "later revealed to have gone mad");
 
         scenes[SceneEnum.Z_Examine.ordinal()] = Z_Examine;
         scenes[SceneEnum.Z_Attack.ordinal()] = Z_Attack;
@@ -471,8 +582,11 @@ public class MapControl {
         ExamineCityScene TS_Examine = new ExamineCityScene();
         AttackScene TS_Attack = new AttackScene();
         CapturedScene TS_Captured = new CapturedScene();
+        
         Resource TS = new Resource("Gold", 1000000);
         TS_Attack.setResource(TS);
+        TS_Examine.setDescription("An old temple believed to be dedicated to darkness." +
+                                  "Its location was kept secret for many generations");
 
         scenes[SceneEnum.TS_Examine.ordinal()] = TS_Examine;
         scenes[SceneEnum.TS_Attack.ordinal()] = TS_Attack;
@@ -491,8 +605,6 @@ public class MapControl {
         insertCoW[2] = scenes[SceneEnum.CoW_Captured.ordinal()];
         locations[TerritoryEnum.Castle_of_Warren.getX()][TerritoryEnum.Castle_of_Warren.getY()].setScenes(insertCoW);
 
-        //System.out.println(scenes[SceneEnum.CoW_Captured.ordinal()].getDescription());
-        //System.out.println(locations[TerritoryEnum.Castle_of_Warren.getX()][TerritoryEnum.Castle_of_Warren.getY()].getScenes()[SceneArrayEnum.CapturedScene.ordinal()].getDescription());
         // Borders of Sharom
         DefaultScene[] insertBoS = new DefaultScene[3];
         insertBoS[0] = scenes[SceneEnum.BoS_Examine.ordinal()];

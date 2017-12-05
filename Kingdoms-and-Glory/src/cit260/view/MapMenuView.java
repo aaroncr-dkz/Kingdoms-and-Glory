@@ -57,6 +57,15 @@ public class MapMenuView extends View {
         }
         System.out.print("*   ------------------------------*\n");
         System.out.print("===================================\n");
+        
+        // acquire the player's current row and column
+        int playerRow = MapControl.acquirePlayerCurrentRow();
+        int playerCol = MapControl.acquirePlayerCurrentColumn();
+        
+        String currLocSymb = territories[playerRow][playerCol].getSymbol();
+        String currLocName = territories[playerRow][playerCol].getName();
+        
+        System.out.println("Current Location: " + currLocName + " ("+ currLocSymb + ")");
 
         // display menu     
         System.out.println("\nV - View Territtory");

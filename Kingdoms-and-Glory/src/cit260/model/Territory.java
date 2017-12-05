@@ -6,7 +6,6 @@
 package cit260.model;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  *
@@ -16,6 +15,7 @@ public class Territory implements Serializable {
     
     private int row;
     private int column;
+    private String name;
     private String symbol;
     private Boolean visited;
     private DefaultScene[] scenes = new DefaultScene[3];
@@ -45,6 +45,14 @@ public class Territory implements Serializable {
         this.column = column;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
     public String getSymbol() {
         return symbol;
     }
@@ -69,11 +77,4 @@ public class Territory implements Serializable {
         this.scenes = scenes;
     }
 
-    @Override
-    public String toString() {
-        return "Territory{" + "row=" + row + ", column=" + column + ", symbol=" + symbol + ", visited=" + visited + ", scenes=" + scenes + '}';
-    }
-    
-    
-    
 }

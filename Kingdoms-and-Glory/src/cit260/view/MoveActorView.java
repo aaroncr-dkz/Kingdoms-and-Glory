@@ -45,16 +45,16 @@ public class MoveActorView extends View {
         switch (command) {
             case "W":
                 getMoveCoordinates(-1, 0);
-                break;
+                return true;
             case "A":
                 getMoveCoordinates(0, -1);
-                break;
+                return true;
             case "S":
                 getMoveCoordinates(1, 0);
-                break;
+                return true;
             case "D":
                 getMoveCoordinates(0, 1);
-                break;
+                return true;
             case "B":
                 return true;
         }

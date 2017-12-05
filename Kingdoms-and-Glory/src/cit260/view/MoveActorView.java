@@ -26,11 +26,11 @@ public class MoveActorView extends View {
 
         String[] inputs = new String[1];
         // display menu
-        System.out.println("\nW - Move Upwards");
-        System.out.println("A - Move Left");
-        System.out.println("S - Move Down");
-        System.out.println("D - Move Right");
-        System.out.println("B - Go back");
+        this.console.println("\nW - Move Upwards");
+        this.console.println("A - Move Left");
+        this.console.println("S - Move Down");
+        this.console.println("D - Move Right");
+        this.console.println("B - Go back");
         
         inputs[0] = this.getInput("Select item from menu by entering the appropriate letter: ");
         return inputs;
@@ -73,7 +73,7 @@ public class MoveActorView extends View {
             DefaultScene scene = MapControl.movePlayerActor(player, newRow, newColumn);
         }
         catch(MapControlException e) {
-            System.out.println(e.getMessage());
+            ErrorView.display(this.getClass().getName(), e.getMessage());
         }
     }
 }

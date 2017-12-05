@@ -83,6 +83,7 @@ public class MapControl {
             
             // we cannot move into a city we haven't conquered
             if(newLocation.getScenes()[SceneArrayEnum.AttackScene.ordinal()] != null) {
+                actor.setLocation(oldLocation);
                 throw new MapControlException("ERROR: You must attack an enemy controlled territory before you can move into it\n");
             }
             

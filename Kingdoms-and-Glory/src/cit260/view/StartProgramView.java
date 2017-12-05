@@ -25,7 +25,7 @@ public class StartProgramView extends View {
         String[] inputs = new String[1];
         
         // display Welcome
-        System.out.println("======================================================\n"
+        this.console.println("======================================================\n"
                          + "* The kingdom of Zenobia has been a place of peace   *\n"
                          + "* and prosperity for over 100 years, thanks to you   *\n"
                          + "* and your fathers before you. In the last several   *\n"
@@ -56,15 +56,15 @@ public class StartProgramView extends View {
             player = GameControl.savePlayer(playerName);
         } 
         catch(GameControlException e) {
-           System.out.println(e.getMessage()); 
+           ErrorView.display(this.getClass().getName(), e.getMessage());
         }
 
 
         if (player == null) {
-            System.out.println("Could not create the player. Enter a differnt name");
+            this.console.println("Could not create the player. Enter a differnt name");
             return false;
         }
-        System.out.println("\nWelcome to the game, " + playerName + ". We hope you have a lot of fun");
+        this.console.println("\nWelcome to the game, " + playerName + ". We hope you have a lot of fun");
 
         MainMenuView mainMenuView = new MainMenuView();
         mainMenuView.display();

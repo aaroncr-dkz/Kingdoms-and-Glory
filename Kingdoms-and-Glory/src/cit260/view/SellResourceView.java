@@ -21,11 +21,11 @@ public class SellResourceView extends View {
         String[] inputs = new String[1];
         
         // display menu
-        System.out.println("\nW - Wood: 20$");
-        System.out.println("M - Metal: 175$");
-        System.out.println("S - Stone: 100$");
-        System.out.println("C - Cloth: 15$");
-        System.out.println("B - Back");
+        this.console.println("\nW - Wood: 20$");
+        this.console.println("M - Metal: 175$");
+        this.console.println("S - Stone: 100$");
+        this.console.println("C - Cloth: 15$");
+        this.console.println("B - Back");
         
         
         inputs[0] = this.getInput("Select item from menu by entering the appropriate letter: ");

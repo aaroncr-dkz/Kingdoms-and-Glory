@@ -25,12 +25,12 @@ public class GameMenuView extends View {
         String[] inputs = new String[1];
         
         // display menu
-        System.out.println("\nA - Manage Army");
-        System.out.println("R - Manage Resources");
-        System.out.println("M - View Map");
-        System.out.println("H - Help Menu");
-        System.out.println("S - Save Game");
-        System.out.println("E - Exit without Saving");
+        this.console.println("\nA - Manage Army");
+        this.console.println("R - Manage Resources");
+        this.console.println("M - View Map");
+        this.console.println("H - Help Menu");
+        this.console.println("S - Save Game");
+        this.console.println("E - Exit without Saving");
 
         inputs[0] = this.getInput("Select item from menu by entering the appropriate letter: ");
         return inputs;
@@ -47,7 +47,6 @@ public class GameMenuView extends View {
                 break;
             case "R":
                 manageResources();
-                System.out.println("manage resources");
                 break;
             case "M":
                 viewMap();
@@ -56,7 +55,6 @@ public class GameMenuView extends View {
                 getHelp();
                 break;
             case "S":
-                System.out.println("saving game");
                 break;
             case "E":
                 return true;

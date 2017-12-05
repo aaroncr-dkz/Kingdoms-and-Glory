@@ -26,8 +26,8 @@ public class MapTerritoryView extends View {
         String[] inputs = new String[1];
 
         // display menu
-        System.out.println("\nE - Examine Territory");
-        System.out.println("B - Go Back");
+        this.console.println("\nE - Examine Territory");
+        this.console.println("B - Go Back");
 
         inputs[0] = this.getInput("Select an item from the menu by entering the appropriate letter: ");
         return inputs;
@@ -68,12 +68,12 @@ public class MapTerritoryView extends View {
             inputs[0] = (Integer.parseInt(command) - 1);
             
             if(inputs[0] < 0 || inputs[0] > 4) {
-                System.out.println("\nThat value is outside the allowed range. Pick a number between 1 and 5");
+                this.console.println("\nThat value is outside the allowed range. Pick a number between 1 and 5");
             }
             
             else if(inputs[0] < (playerRow - 1) || inputs[0] > (playerRow + 1)) {
-                System.out.println("\nThat territory is not adjacent to you currently. Please pick an adjacent territory.");
-                System.out.println("Current Location: " + (playerRow + 1) + ":" + (playerCol + 1));
+                this.console.println("\nThat territory is not adjacent to you currently. Please pick an adjacent territory.");
+                this.console.println("Current Location: " + (playerRow + 1) + ":" + (playerCol + 1));
             }
         }
         
@@ -84,12 +84,12 @@ public class MapTerritoryView extends View {
             inputs[1] = (Integer.parseInt(command) - 1);
             
             if(inputs[1] < 0 || inputs[1] > 4) {
-                System.out.println("\nThat value is outside the allowed range. Pick a number between 1 and 5");
+                this.console.println("\nThat value is outside the allowed range. Pick a number between 1 and 5");
             }
             
             else if(inputs[1] < (playerCol - 1) || inputs[1] > (playerCol + 1)) {
-                System.out.println("\nThat territory is not adjacent to you currently. Please pick an adjacent territory.");
-                System.out.println("Current Location: " + (playerRow + 1) + ":" + (playerCol + 1));
+                this.console.println("\nThat territory is not adjacent to you currently. Please pick an adjacent territory.");
+                this.console.println("Current Location: " + (playerRow + 1) + ":" + (playerCol + 1));
             }
         }
         
@@ -100,16 +100,16 @@ public class MapTerritoryView extends View {
         if(locationScenes[SceneArrayEnum.CapturedScene.ordinal()] != null) {
             if(locationToExamine.getVisited()) {
                 description = locationScenes[SceneArrayEnum.CapturedScene.ordinal()].getDescription();
-                System.out.println(description);
+                this.console.println(description);
             }
             else {
                 description = locationScenes[SceneArrayEnum.ExamineScene.ordinal()].getDescription();
-                System.out.println(description);
+                this.console.println(description);
             }
         }
         else {
             description = locationScenes[SceneArrayEnum.ExamineScene.ordinal()].getDescription();
-            System.out.println(description);
+            this.console.println(description);
         }
         
     }

@@ -21,9 +21,9 @@ public class ManageResourcesView extends View {
         String[] inputs = new String[1];
         
         // display menu
-        System.out.println("\nA - Buy Resource");
-        System.out.println("S - Sell Resource");
-        System.out.println("B - Go Back");
+        this.console.println("\nA - Buy Resource");
+        this.console.println("S - Sell Resource");
+        this.console.println("B - Go Back");
         
         
         inputs[0] = this.getInput("Select item from menu by entering the appropriate letter: ");

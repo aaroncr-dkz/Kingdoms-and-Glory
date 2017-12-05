@@ -55,7 +55,7 @@ public class StartNewGameView {
         System.out.println("Please choose a respone...\n");
         
 
-        Boolean valid = false;
+        Boolean valid = false; 
         Scanner inFile;
         inFile = new Scanner(System.in);
         String[] text = new String[4];

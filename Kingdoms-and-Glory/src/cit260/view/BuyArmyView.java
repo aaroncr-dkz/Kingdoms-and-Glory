@@ -22,9 +22,9 @@ public class BuyArmyView extends View {
 
         String[] inputs = new String[1];
         // display menu
-        System.out.println("\nF - Recruit Footmen - 8 Gold each");
-        System.out.println("S - Recruit Specialists - 10 Gold each");
-        System.out.println("C - Recruit Siege Engineers - 20 gold each");
+        this.console.println("\nF - Recruit Footmen - 8 Gold each");
+        this.console.println("S - Recruit Specialists - 10 Gold each");
+        this.console.println("C - Recruit Siege Engineers - 20 gold each");
 
         inputs[0] = this.getInput("Select item from the menu by entering the appropriate letter: ");
         return inputs;
@@ -57,7 +57,7 @@ public class BuyArmyView extends View {
                 inputs[0] = (Integer.parseInt(command));
             } 
             catch (NumberFormatException nfe) {
-                System.out.println("Value entered was not an integer");
+                ErrorView.display(this.getClass().getName(), "Value entered was not an integer");
             }
 
             int totalCost = inputs[0] * cost;

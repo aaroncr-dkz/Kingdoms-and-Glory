@@ -20,11 +20,11 @@ public class HelpMenuView extends View {
 
         String[] inputs = new String[1];
         // display menu
-        System.out.println("\nA - Learn about the Army");
-        System.out.println("R - Learn about Resources");
-        System.out.println("M - Learn about the map and movement");
-        System.out.println("C - Learn about waging war and conquering cities");
-        System.out.println("B - Go back");
+        this.console.println("\nA - Learn about the Army");
+        this.console.println("R - Learn about Resources");
+        this.console.println("M - Learn about the map and movement");
+        this.console.println("C - Learn about waging war and conquering cities");
+        this.console.println("B - Go back");
         
         inputs[0] = this.getInput("Select item from menu by entering the appropriate letter: ");
         return inputs;

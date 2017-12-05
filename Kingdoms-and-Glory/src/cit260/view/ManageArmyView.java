@@ -27,16 +27,16 @@ public class ManageArmyView extends View {
             armyData = ArmyControl.retrieveArmyData();
         }
         catch(ArmyControlException e) {
-           System.out.println(e.getMessage()); 
+           ErrorView.display(this.getClass().getName(), e.getMessage());
         }
 
         String[] inputs = new String[1];
         // display menu
-        System.out.println("\nG - Gain Recruits");
-        System.out.println("S - Sell Army");
-        System.out.println("B - Go Back");
+        this.console.println("\nG - Gain Recruits");
+        this.console.println("S - Sell Army");
+        this.console.println("B - Go Back");
         
-        System.out.println(armyData);
+        this.console.println(armyData);
 
         inputs[0] = this.getInput("Select item from the menu by entering the appropriate letter: ");
         return inputs;

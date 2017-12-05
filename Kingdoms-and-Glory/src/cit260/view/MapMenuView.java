@@ -28,35 +28,35 @@ public class MapMenuView extends View {
         String[] inputs = new String[1];
 
         // display map
-        System.out.println("              Zenobia");
-        System.out.println("===================================");
-        System.out.println("*      1     2     3     4     5  *");
-        System.out.println("*   ------------------------------*");
+        this.console.println("              Zenobia");
+        this.console.println("===================================");
+        this.console.println("*      1     2     3     4     5  *");
+        this.console.println("*   ------------------------------*");
 
         int i;
         Map map = KingdomsAndGlory.getCurrentGame().getMap();
         Territory[][] territories = map.getTerritories();
 
         for (i = 0; i < territories.length; i++) {
-            System.out.print("* " + (i + 1) + " ");
+            this.console.print("* " + (i + 1) + " ");
 
             for (int j = 0; j < territories[i].length; j++) {
-                System.out.print("|");
+                this.console.print("|");
                 if (territories[i][j].getVisited()) {
-                    System.out.print(" " + territories[i][j].getSymbol() + " ");
+                    this.console.print(" " + territories[i][j].getSymbol() + " ");
                 } else {
-                    System.out.print(" ??? ");
+                    this.console.print(" ??? ");
                 }
             }
-            System.out.print("*\n");
+            this.console.print("*\n");
 
             if (i < 4) {
-                System.out.print("*   |-----|-----|-----|-----|-----*\n");
+                this.console.print("*   |-----|-----|-----|-----|-----*\n");
             }
 
         }
-        System.out.print("*   ------------------------------*\n");
-        System.out.print("===================================\n");
+        this.console.print("*   ------------------------------*\n");
+        this.console.print("===================================\n");
         
         // acquire the player's current row and column
         int playerRow = MapControl.acquirePlayerCurrentRow();
@@ -65,13 +65,13 @@ public class MapMenuView extends View {
         String currLocSymb = territories[playerRow][playerCol].getSymbol();
         String currLocName = territories[playerRow][playerCol].getName();
         
-        System.out.println("Current Location: " + currLocName + " ("+ currLocSymb + ")");
+        this.console.println("Current Location: " + currLocName + " ("+ currLocSymb + ")");
 
         // display menu     
-        System.out.println("\nV - View Territtory");
-        System.out.println("C - Attack Territory");
-        System.out.println("X - Move");
-        System.out.println("B - Go Back");
+        this.console.println("\nV - View Territtory");
+        this.console.println("C - Attack Territory");
+        this.console.println("X - Move");
+        this.console.println("B - Go Back");
 
         inputs[0] = this.getInput("Select item from menu by entering the appropriate letter: ");
         return inputs;
@@ -121,18 +121,18 @@ public class MapMenuView extends View {
                 inputs[0] = (Integer.parseInt(command) - 1);
             }
             catch (NumberFormatException nfe) {
-                System.out.println("Value entered was not an integer");
+                ErrorView.display(this.getClass().getName(), "Value entered was not an integer");
             }
             
             // check if the row entered is within the map size
             if(inputs[0] < 0 || inputs[0] > 4) {
-                System.out.println("\nThat value is outside the allowed range. Pick a number between 1 and 5");
+                this.console.println("\nThat value is outside the allowed range. Pick a number between 1 and 5");
             }
             
             // check to see if the user entered column they are on or adjacent to
             else if(inputs[0] < (playerRow - 1) || inputs[0] > (playerRow + 1)) {
-                System.out.println("\nThat territory is not adjacent to you currently. Please pick an adjacent territory.");
-                System.out.println("Current Location: " + (playerRow + 1) + ":" + (playerCol + 1));
+                this.console.println("\nThat territory is not adjacent to you currently. Please pick an adjacent territory.");
+                this.console.println("Current Location: " + (playerRow + 1) + ":" + (playerCol + 1));
             }
         }
         
@@ -145,18 +145,18 @@ public class MapMenuView extends View {
                 inputs[1] = (Integer.parseInt(command) - 1);
             }
             catch (NumberFormatException nfe) {
-                System.out.println("Value entered was not an integer");
+                ErrorView.display(this.getClass().getName(), "Value entered was not an integer");
             }
             
             // check if the column entered is within the map size
             if(inputs[1] < 0 || inputs[1] > 4) {
-                System.out.println("\nThat value is outside the allowed range. Pick a number between 1 and 5");
+                this.console.println("\nThat value is outside the allowed range. Pick a number between 1 and 5");
             }
             
             // check to see if the user entered column they are on or adjacent to
             else if(inputs[1] < (playerCol - 1) || inputs[1] > (playerCol + 1)) {
-                System.out.println("\nThat territory is not adjacent to you currently. Please pick an adjacent territory.");
-                System.out.println("Current Location: " + (playerRow + 1) + ":" + (playerCol + 1));
+                this.console.println("\nThat territory is not adjacent to you currently. Please pick an adjacent territory.");
+                this.console.println("Current Location: " + (playerRow + 1) + ":" + (playerCol + 1));
             }
         }
         
@@ -172,7 +172,7 @@ public class MapMenuView extends View {
             else {
                 description = locationScenes[SceneArrayEnum.ExamineScene.ordinal()].getDescription();
                 //int opposition = locationScenes[SceneArrayEnum.ExamineScene.ordinal()].getEstimatedOpposition();
-                System.out.println("\n"
+                this.console.println("\n"
                              + "================================================\n"
                              + "* " + description + "\n"
                              + "* \n"
@@ -182,7 +182,7 @@ public class MapMenuView extends View {
         }
         else {
             description = locationScenes[SceneArrayEnum.ExamineScene.ordinal()].getDescription();
-            System.out.println("\n"
+            this.console.println("\n"
                              + "================================================\n"
                              + "* " + description + "\n"
                              + "* \n"

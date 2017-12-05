@@ -25,11 +25,11 @@ public class MainMenuView extends View {
         String[] inputs = new String[1];
         
         // display menu
-        System.out.println("\nG - Start New Game");
-        System.out.println("L - Load Saved Game");
-        System.out.println("B - Background Story");
-        System.out.println("H - Get help on how to play the game");
-        System.out.println("E - Exit Program");
+        this.console.println("\nG - Start New Game");
+        this.console.println("L - Load Saved Game");
+        this.console.println("B - Background Story");
+        this.console.println("H - Get help on how to play the game");
+        this.console.println("E - Exit Program");
         
         inputs[0] = this.getInput("Select item from menu by entering the appropriate letter: ");
         return inputs;
@@ -68,7 +68,7 @@ public class MainMenuView extends View {
             GameControl.createNewGame(KingdomsAndGlory.getPlayer());
         }
         catch(GameControlException e) {
-           System.out.println(e.getMessage()); 
+            ErrorView.display(this.getClass().getName(), e.getMessage());
         } 
         
         StartNewGameView startNewGameView = new StartNewGameView();

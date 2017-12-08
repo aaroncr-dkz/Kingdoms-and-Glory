@@ -70,7 +70,7 @@ public class MoveActorView extends View {
         Actor player = KingdomsAndGlory.getPlayer().getPlayerCharacter();
         
         try {
-            DefaultScene scene = MapControl.movePlayerActor(player, newRow, newColumn);
+            MapControl.movePlayerActor(player, newRow, newColumn);
         }
         catch(MapControlException e) {
             ErrorView.display(this.getClass().getName(), e.getMessage());

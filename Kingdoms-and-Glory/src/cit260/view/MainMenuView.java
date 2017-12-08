@@ -45,8 +45,7 @@ public class MainMenuView extends View {
                 startNewGame();
                 break;
             case "L":
-                loadGame();
-                System.out.println("loading game");
+                load();
                 break;
             case "B":
                 displayStory();
@@ -78,9 +77,9 @@ public class MainMenuView extends View {
         gameMenuView.display();
     }
 
-    private void loadGame() {
-        StartExistingGameView startExistingGameView = new StartExistingGameView();
-        startExistingGameView.display();
+    private void load() {
+        LoadGameView loadGameView = new LoadGameView();
+        loadGameView.display();
     }
 
     private void displayStory() {

@@ -55,6 +55,7 @@ public class GameMenuView extends View {
                 getHelp();
                 break;
             case "S":
+                save();
                 break;
             case "E":
                 return true;
@@ -80,5 +81,10 @@ public class GameMenuView extends View {
     private void viewMap() {
        MapMenuView mapMenuView = new MapMenuView();
        mapMenuView.display();
+    }
+
+    private void save() {
+        SaveGameView saveGameView = new SaveGameView();
+        saveGameView.display();
     }
 }

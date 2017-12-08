@@ -8,7 +8,6 @@ package cit260.control;
 import cit260.exception.GameControlException;
 import cit260.model.Actor;
 import cit260.model.Army;
-import cit260.model.ArmyMember;
 import cit260.model.Game;
 import cit260.model.Map;
 import cit260.model.Player;
@@ -16,7 +15,11 @@ import cit260.model.PlayerActor;
 import cit260.model.Question;
 import cit260.model.TerritoryEnum;
 import cit260.model.Resource;
-import cit260.model.ResourceEnum;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import kingdoms.and.glory.KingdomsAndGlory;
 
@@ -29,7 +32,7 @@ public class GameControl {
     public static void createNewGame(Player player) throws GameControlException 
     {
         if (player == null) {
-            throw new GameControlException("ERROR: An object failed to create. "
+            throw new GameControlException("An object failed to create. "
                                          + "Try restarting the program.");
         }
         
@@ -50,7 +53,7 @@ public class GameControl {
         // create the map, pass it the resource array
         Map map = MapControl.createMap(5, 5);
         if (map == null) {
-            throw new GameControlException("ERROR: An object failed to create. "
+            throw new GameControlException("An object failed to create. "
                                          + "Try restarting the program.");
         }
         
@@ -66,7 +69,7 @@ public class GameControl {
     public static Player savePlayer(String name) throws GameControlException 
     {
         if (name == null || name.length() < 1) {
-            throw new GameControlException("ERROR: The name you entered was not "
+            throw new GameControlException("The name you entered was not "
                                          + "saved. Try restarting the program.");
         }
         
@@ -131,15 +134,15 @@ public class GameControl {
         int attitude;
 
         if (charisma + diplomacy + strategy > 6) {
-            throw new GameControlException("ERROR: A value is outside of its "
+            throw new GameControlException("A value is outside of its "
                                          + "allowed bounds. Try restarting the program.");
             
         } else if (charisma < 0 || diplomacy < 0 || strategy < 0) {
-            throw new GameControlException("ERROR: A value is outside of its "
+            throw new GameControlException("A value is outside of its "
                                          + "allowed bounds. Try restarting the program.");
             
         } else if (charisma > 6 || diplomacy > 6 || strategy > 6) {
-            throw new GameControlException("ERROR: A value is outside of its "
+            throw new GameControlException("A value is outside of its "
                                          + "allowed bounds. Try restarting the program.");
         }
 
@@ -171,7 +174,7 @@ public class GameControl {
     {
         ArrayList<Resource> resource = KingdomsAndGlory.getCurrentGame().getResources();
         if (resource == null) {
-              throw new GameControlException("ERROR: An object failed to create. "
+              throw new GameControlException("An object failed to create. "
                                            + "Try restarting the program.");
           }
         
@@ -222,5 +225,42 @@ public class GameControl {
          String returnString = (cloth + "\n" + wood + "\n" + stone + "\n" + metal + "\n" + gold);
          
          return returnString;
+    }
+
+    public static void saveGame(Game theGame, String filePath) throws GameControlException 
+    {
+       if (theGame == null || filePath == null) {
+           throw new GameControlException("The game or file path was null");
+       }
+       
+       ObjectOutputStream outFile = null;
+       
+       try {
+           outFile = new ObjectOutputStream(new FileOutputStream(filePath));
+           outFile.writeObject(theGame);
+       }
+       catch (IOException ex) {
+           throw new GameControlException("Error opening file, " + filePath);
+       }
+    }
+
+    public static void loadGame(String filePath) throws GameControlException {
+        if (filePath == null) {
+           throw new GameControlException("file path was null or not found");
+       }
+       
+       ObjectInputStream inFile = null;
+       Game game = null;
+       
+       try {
+           inFile = new ObjectInputStream(new FileInputStream(filePath));
+           game = (Game) inFile.readObject(); // read the game object from file
+       }
+       catch (Exception e) {
+           throw new GameControlException("Error opening file, " + filePath);
+       }
+       
+       KingdomsAndGlory.setCurrentGame(game); // save in main class
+       KingdomsAndGlory.setPlayer(game.getPlayer()); // save our player back into the main static
     }
 }

@@ -10,7 +10,5 @@ package cit260.model;
  * @author bradclegg
  */
 public enum SceneArrayEnum {
-    ExamineScene,
-    AttackScene,
-    CapturedScene,
+    
 }

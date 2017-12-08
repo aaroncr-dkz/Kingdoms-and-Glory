@@ -6,9 +6,7 @@
 package cit260.view;
 
 import cit260.control.MapControl;
-import cit260.model.DefaultScene;
 import cit260.model.Map;
-import cit260.model.SceneArrayEnum;
 import cit260.model.Territory;
 import kingdoms.and.glory.KingdomsAndGlory;
 
@@ -108,7 +106,7 @@ public class MapMenuView extends View {
         int playerRow = MapControl.acquirePlayerCurrentRow();
         int playerCol = MapControl.acquirePlayerCurrentColumn();
         
-        // acquie the two-dimensional array of territories
+        // acquire the two-dimensional array of territories
         Territory[][] territories = MapControl.acquireGameTerritories();
         
         
@@ -161,16 +159,17 @@ public class MapMenuView extends View {
         }
         
         Territory locationToExamine = territories[inputs[0]][inputs[1]];
-        DefaultScene[] locationScenes = locationToExamine.getScenes();
+        
         
         String description;
-        if(locationScenes[SceneArrayEnum.CapturedScene.ordinal()] != null) {
+        
+        if(locationToExamine.getSceneExamineCity() != null) {
             if(locationToExamine.getVisited()) {
-                description = locationScenes[SceneArrayEnum.CapturedScene.ordinal()].getDescription();
-                System.out.println(description);
+                description = locationToExamine.getSceneCaptured().getDescription();
+                this.console.println(description);
             }
             else {
-                description = locationScenes[SceneArrayEnum.ExamineScene.ordinal()].getDescription();
+                description = locationToExamine.getSceneExamineCity().getDescription();
                 //int opposition = locationScenes[SceneArrayEnum.ExamineScene.ordinal()].getEstimatedOpposition();
                 this.console.println("\n"
                              + "================================================\n"
@@ -181,12 +180,13 @@ public class MapMenuView extends View {
             }
         }
         else {
-            description = locationScenes[SceneArrayEnum.ExamineScene.ordinal()].getDescription();
+            description = locationToExamine.getSceneExamineWilderness().getDescription();
             this.console.println("\n"
                              + "================================================\n"
                              + "* " + description + "\n"
                              + "* \n"
                              + "*");
         }
+        
     }
 }

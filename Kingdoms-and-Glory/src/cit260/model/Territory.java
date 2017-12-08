@@ -18,7 +18,10 @@ public class Territory implements Serializable {
     private String name;
     private String symbol;
     private Boolean visited;
-    private DefaultScene[] scenes = new DefaultScene[3];
+    private ExamineCityScene sceneExamineCity;
+    private ExamineWildernesScene sceneExamineWilderness;
+    private AttackScene sceneAttack;
+    private CapturedScene sceneCaptured;
     
     public Territory() {
     }
@@ -28,6 +31,10 @@ public class Territory implements Serializable {
         this.column = column;
         this.visited = false;
     }
+    
+    /*--------------------------------------------------------------------------
+    * Row and Column Getters and Setters
+    *-------------------------------------------------------------------------*/
 
     public int getRow() {
         return row;
@@ -45,6 +52,9 @@ public class Territory implements Serializable {
         this.column = column;
     }
 
+    /*--------------------------------------------------------------------------
+    * Name, Symbol, and Visited Getters and Setters
+    *-------------------------------------------------------------------------*/
     public String getName() {
         return name;
     }
@@ -69,12 +79,41 @@ public class Territory implements Serializable {
         this.visited = visited;
     }
 
-    public DefaultScene[] getScenes() {
-        return scenes;
+    /*--------------------------------------------------------------------------
+    * Scene Getter and Setters
+    *-------------------------------------------------------------------------*/
+    public ExamineCityScene getSceneExamineCity() {
+        return sceneExamineCity;
     }
 
-    public void setScenes(DefaultScene[] scenes) {
-        this.scenes = scenes;
+    public void setSceneExamineCity(ExamineCityScene sceneExamineCity) {
+        this.sceneExamineCity = sceneExamineCity;
     }
+
+    public ExamineWildernesScene getSceneExamineWilderness() {
+        return sceneExamineWilderness;
+    }
+
+    public void setSceneExamineWilderness(ExamineWildernesScene sceneExamineWilderness) {
+        this.sceneExamineWilderness = sceneExamineWilderness;
+    }
+
+    public AttackScene getSceneAttack() {
+        return sceneAttack;
+    }
+
+    public void setSceneAttack(AttackScene sceneAttack) {
+        this.sceneAttack = sceneAttack;
+    }
+
+    public CapturedScene getSceneCaptured() {
+        return sceneCaptured;
+    }
+
+    public void setSceneCaptured(CapturedScene sceneCaptured) {
+        this.sceneCaptured = sceneCaptured;
+    }
+
+    
 
 }

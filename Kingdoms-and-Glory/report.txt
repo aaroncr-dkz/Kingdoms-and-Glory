@@ -1,0 +1,27 @@
+LOCATIONS IN ZENOBIA
+NAME                CODE    LOCATION  
+Castle of Warren    (CW )   4, 4      
+Sharom District     (SD )   4, 3      
+Pogrom Forest       (PF )   4, 2      
+Slums of Zenobia    (SoZ)   4, 1      
+Kalbi Peninsula     (KP )   4, 0      
+Borders of Sharom   (BoS)   3, 4      
+Lake Jansenia       (LJ )   3, 3      
+Deneb's Garden      (DG )   3, 2      
+Island Avalon       (IA )   3, 1      
+Kastolation Sea     (KS )   3, 0      
+Diaspola            (Dia)   2, 4      
+Balmorian Ruins     (BR )   2, 3      
+City of Malano      (CoM)   2, 2      
+Anatalia            (Ana)   2, 1      
+Valley of Kastro    (VoK)   2, 0      
+The Tundra          (TT )   1, 4      
+Fort Allamoot       (FA )   1, 3      
+Fort Shulamana      (FS )   1, 2      
+Antanjyl            (Ant)   1, 1      
+Dahlmud Desert      (DD )   1, 0      
+Ryhean Sea          (RS )   0, 4      
+Shrine of Kulyn     (SoK)   0, 3      
+Xanadu              (Xan)   0, 2      
+Zeteginea           (Zet)   0, 1      
+Temple Shalina      (TS )   0, 0      

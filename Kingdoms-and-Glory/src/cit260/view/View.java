@@ -15,8 +15,6 @@ import kingdoms.and.glory.KingdomsAndGlory;
  */
 public abstract class View implements ViewInterface {
 
-    private String message;
-
     protected final BufferedReader keyboard = KingdomsAndGlory.getInFile();
     protected final PrintWriter console = KingdomsAndGlory.getOutFile();
 

@@ -6,6 +6,9 @@
 package cit260.view;
 
 import cit260.control.MapControl;
+import cit260.model.Actor;
+import cit260.model.ActorEnum;
+import cit260.model.AttackScene;
 import cit260.model.Map;
 import cit260.model.Territory;
 import kingdoms.and.glory.KingdomsAndGlory;
@@ -84,7 +87,8 @@ public class MapMenuView extends View {
                 examine();
                 break;
             case "C":
-                System.out.println("You are attacking a territory");
+                AttackSceneView attackSceneView = new AttackSceneView();
+                attackSceneView.display();
                 break;
             case "X":
                 MoveActorView moveActorView = new MoveActorView();
@@ -190,3 +194,4 @@ public class MapMenuView extends View {
         
     }
 }
+

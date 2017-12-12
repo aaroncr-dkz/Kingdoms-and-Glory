@@ -6,6 +6,7 @@
 package cit260.view;
 
 import cit260.control.MapControl;
+import cit260.model.Resource;
 
 /**
  *
@@ -38,7 +39,7 @@ public class AttackSceneResultView extends View {
         switch (command) {
             case "A":
                 loot();
-                break;
+                return true;
             case "B":
                 return true;
         }
@@ -46,6 +47,10 @@ public class AttackSceneResultView extends View {
     }
 
     private void loot() {
+        Resource resource = new Resource();
+        resource.setAmount(200);
+        long money = resource.getAmount();
+        
         
     }
 }

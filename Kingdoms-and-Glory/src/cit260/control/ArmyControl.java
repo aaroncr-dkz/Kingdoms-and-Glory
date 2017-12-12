@@ -129,4 +129,8 @@ public class ArmyControl {
         }
         return num;
     }
+    
+    public static int totalArmyPower() {
+        return KingdomsAndGlory.getCurrentGame().getArmy().getMilitaryPower();
+    }
 }

@@ -118,7 +118,7 @@ public class AttackSceneView extends View{
         int enemyValue = attackScene.getEnemyStrength();
         
 
-        Player player = new Player();
+        Player player = KingdomsAndGlory.getPlayer();
         player.setLeaderValue(2);  
         int leaderValue = player.getLeaderValue();
         Actor actor = KingdomsAndGlory.getPlayer().getPlayerCharacter();

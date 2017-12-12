@@ -17,6 +17,7 @@ public class Player implements Serializable {
     private String name;
     private String title;
     private Actor playerCharacter;
+    private int leaderValue;
     
     public Player() {
     }
@@ -43,6 +44,14 @@ public class Player implements Serializable {
 
     public void setPlayerCharacter(Actor playerCharacter) {
         this.playerCharacter = playerCharacter;
+    }
+    
+     public int getLeaderValue() {
+        return leaderValue;
+    }
+
+    public void setLeaderValue(int leaderValue) {
+        this.leaderValue = leaderValue;
     }
 
     @Override

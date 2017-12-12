@@ -8,6 +8,7 @@ package cit260.control;
 import cit260.exception.GameControlException;
 import cit260.model.Actor;
 import cit260.model.Army;
+import cit260.model.ArmyMember;
 import cit260.model.Game;
 import cit260.model.Map;
 import cit260.model.Player;
@@ -15,6 +16,7 @@ import cit260.model.PlayerActor;
 import cit260.model.Question;
 import cit260.model.TerritoryEnum;
 import cit260.model.Resource;
+import cit260.model.ResourceEnum;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -40,7 +42,6 @@ public class GameControl {
         Game game = new Game();
         game.setPlayer(player);
         KingdomsAndGlory.setCurrentGame(game);
-        
 
         // create the player's actor
         Actor opinionLeader = new PlayerActor();
@@ -50,7 +51,14 @@ public class GameControl {
         Army army = new Army();
         game.setArmy(army);
         
-        // create the map, pass it the resource array
+        // create starting army
+        createStartingArmy(army);
+        
+        // create starting resources and assign to the ArrayList in Game
+        ArrayList<Resource> resources = KingdomsAndGlory.getCurrentGame().getResources();
+        createStartingResources(resources);
+        
+        // create the map, pass it the size of the map
         Map map = MapControl.createMap(5, 5);
         if (map == null) {
             throw new GameControlException("An object failed to create. "
@@ -262,5 +270,53 @@ public class GameControl {
        
        KingdomsAndGlory.setCurrentGame(game); // save in main class
        KingdomsAndGlory.setPlayer(game.getPlayer()); // save our player back into the main static
+    }
+    
+    /*--------------------------------------------------------------------------
+    *
+    --------------------------------------------------------------------------*/
+    public static int getCurrentGold() {
+        return KingdomsAndGlory.getCurrentGame().getResources().get(ResourceEnum.Gold.ordinal()).getAmount();
+    }
+    
+    public static void reduceGoldResource(int amount) {
+        KingdomsAndGlory.getCurrentGame().getResources().get(ResourceEnum.Gold.ordinal()).reduceAmount(amount);
+    }
+    
+    public static void addToGoldResource(int amount) {
+        KingdomsAndGlory.getCurrentGame().getResources().get(ResourceEnum.Gold.ordinal()).addToAmount(amount);
+    }
+    
+    /*--------------------------------------------------------------------------
+    *
+    --------------------------------------------------------------------------*/
+    public static void createStartingArmy(Army army) {
+        ArrayList<ArmyMember> members = army.getArmyMembers();
+        
+        for (int i = 0; i < 10; i++) {
+            members.add(new ArmyMember(1, "Footman"));
+        }
+        for (int i = 0; i < 5; i++) {
+            members.add(new ArmyMember(2, "Specialist"));
+        }
+        
+        for (int i = 0; i < 2; i++) {
+            members.add(new ArmyMember(4, "Siege"));
+        }
+    }
+
+    private static void createStartingResources(ArrayList<Resource> resources) {
+        Resource gold = new Resource("Gold", 200);
+        Resource wood = new Resource("Wood", 5);
+        Resource stone = new Resource("Stone", 5);
+        Resource metal = new Resource("Metal", 5);
+        Resource cloth = new Resource("Cloth", 5);
+                
+        
+        resources.add(gold);
+        resources.add(wood);
+        resources.add(stone);
+        resources.add(metal);
+        resources.add(cloth);
     }
 }

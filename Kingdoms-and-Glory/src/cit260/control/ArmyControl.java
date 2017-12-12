@@ -77,6 +77,29 @@ public class ArmyControl {
         return returnString;
     }
     
+    /*--------------------------------------------------------------------------
+    * buy/sell methods
+    *-------------------------------------------------------------------------*/
+    public static void sellArmy(int numToDismiss, String type) {
+        ArrayList<ArmyMember> members = acquireTheArmyMembers();
+        ArrayList<ArmyMember> deleteCandidates = new ArrayList();
+        
+        for (ArmyMember member : members) {
+            if(member.getClassification().equals(type)) {
+                deleteCandidates.add(member);
+            }
+        }
+        
+        int i = 0;
+        for (ArmyMember dismissed : deleteCandidates) {
+            if (i >= numToDismiss) {
+                return;
+            }
+            members.remove(dismissed);
+            i++;
+        }
+    }
+    
     public static void buyArmy(int numOfRecruits, int power, String type) {
         for(int i = 0; i < numOfRecruits; i++) {
             ArmyMember recruit = new ArmyMember(power, type);
@@ -93,5 +116,17 @@ public class ArmyControl {
     
     public static ArrayList<ArmyMember> acquireTheArmyMembers() {
         return acquireTheArmy().getArmyMembers();
+    }
+    
+    public static int numberOf(String type) {
+        ArrayList<ArmyMember> members = acquireTheArmy().getArmyMembers();
+        int num = 0;
+        
+        for(ArmyMember member : members) {
+            if(member.getClassification().equals(type)) {
+                num += 1;
+            }
+        }
+        return num;
     }
 }

@@ -40,6 +40,14 @@ public class Resource implements Serializable {
     public void setAmount(int amount) {
         this.amount = amount;
     }
+    
+    public void reduceAmount(int amount) {
+        this.amount -= amount;
+    }
+    
+    public void addToAmount(int amount) {
+        this.amount += amount;
+    }
 
     @Override
     public String toString() {

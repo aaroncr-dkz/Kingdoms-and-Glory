@@ -53,7 +53,8 @@ public class ManageArmyView extends View {
                 buyArmyView.display();
                 break;
             case "S":
-                System.out.println("selling army");
+                SellArmyView sellArmyView = new SellArmyView();
+                sellArmyView.display();
                 break;
             case "B":
                 return true;

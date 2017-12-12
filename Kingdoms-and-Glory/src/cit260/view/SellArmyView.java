@@ -12,9 +12,9 @@ import cit260.control.GameControl;
  *
  * @author aaroncr-dkz
  */
-public class BuyArmyView extends View {
+public class SellArmyView extends View {
 
-    public BuyArmyView() {
+    public SellArmyView() {
 
     }
 
@@ -26,9 +26,9 @@ public class BuyArmyView extends View {
         
         // display menu
         this.console.println("\nTotal War Funds: " + gold);
-        this.console.println("\nF - Recruit Footmen - 8 Gold each");
-        this.console.println("S - Recruit Specialists - 10 Gold each");
-        this.console.println("C - Recruit Siege Engineers - 20 gold each");
+        this.console.println("\nF - Dismiss Footmen");
+        this.console.println("S - Dismiss Specialists");
+        this.console.println("C - Dismiss Siege Engineers");
 
         inputs[0] = this.getInput("Select item from the menu by entering the appropriate letter: ");
         return inputs;
@@ -41,23 +41,27 @@ public class BuyArmyView extends View {
 
         switch (command) {
             case "F":
-                buying(8, 1, "footman");
+                buying(4, 1, "footman");
                 return true;
             case "S":
-                buying(10, 2, "specialist");
+                buying(5, 2, "specialist");
                 return true;
             case "C":
-                buying(20, 4, "siege");
+                buying(10, 4, "siege");
                 return true;
         }
         return false;
     }
 
-    private void buying(int cost, int power, String type) {
+    private void buying(int saleValue, int power, String type) {
         int[] inputs = {0};
-        String command = this.getInput("\nEnter the number you wish to hire: ");
+        String command = this.getInput("\nEnter the number you wish to dismiss: ");
         int gold = GameControl.getCurrentGold();
-        int totalCost;
+        
+        
+        String temp = type.substring(0, 1).toUpperCase() + type.substring(1);
+        type = temp;
+        int numberOf = ArmyControl.numberOf(type);
 
         try {
             inputs[0] = (Integer.parseInt(command));
@@ -66,19 +70,15 @@ public class BuyArmyView extends View {
             ErrorView.display(this.getClass().getName(), "Value entered was not an integer");
         }
 
-        totalCost = inputs[0] * cost;
-        if (gold < totalCost) {
-            System.out.println("Insufficient gold to hire that many");
+        int totalProfit = inputs[0] * saleValue;
+        if (inputs[0] > numberOf) {
+            System.out.println("Cannot dismiss more men than you have");
         }
         else {
-            GameControl.reduceGoldResource(totalCost);
+            GameControl.addToGoldResource(totalProfit);
             
-            // convert the first letter to capital and reassign it back
-            String temp = type.substring(0, 1).toUpperCase() + type.substring(1);
-            type = temp;
-            
-            ArmyControl.buyArmy(inputs[0], power, type);
-            this.console.println("You spent " + totalCost + " gold");
+            ArmyControl.sellArmy(inputs[0], type);
+            this.console.println("You recieved " + totalProfit + " gold");
         }
     }
 }

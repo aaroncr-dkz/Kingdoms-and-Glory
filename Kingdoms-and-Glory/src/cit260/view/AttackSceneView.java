@@ -6,9 +6,12 @@
 package cit260.view;
 
 import cit260.control.MapControl;
+import cit260.exception.MapControlException;
+import cit260.model.Actor;
 import cit260.model.AttackScene;
 import cit260.model.Player;
 import cit260.model.Territory;
+import kingdoms.and.glory.KingdomsAndGlory;
 
 /**
  *
@@ -40,7 +43,7 @@ public class AttackSceneView extends View{
         switch (command) {
             case "A":
                 attack();
-                break;
+                return true;
             case "B":
                 return true;
         }
@@ -118,12 +121,18 @@ public class AttackSceneView extends View{
         Player player = new Player();
         player.setLeaderValue(2);  
         int leaderValue = player.getLeaderValue();
+        Actor actor = KingdomsAndGlory.getPlayer().getPlayerCharacter();
         
         if(MapControl.determineWinOrLose(leaderValue, enemyValue).equals(true))
         {
+            try {
+                MapControl.movePlayerActor(actor, inputs[0], inputs[1], true);
+            }
+            catch (MapControlException mce) {
+                ErrorView.display(this.getClass().getName(), mce.getMessage());
+            }
             AttackSceneResultView attackSceneResultView = new AttackSceneResultView();
             attackSceneResultView.display();
-            
         }
         else {
             this.console.println("Sorry, better luck next time");

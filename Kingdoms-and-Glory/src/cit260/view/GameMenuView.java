@@ -5,6 +5,7 @@
  */
 package cit260.view;
 
+import cit260.control.GameControl;
 import cit260.model.Territory;
 import java.io.PrintWriter;
 import kingdoms.and.glory.KingdomsAndGlory;
@@ -21,6 +22,11 @@ public class GameMenuView extends View {
 
     @Override
     public String[] getInputs() {
+        if (GameControl.isGameWon()) {
+            String[] filler = {"Q"};
+            return filler;
+        } 
+        
         String[] inputs = new String[1];
         
         // display menu

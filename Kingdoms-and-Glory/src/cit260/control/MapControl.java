@@ -54,7 +54,7 @@ public class MapControl {
         return map;
     }
     
-    public static String movePlayerActor(Actor actor, int newRow, int newColumn) throws MapControlException 
+    public static String movePlayerActor(Actor actor, int newRow, int newColumn, Boolean isAttack) throws MapControlException 
     {
         if(actor == null) {
             throw new MapControlException("That actor does not exist. Try moving a differnt actor");
@@ -79,10 +79,17 @@ public class MapControl {
         // go through the process of moving into a new territory
         if(newLocation.getVisited() != true) {
             
-            // we cannot move into a city we haven't conquered
+            // 
             if(newLocation.getSceneAttack() != null) {
-                actor.setLocation(oldLocation);
-                throw new MapControlException("You must attack an enemy controlled territory before you can move into it\n");
+                if (!isAttack) {
+                    actor.setLocation(oldLocation);
+                    throw new MapControlException("You must attack an enemy controlled territory before you can move into it\n");
+                }
+                else {
+                    newLocation.setVisited(true);
+                    return "";
+                }
+                
             }
             
             // we have entered a wilderness

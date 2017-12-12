@@ -276,6 +276,10 @@ public class GameControl {
         return KingdomsAndGlory.getCurrentGame().getResources();
     }
     
+    public static Boolean isGameWon() {
+        return KingdomsAndGlory.getCurrentGame().isEnemyCapitalCaptured();
+    }
+    
     /*--------------------------------------------------------------------------
     * modify resource method shortcuts
     --------------------------------------------------------------------------*/

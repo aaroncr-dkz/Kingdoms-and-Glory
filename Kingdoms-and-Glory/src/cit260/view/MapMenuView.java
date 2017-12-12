@@ -5,6 +5,7 @@
  */
 package cit260.view;
 
+import cit260.control.GameControl;
 import cit260.control.MapControl;
 import cit260.model.Actor;
 import cit260.model.ActorEnum;
@@ -25,6 +26,11 @@ public class MapMenuView extends View {
 
     @Override
     public String[] getInputs() {
+        
+        if (GameControl.isGameWon()) {
+            String[] filler = {"Q"};
+            return filler;
+        } 
 
         String[] inputs = new String[1];
 

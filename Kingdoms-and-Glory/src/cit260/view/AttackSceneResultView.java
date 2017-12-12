@@ -5,8 +5,12 @@
  */
 package cit260.view;
 
+import cit260.control.GameControl;
 import cit260.control.MapControl;
 import cit260.model.Resource;
+import cit260.model.ResourceEnum;
+import cit260.model.Territory;
+import kingdoms.and.glory.KingdomsAndGlory;
 
 /**
  *
@@ -20,15 +24,26 @@ public class AttackSceneResultView extends View {
 
     @Override
     public String[] getInputs() {
-
-        String[] inputs = new String[1];
-        // display menu
         
-        System.out.println("\nA - Congratulations, YOU WIN. Take your loot.");
-        System.out.println("B - Back"); 
+        Territory templeShalina = MapControl.acquireGameTerritories()[0][0];
+        if (templeShalina.getVisited() == true) {
+            KingdomsAndGlory.getCurrentGame().setEnemyCapitalCaptured(true);
+            VictoryScreenView vsv = new VictoryScreenView();
+            vsv.display();
+            
+            String[] filler = {"Q"};
+            return filler;
+        } 
+        else {
+            String[] inputs = new String[1];
+            // display menu
+        
+            System.out.println("\nA - Congratulations, YOU WIN. Take your loot.");
+            System.out.println("B - Back"); 
 
-        inputs[0] = this.getInput("Select item from menu by entering the appropriate letter: ");
-        return inputs;
+            inputs[0] = this.getInput("Select item from menu by entering the appropriate letter: ");
+            return inputs;
+        }
     }
 
     @Override
@@ -47,9 +62,13 @@ public class AttackSceneResultView extends View {
     }
 
     private void loot() {
-        Resource resource = new Resource();
-        resource.setAmount(200);
-        long money = resource.getAmount();
+        int row = MapControl.acquirePlayerCurrentRow();
+        int col = MapControl.acquirePlayerCurrentColumn();
+        
+        Territory toLoot = MapControl.acquireGameTerritories()[row][col];
+        int reward = toLoot.getSceneAttack().getResource().getAmount();
+        
+        GameControl.acquireResourceArray().get(ResourceEnum.Gold.ordinal()).addToAmount(reward);
         
         
     }

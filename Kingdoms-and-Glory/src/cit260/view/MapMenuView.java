@@ -174,22 +174,23 @@ public class MapMenuView extends View {
             }
             else {
                 description = locationToExamine.getSceneExamineCity().getDescription();
-                //int opposition = locationScenes[SceneArrayEnum.ExamineScene.ordinal()].getEstimatedOpposition();
+                int opposition = locationToExamine.getSceneExamineCity().getEstimatedOpposition();
                 this.console.println("\n"
                              + "================================================\n"
-                             + "* " + description + "\n"
-                             + "* \n"
-                             + "* Estimated Oppisition: \n"
-                             + "*     ");
+                             + "* " + description + " *\n"
+                             + "*                                              *\n"
+                             + "* Estimated Oppisition: " + opposition + "                     *\n"
+                             + "================================================\n");
             }
         }
         else {
             description = locationToExamine.getSceneExamineWilderness().getDescription();
             this.console.println("\n"
                              + "================================================\n"
-                             + "* " + description + "\n"
+                             + "* " + description + "*\n"
                              + "* \n"
-                             + "*");
+                             + "* \n"
+                             + "================================================\n");
         }
         
     }

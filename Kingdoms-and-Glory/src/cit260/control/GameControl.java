@@ -272,23 +272,27 @@ public class GameControl {
        KingdomsAndGlory.setPlayer(game.getPlayer()); // save our player back into the main static
     }
     
+    public static ArrayList<Resource> acquireResourceArray() {
+        return KingdomsAndGlory.getCurrentGame().getResources();
+    }
+    
     /*--------------------------------------------------------------------------
-    *
+    * modify resource method shortcuts
     --------------------------------------------------------------------------*/
-    public static int getCurrentGold() {
-        return KingdomsAndGlory.getCurrentGame().getResources().get(ResourceEnum.Gold.ordinal()).getAmount();
+    public static void reduceResource(int amount, int type) {
+        KingdomsAndGlory.getCurrentGame().getResources().get(type).reduceAmount(amount);
     }
     
-    public static void reduceGoldResource(int amount) {
-        KingdomsAndGlory.getCurrentGame().getResources().get(ResourceEnum.Gold.ordinal()).reduceAmount(amount);
+    public static void addToResource(int amount, int type) {
+        KingdomsAndGlory.getCurrentGame().getResources().get(type).addToAmount(amount);
     }
     
-    public static void addToGoldResource(int amount) {
-        KingdomsAndGlory.getCurrentGame().getResources().get(ResourceEnum.Gold.ordinal()).addToAmount(amount);
+    public static int getResourceValue(int type) {
+        return KingdomsAndGlory.getCurrentGame().getResources().get(type).getAmount();
     }
     
     /*--------------------------------------------------------------------------
-    *
+    * Default Creation helper methods
     --------------------------------------------------------------------------*/
     public static void createStartingArmy(Army army) {
         ArrayList<ArmyMember> members = army.getArmyMembers();

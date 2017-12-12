@@ -32,11 +32,10 @@ public class ManageArmyView extends View {
 
         String[] inputs = new String[1];
         // display menu
-        this.console.println("\nG - Gain Recruits");
-        this.console.println("S - Sell Army");
-        this.console.println("B - Go Back");
-        
-        this.console.println(armyData);
+        this.console.println("\nG - Gain Recruits"
+                           + "\nS - Sell Army"
+                           + "\nB - Go Back"
+                           + "\n" + armyData);
 
         inputs[0] = this.getInput("Select item from the menu by entering the appropriate letter: ");
         return inputs;

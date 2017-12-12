@@ -22,17 +22,9 @@ public class AttackSceneResultView extends View {
 
         String[] inputs = new String[1];
         // display menu
-        if (MapControl.determineWinOrLose(5, 10, 1, 10, 4, 0).equals("Win")) {
-            System.out.println("Congratulations, YOU WIN");
-        }
-        else {
-            System.out.println("Sorry you lose");
-        }
         
-        System.out.println("\nA - Loot Resources");
-        System.out.println("S - Pillage");
-        System.out.println("D - Loot and Pillage");
-        System.out.println("E - Exit to game menu"); 
+        System.out.println("\nA - Congratulations, YOU WIN. Take your loot.");
+        System.out.println("B - Back"); 
 
         inputs[0] = this.getInput("Select item from menu by entering the appropriate letter: ");
         return inputs;
@@ -45,17 +37,15 @@ public class AttackSceneResultView extends View {
 
         switch (command) {
             case "A":
-                System.out.println("Looting City");
+                loot();
                 break;
-            case "S":
-                System.out.println("Pillaging City");
-                 break;
-            case "D":
-                System.out.println("Looting and Pillaging City");
-                break;
-            case "E":
+            case "B":
                 return true;
         }
         return false;
+    }
+
+    private void loot() {
+        
     }
 }

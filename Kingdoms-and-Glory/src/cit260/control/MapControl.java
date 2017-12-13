@@ -572,7 +572,7 @@ public class MapControl {
                                 + "* With it, I can easily break the bonds that hold me *\n"
                                 + "* here! Once I get out of here, regaining the power  *\n"
                                 + "* I once had will be easy... But, even without my    *\n"
-                                + "* former power, defeating you will child's play!     *\n"
+                                + "* former power, defeating you will be child's play!  *\n"
                                 + "======================================================\n");
         
         Ant_Examine.setDescription("Rumors speak of a demon sealed within the    *\n"
@@ -607,6 +607,29 @@ public class MapControl {
         
         Resource FA = new Resource("Gold", 300);
         FA_Attack.setResource(FA);
+        FA_Attack.setDescription("======================================================\n"
+                               + "* Brother Castor, it seems the upstarts have come to *\n"
+                               + "* the castle.                                        *\n"
+                               + "*                                                    *\n"
+                               + "* Yes, Brother Pollux, it seems they have.           *\n"
+                               + "*                                                    *\n"
+                               + "* Castor, how could they have gotten this close?     *\n"
+                               + "*                                                    *\n"
+                               + "* Well, Pollux, what should we do about it?          *\n"
+                               + "*                                                    *\n"
+                               + "* Indeed, Castor, what should we do?                 *\n"
+                               + "*                                                    *\n"
+                               + "* I suppose we should greet them as fellow warriors. *\n"
+                               + "* Shouldn't we Pollux?                               *\n"
+                               + "*                                                    *\n"
+                               + "* Yes, an excellent suggestion, Brother Castor.      *\n"
+                               + "*                                                    *\n"
+                               + "* Well... Welcome warriors, to our castle!           *\n"
+                               + "*                                                    *\n"
+                               + "* We hate to waste lives, but we cannot allow such   *\n"
+                               + "* rebellion! Prepare to meet your end!               *\n"
+                               + "======================================================\n");
+        
         FA_Examine.setDescription("Built to guard the way to the north, this    *\n" 
                                 + "* citadel has never fallen.                    ");
         
@@ -669,6 +692,13 @@ public class MapControl {
         
         Resource FS = new Resource("Gold", 500);
         FS_Attack.setResource(FS);
+        FS_Attack.setDescription("======================================================\n"
+                               + "* I am Previa, and I cannot allow you to go any fur- *\n"
+                               + "* ther. I am far stronger than like those weaklings  *\n"
+                               + "* Debonair and Figaro! I shall show you the true     *\n"
+                               + "* power of a northerner!                             *\n"
+                               + "======================================================\n");
+        
         FS_Examine.setDescription("A fortress built by the northerners. It is   *\n"
                                 + "* surrounded by volcanos on three sides.      ");
         
@@ -686,6 +716,13 @@ public class MapControl {
         
         Resource Xana = new Resource("Gold", 500);
         X_Attack.setResource(Xana);
+        X_Attack.setDescription("=======================================================\n"
+                              + "* Hmmm... It seems that the gods have chosen you over *\n"
+                              + "* us. But even so, I, Overlord Hikash, cannot allow   *\n"
+                              + "* you to proceed further. For the honour and pride of *\n"
+                              + "* north! Come and taste edge of my sword!             *\n"
+                              + "=======================================================\n");
+        
         X_Examine.setDescription("A royal city, built to house the officers and *\n" 
                                + "* knights of the kingdom.                       ");
         
@@ -703,6 +740,14 @@ public class MapControl {
         
         Resource Zete = new Resource("Gold", 750);
         Z_Attack.setResource(Zete);
+        Z_Attack.setDescription("=====================================================\n"
+                              + "* So you're the leader of the insurgents who killed *\n"
+                              + "* my generals? You think I will lose to you? I am   *\n"
+                              + "* the ruler of this kingdom now! There is no other  *\n"
+                              + "* worthy. Certainly not you, disgraced \"king\".    *\n"
+                              + "* Endora will show you proof!                       *\n" 
+                              + "=====================================================\n");
+        
         Z_Examine.setDescription("The new capital, built by a queen from long ago "
                                + " who was later revealed to have gone mad");
         
@@ -720,6 +765,13 @@ public class MapControl {
         
         Resource TS = new Resource("Gold", 1000000);
         TS_Attack.setResource(TS);
+        TS_Attack.setDescription("======================================================\n"
+                               + "* I am Rashidi, and I have orchestrated all that has *\n"
+                               + "* occured in this kingdom. You have wasted my magic  *\n"
+                               + "* and it seems I must now face you. My ritual will   *\n"
+                               + "* benefit from the blood spilt in this battle.       *\n"
+                               + "======================================================\n");
+        
         TS_Examine.setDescription("An old temple believed to be dedicated to darkness." +
                                   "Its location was kept secret for many generations");
         

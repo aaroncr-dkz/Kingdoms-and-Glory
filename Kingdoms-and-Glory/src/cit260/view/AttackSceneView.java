@@ -10,6 +10,7 @@ import cit260.exception.MapControlException;
 import cit260.model.Actor;
 import cit260.model.AttackScene;
 import cit260.model.Player;
+import cit260.model.PlayerActor;
 import cit260.model.Territory;
 import kingdoms.and.glory.KingdomsAndGlory;
 
@@ -113,6 +114,9 @@ public class AttackSceneView extends View{
         }
         
         
+        String enemySpeach = territories[inputs[0]][inputs[1]].getSceneAttack().getDescription();
+        this.console.println(enemySpeach);
+        
         AttackScene attackScene = new AttackScene();
         attackScene.setEnemyStrength(1);
         int enemyValue = attackScene.getEnemyStrength();
@@ -121,12 +125,12 @@ public class AttackSceneView extends View{
         Player player = KingdomsAndGlory.getPlayer();
         player.setLeaderValue(2);  
         int leaderValue = player.getLeaderValue();
-        Actor actor = KingdomsAndGlory.getPlayer().getPlayerCharacter();
+        PlayerActor actor = KingdomsAndGlory.getPlayer().getPlayerCharacter();
         
         if(MapControl.determineWinOrLose(leaderValue, enemyValue).equals(true))
         {
             try {
-                MapControl.movePlayerActor(actor, inputs[0], inputs[1], true);
+                String resultString = MapControl.movePlayerActor(actor, inputs[0], inputs[1], true);
             }
             catch (MapControlException mce) {
                 ErrorView.display(this.getClass().getName(), mce.getMessage());

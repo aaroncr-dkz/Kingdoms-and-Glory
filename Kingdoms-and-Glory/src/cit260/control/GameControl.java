@@ -44,7 +44,7 @@ public class GameControl {
         KingdomsAndGlory.setCurrentGame(game);
 
         // create the player's actor
-        Actor opinionLeader = new PlayerActor();
+        PlayerActor opinionLeader = new PlayerActor();
         player.setPlayerCharacter(opinionLeader);
         
         // create an empty army and assign it
@@ -272,6 +272,25 @@ public class GameControl {
        KingdomsAndGlory.setPlayer(game.getPlayer()); // save our player back into the main static
     }
     
+    public static void modifyPlayerTrait(int amount, String attribute) {
+        PlayerActor opinionLeader = KingdomsAndGlory.getPlayer().getPlayerCharacter();
+        
+        switch(attribute) {
+            case "Charisma":
+                opinionLeader.modifyCharisma(amount);
+                break;
+            case "Diplomacy":
+                opinionLeader.modifyDiplomacy(amount);
+                break;
+            case "Strategy":
+                opinionLeader.modifyStrategy(amount);
+                break;
+        }
+    }
+    
+    /*--------------------------------------------------------------------------
+    * getter methods
+    --------------------------------------------------------------------------*/
     public static ArrayList<Resource> acquireResourceArray() {
         return KingdomsAndGlory.getCurrentGame().getResources();
     }

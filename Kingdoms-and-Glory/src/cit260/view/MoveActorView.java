@@ -8,6 +8,7 @@ package cit260.view;
 import cit260.control.MapControl;
 import cit260.exception.MapControlException;
 import cit260.model.Actor;
+import cit260.model.PlayerActor;
 import kingdoms.and.glory.KingdomsAndGlory;
 
 /**
@@ -66,7 +67,7 @@ public class MoveActorView extends View {
         
         int newRow = currentRow + deltaRow;
         int newColumn = currentColumn + deltaColumn;
-        Actor player = KingdomsAndGlory.getPlayer().getPlayerCharacter();
+        PlayerActor player = KingdomsAndGlory.getPlayer().getPlayerCharacter();
         
         try {
             String resultString = MapControl.movePlayerActor(player, newRow, newColumn, false);

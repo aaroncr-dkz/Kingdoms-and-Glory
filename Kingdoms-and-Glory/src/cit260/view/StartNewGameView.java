@@ -89,13 +89,13 @@ public class StartNewGameView {
 
         switch (command) {
             case "A":
-                System.out.println("Charisma");
+                GameControl.modifyPlayerTrait(1, "Charisma");
                 break;
             case "B":
-                System.out.println("Diplomacy");
+                GameControl.modifyPlayerTrait(1, "Diplomacy");
                 break;
             case "C":
-                System.out.println("Strategy");
+                GameControl.modifyPlayerTrait(1, "Strategy");
                 break;
         }
         

@@ -311,6 +311,14 @@ public class MapControl {
 
         Resource SD = new Resource("Gold", 200);
         SD_Attack.setResource(SD);
+        SD_Attack.setDescription("=======================================================\n"
+                               + "* I am Gilbert, the governor of Sharom. Why must you  *\n"
+                               + "* rebel against the Ruffians? I understand that you   *\n"
+                               + "* hate them. I feel the same. However, I must protect *\n"
+                               + "* my people and the peace of Sharom. If you insist on *\n"
+                               + "* destroying that peace, I must stop you!             *\n"
+                               + "=======================================================\n");
+        
         SD_Examine.setDescription("The Independent District of Sharom.         ");
         SD_Examine.setEstimatedOpposition(35);
         SD_Examine.setResourcesNeeded("Stone");
@@ -374,6 +382,14 @@ public class MapControl {
         
         Resource SoZ = new Resource("Gold", 300);
         SoZ_Attack.setResource(SoZ);
+        SoZ_Attack.setDescription("=======================================================\n"
+                               + "* I am Debonair, a general of my people. I must con-  *\n"
+                               + "* gratulate you for making it this far. It's not too  *\n"
+                               + "* late. I will spare your lives if you surrender to   *\n"
+                               + "* me. If not, I must destroy you for the sake of the  *\n"
+                               + "* honour of my homeland.                              *\n"
+                               + "=======================================================\n");
+        
         SoZ_Examine.setDescription("The old capital of Zenobia. The city has     *\n" 
                                  + "* quickly fallen into decay and is now a       *\n" 
                                  + "* shadow of its former glory                  ");
@@ -436,6 +452,19 @@ public class MapControl {
         
         Resource Dias = new Resource("Gold", 350);
         D_Attack.setResource(Dias);
+        D_Attack.setDescription("=========================================================\n"
+                              + "* I am Norn, once a prist of Roshfel. We were mistaken. *\n"
+                              + "* The world we were strving to create... it is nothing  *\n"
+                              + "* like how the kingdom has become. Even as a servant of *\n"
+                              + "* the gods, I couldn't see the corruption which had in- *\n"
+                              + "* fected the nobles. If I had noticed sooner, I could   *\n"
+                              + "* have prevented this war, I could have saved Kaus.     *\n"
+                              + "* Maybe I could have even joined you. But it's too late *\n"
+                              + "* now. I have nothing to live for in a world without    *\n"
+                              + "* Kaus! All I can do now is defeat you, and get revenge *\n"
+                              + "* for my love Kaus Debonair.                            *\n"
+                              + "=========================================================\n");
+        
         D_Examine.setDescription("Political dissidents and other criminals were *\n" 
                                + "* sentenced here for life in prison. Many inno- *\n"
                                + "* cent of any crime.                           ");
@@ -485,6 +514,15 @@ public class MapControl {
         
         Resource CoM = new Resource("Gold", 400);
         CoM_Attack.setResource(CoM);
+        CoM_Attack.setDescription("======================================================\n"
+                                + "* I am Baron Apros, and I rule Malano. I see that I  *\n"
+                                + "* failed to kill you when I burned down that forest  *\n"
+                                + "* outside the old capital. I'm no traitor, your fa-  *\n"
+                                + "* ther betrayed me. I was oppressed by King Gran...  *\n"
+                                + "* I never recieved any grace. All I remember is this *\n"
+                                + "* hatred I have for him, and for you.                *\n"
+                                + "======================================================\n");
+        
         CoM_Examine.setDescription("A mega-city that exists as the center of     *\n"
                                  + "* trade and commerce for the entire kingdom.  ");
         
@@ -502,6 +540,14 @@ public class MapControl {
         
         Resource Ana = new Resource("Gold", 400);
         Ana_Attack.setResource(Ana);
+        Ana_Attack.setDescription("=========================================================\n"
+                                + "* I am Omicron. How dare the living come here to des-   *\n"
+                                + "* troy my undead! The Ruffians allowed me to continue   *\n"
+                                + "* my necromancy, while you and your father would have   *\n"
+                                + "* had me removed from my bishopric and rot in Diaspola. *\n"
+                                + "* You'll pay for both that and this with your lives!    *\n"
+                                + "=========================================================\n");
+        
         Ana_Examine.setDescription("This region was a forbidden land, now it is  *\n"
                                  + "* overrun by the undead.                      ");
         
@@ -519,6 +565,16 @@ public class MapControl {
         
         Resource Ant = new Resource("Gold", 450);
         Ant_Attack.setResource(Ant);
+        Ant_Attack.setDescription("======================================================\n"
+                                + "* So, you humans still live, eh? Foolish mortals...  *\n"
+                                + "* I am Galf, and I owe nothing to the Ruffians, but  *\n"
+                                + "* they promised me that stone if I kill you for them.*\n"
+                                + "* With it, I can easily break the bonds that hold me *\n"
+                                + "* here! Once I get out of here, regaining the power  *\n"
+                                + "* I once had will be easy... But, even without my    *\n"
+                                + "* former power, defeating you will child's play!     *\n"
+                                + "======================================================\n");
+        
         Ant_Examine.setDescription("Rumors speak of a demon sealed within the    *\n"
                                  + "* mountains of this realm.                    ");
         

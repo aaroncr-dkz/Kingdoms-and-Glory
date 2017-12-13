@@ -14,9 +14,9 @@ import java.util.Objects;
  */
 public class Actor implements Serializable {
     
-    private String name;
-    private String description;
-    private Territory location;
+    protected String name;
+    protected String description;
+    protected Territory location;
     
     public Actor() {
     }

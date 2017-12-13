@@ -17,9 +17,13 @@ public class PlayerActor extends Actor implements Serializable {
     private int diplomacy;
     private int strategy;
     
+    
     public PlayerActor() {
     }
 
+    /*--------------------------------------------------------------------------
+    * getter, setter, and modify for Charisma
+    --------------------------------------------------------------------------*/
     public int getCharisma() {
         return charisma;
     }
@@ -28,6 +32,12 @@ public class PlayerActor extends Actor implements Serializable {
         this.charisma = charisma;
     }
 
+    public void modifyCharisma(int change) {
+        this.charisma += change;
+    }
+    /*--------------------------------------------------------------------------
+    * getter, setter, and modify for Diplomacy
+    --------------------------------------------------------------------------*/
     public int getDiplomacy() {
         return diplomacy;
     }
@@ -36,6 +46,12 @@ public class PlayerActor extends Actor implements Serializable {
         this.diplomacy = diplomacy;
     }
 
+    public void modifyDiplomacy(int change) {
+        this.diplomacy += change;
+    }
+    /*--------------------------------------------------------------------------
+    * getter, setter, and modify for Strategy
+    --------------------------------------------------------------------------*/
     public int getStrategy() {
         return strategy;
     }
@@ -43,42 +59,8 @@ public class PlayerActor extends Actor implements Serializable {
     public void setStrategy(int strategy) {
         this.strategy = strategy;
     }
-
-    @Override
-    public String toString() {
-        return "PlayerActor{" + "charisma=" + charisma + ", diplomacy=" + diplomacy + ", strategy=" + strategy + '}';
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + this.charisma;
-        hash = 53 * hash + this.diplomacy;
-        hash = 53 * hash + this.strategy;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final PlayerActor other = (PlayerActor) obj;
-        if (this.charisma != other.charisma) {
-            return false;
-        }
-        if (this.diplomacy != other.diplomacy) {
-            return false;
-        }
-        if (this.strategy != other.strategy) {
-            return false;
-        }
-        return true;
+    
+    public void modifyStrategy(int change) {
+        this.strategy += change;
     }
 }

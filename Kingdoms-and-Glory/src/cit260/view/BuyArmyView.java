@@ -7,6 +7,7 @@ package cit260.view;
 
 import cit260.control.ArmyControl;
 import cit260.control.GameControl;
+import cit260.control.ResourceControl;
 import cit260.model.ResourceEnum;
 
 /**
@@ -23,7 +24,7 @@ public class BuyArmyView extends View {
     public String[] getInputs() {
 
         String[] inputs = new String[1];
-        int gold = GameControl.getResourceValue(ResourceEnum.Gold.ordinal());
+        int gold = ResourceControl.getResourceValue(ResourceEnum.Gold.ordinal());
         
         // display menu
         this.console.println("\nTotal War Funds: " + gold);
@@ -57,7 +58,7 @@ public class BuyArmyView extends View {
     private void buying(int cost, int power, String type) {
         int[] inputs = {0};
         String command = this.getInput("\nEnter the number you wish to hire: ");
-        int gold = GameControl.getResourceValue(ResourceEnum.Gold.ordinal());
+        int gold = ResourceControl.getResourceValue(ResourceEnum.Gold.ordinal());
         int totalCost;
 
         try {
@@ -72,7 +73,7 @@ public class BuyArmyView extends View {
             System.out.println("Insufficient gold to hire that many");
         }
         else {
-            GameControl.reduceResource(totalCost, ResourceEnum.Gold.ordinal());
+            ResourceControl.reduceResource(totalCost, ResourceEnum.Gold.ordinal());
             
             // convert the first letter to capital and reassign it back
             String temp = type.substring(0, 1).toUpperCase() + type.substring(1);

@@ -6,7 +6,6 @@
 package cit260.control;
 
 import cit260.exception.GameControlException;
-import cit260.model.Actor;
 import cit260.model.Army;
 import cit260.model.ArmyMember;
 import cit260.model.Game;
@@ -16,7 +15,6 @@ import cit260.model.PlayerActor;
 import cit260.model.Question;
 import cit260.model.TerritoryEnum;
 import cit260.model.Resource;
-import cit260.model.ResourceEnum;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -177,63 +175,6 @@ public class GameControl {
 
         return title;
     }
-    
-    public static String retriveResourceData() throws GameControlException 
-    {
-        ArrayList<Resource> resource = KingdomsAndGlory.getCurrentGame().getResources();
-        if (resource == null) {
-              throw new GameControlException("An object failed to create. "
-                                           + "Try restarting the program.");
-          }
-        
-        String cloth = "Cloth: ";
-        String wood = "Wood: ";
-        String stone = "Stone: ";
-        String metal = "Metal: ";
-        String gold = "Gold: ";
-        
-        int numCloth = 0;
-        int numWood = 0;
-        int numStone = 0;
-        int numMetal = 0;
-        int numGold = 0;
-        
-        
-        
-        for (Resource resourceType : resource) {
-            switch(resourceType.toString()) {
-                case "Cloth":
-                    numCloth += 1;
-                    break;
-                case "Wood":
-                    numWood += 1;
-                    break;
-                case "Stone":
-                    numStone += 1;
-                    break;
-                case "Metal":
-                    numMetal += 1;
-                    break;
-                case "Gold":
-                    numGold += 1;
-                    break;   
-            }
-        }
-        
-         KingdomsAndGlory.getCurrentGame().setResources(resource);
-         
-         ArrayList<Resource> totalResources = KingdomsAndGlory.getCurrentGame().getResources();
-         
-         cloth += (": " + numCloth);
-         wood += (": " + numWood);
-         stone += (": " + numStone);
-         metal += (": " + numMetal);
-         gold += (": " + numGold);
-         
-         String returnString = (cloth + "\n" + wood + "\n" + stone + "\n" + metal + "\n" + gold);
-         
-         return returnString;
-    }
 
     public static void saveGame(Game theGame, String filePath) throws GameControlException 
     {
@@ -291,27 +232,9 @@ public class GameControl {
     /*--------------------------------------------------------------------------
     * getter methods
     --------------------------------------------------------------------------*/
-    public static ArrayList<Resource> acquireResourceArray() {
-        return KingdomsAndGlory.getCurrentGame().getResources();
-    }
     
     public static Boolean isGameWon() {
         return KingdomsAndGlory.getCurrentGame().isEnemyCapitalCaptured();
-    }
-    
-    /*--------------------------------------------------------------------------
-    * modify resource method shortcuts
-    --------------------------------------------------------------------------*/
-    public static void reduceResource(int amount, int type) {
-        KingdomsAndGlory.getCurrentGame().getResources().get(type).reduceAmount(amount);
-    }
-    
-    public static void addToResource(int amount, int type) {
-        KingdomsAndGlory.getCurrentGame().getResources().get(type).addToAmount(amount);
-    }
-    
-    public static int getResourceValue(int type) {
-        return KingdomsAndGlory.getCurrentGame().getResources().get(type).getAmount();
     }
     
     /*--------------------------------------------------------------------------

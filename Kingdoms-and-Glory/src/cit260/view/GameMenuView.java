@@ -84,7 +84,8 @@ public class GameMenuView extends View {
     }
 
     private void manageResources() {
-        
+        ManageResourcesView manageResourcesView = new ManageResourcesView();
+        manageResourcesView.display();
     }
 
     private void viewMap() {

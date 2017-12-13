@@ -5,6 +5,9 @@
  */
 package cit260.view;
 
+import cit260.control.ResourceControl;
+import cit260.exception.GameControlException;
+
 /**
  *
  * @author bradclegg
@@ -18,12 +21,22 @@ public class ManageResourcesView extends View {
     @Override
     public String[] getInputs() {
 
-        String[] inputs = new String[1];
         
+        String resourceData = "";
+        
+        try {
+            resourceData = ResourceControl.retriveResourceData();
+        }
+        catch(GameControlException e) {
+           ErrorView.display(this.getClass().getName(), e.getMessage());
+        }
+        
+        String[] inputs = new String[1];
         // display menu
-        this.console.println("\nA - Buy Resource");
-        this.console.println("S - Sell Resource");
-        this.console.println("B - Go Back");
+        this.console.println("\nA - Buy Resource"
+                           + "\nS - Sell Resource"
+                           + "\nB - Go Back"
+                           + "\n\n" + resourceData);
         
         
         inputs[0] = this.getInput("Select item from menu by entering the appropriate letter: ");

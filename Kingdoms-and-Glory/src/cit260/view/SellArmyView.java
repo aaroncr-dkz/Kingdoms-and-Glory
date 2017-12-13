@@ -6,7 +6,7 @@
 package cit260.view;
 
 import cit260.control.ArmyControl;
-import cit260.control.GameControl;
+import cit260.control.ResourceControl;
 import cit260.model.ResourceEnum;
 
 /**
@@ -23,7 +23,7 @@ public class SellArmyView extends View {
     public String[] getInputs() {
 
         String[] inputs = new String[1];
-        int gold = GameControl.getResourceValue(ResourceEnum.Gold.ordinal());
+        int gold = ResourceControl.getResourceValue(ResourceEnum.Gold.ordinal());
         
         // display menu
         this.console.println("\nTotal War Funds: " + gold);
@@ -57,7 +57,7 @@ public class SellArmyView extends View {
     private void buying(int saleValue, int power, String type) {
         int[] inputs = {0};
         String command = this.getInput("\nEnter the number you wish to dismiss: ");
-        int gold = GameControl.getResourceValue(ResourceEnum.Gold.ordinal());
+        int gold = ResourceControl.getResourceValue(ResourceEnum.Gold.ordinal());
         
         
         String temp = type.substring(0, 1).toUpperCase() + type.substring(1);
@@ -76,7 +76,7 @@ public class SellArmyView extends View {
             System.out.println("Cannot dismiss more men than you have");
         }
         else {
-            GameControl.addToResource(totalProfit, ResourceEnum.Gold.ordinal());
+            ResourceControl.addToResource(totalProfit, ResourceEnum.Gold.ordinal());
             
             ArmyControl.sellArmy(inputs[0], type);
             this.console.println("You recieved " + totalProfit + " gold");

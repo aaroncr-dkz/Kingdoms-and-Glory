@@ -7,6 +7,7 @@ package cit260.view;
 
 import cit260.control.GameControl;
 import cit260.control.MapControl;
+import cit260.control.ResourceControl;
 import cit260.model.Resource;
 import cit260.model.ResourceEnum;
 import cit260.model.Territory;
@@ -68,7 +69,7 @@ public class AttackSceneResultView extends View {
         Territory toLoot = MapControl.acquireGameTerritories()[row][col];
         int reward = toLoot.getSceneAttack().getResource().getAmount();
         
-        GameControl.acquireResourceArray().get(ResourceEnum.Gold.ordinal()).addToAmount(reward);
+        ResourceControl.acquireResourceArray().get(ResourceEnum.Gold.ordinal()).addToAmount(reward);
         
         
     }

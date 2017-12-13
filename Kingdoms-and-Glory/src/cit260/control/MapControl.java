@@ -118,7 +118,7 @@ public class MapControl {
                         break;
                 }
                 
-                GameControl.acquireResourceArray().get(ordinal).addToAmount(result);
+                ResourceControl.acquireResourceArray().get(ordinal).addToAmount(result);
 
                 newLocation.setVisited(true);
                 String returnString = "You acquired " + result + " " + resourceName;
@@ -139,7 +139,7 @@ public class MapControl {
             return -100;
         }
 
-        int finalAmount = 0;
+        int finalAmount;
 
         if (isGood) {
             finalAmount = randAmount + (charisma * 2);

@@ -7,10 +7,13 @@ package cit260.view;
 
 import cit260.control.GameControl;
 import cit260.control.MapControl;
+import cit260.exception.MapControlException;
 import cit260.model.Actor;
 import cit260.model.ActorEnum;
 import cit260.model.AttackScene;
 import cit260.model.Map;
+import cit260.model.Player;
+import cit260.model.PlayerActor;
 import cit260.model.Territory;
 import kingdoms.and.glory.KingdomsAndGlory;
 
@@ -93,8 +96,7 @@ public class MapMenuView extends View {
                 examine();
                 break;
             case "C":
-                AttackSceneView attackSceneView = new AttackSceneView();
-                attackSceneView.display();
+                attack();
                 break;
             case "X":
                 MoveActorView moveActorView = new MoveActorView();
@@ -199,6 +201,76 @@ public class MapMenuView extends View {
                              + "================================================\n");
         }
         
+    }
+    
+    private void attack() {
+        
+        // create some method variables
+        int[] inputs = {-1, -1};
+        String command;
+        
+        // acquire the player's current row and column
+        int playerRow = MapControl.acquirePlayerCurrentRow();
+        int playerCol = MapControl.acquirePlayerCurrentColumn();
+        
+        // acquire the two-dimensional array of territories
+        Territory[][] territories = MapControl.acquireGameTerritories();
+        
+        
+        // get the row number for the territory
+        while((inputs[0] < 0 || inputs[0] > 4) 
+           || (inputs[0] < (playerRow - 1) || inputs[0] > (playerRow + 1))) {
+            command = this.getInput("\nEnter the row number for the territory you wish to attack: ");
+            
+            try {
+                inputs[0] = (Integer.parseInt(command) - 1);
+            }
+            catch (NumberFormatException nfe) {
+                ErrorView.display(this.getClass().getName(), "Value entered was not an integer");
+            }
+            
+            // check if the row entered is within the map size
+            if(inputs[0] < 0 || inputs[0] > 4) {
+                this.console.println("\nThat value is outside the allowed range. Pick a number between 1 and 5");
+            }
+            
+            // check to see if the user entered column they are on or adjacent to
+            else if(inputs[0] < (playerRow - 1) || inputs[0] > (playerRow + 1)) {
+                this.console.println("\nThat territory is not adjacent to you currently. Please pick an adjacent territory.");
+                this.console.println("Current Location: " + (playerRow + 1) + ":" + (playerCol + 1));
+            }
+        }
+        
+        // get the column number for the territory
+        while((inputs[1] < 0 || inputs[1] > 4) 
+           || (inputs[1] < (playerCol - 1) || inputs[1] > (playerCol + 1))) {
+            command = this.getInput("\nEnter the column number for the territory you wish to attack: ");
+            
+            try {
+                inputs[1] = (Integer.parseInt(command) - 1);
+            }
+            catch (NumberFormatException nfe) {
+                ErrorView.display(this.getClass().getName(), "Value entered was not an integer");
+            }
+            
+            // check if the column entered is within the map size
+            if(inputs[1] < 0 || inputs[1] > 4) {
+                this.console.println("\nThat value is outside the allowed range. Pick a number between 1 and 5");
+            }
+            
+            // check to see if the user entered column they are on or adjacent to
+            else if(inputs[1] < (playerCol - 1) || inputs[1] > (playerCol + 1)) {
+                this.console.println("\nThat territory is not adjacent to you currently. Please pick an adjacent territory.");
+                this.console.println("Current Location: " + (playerRow + 1) + ":" + (playerCol + 1));
+            }
+        }
+        
+        String enemySpeach = territories[inputs[0]][inputs[1]].getSceneAttack().getDescription();
+        this.console.println(enemySpeach);
+        
+        AttackSceneView attackSceneView = new AttackSceneView();
+        attackSceneView.display(inputs[0], inputs[1]);
+         
     }
 }
 

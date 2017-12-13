@@ -5,6 +5,7 @@
  */
 package cit260.view;
 
+import cit260.control.GameControl;
 import cit260.control.MapControl;
 import cit260.exception.MapControlException;
 import cit260.model.Actor;
@@ -12,38 +13,68 @@ import cit260.model.AttackScene;
 import cit260.model.Player;
 import cit260.model.PlayerActor;
 import cit260.model.Territory;
+import java.util.Scanner;
 import kingdoms.and.glory.KingdomsAndGlory;
 
 /**
  *
  * @author bradclegg
  */
-public class AttackSceneView extends View{
+public class AttackSceneView {
     
     public AttackSceneView() {
         
     }
 
-    @Override
-    public String[] getInputs() {
+    public void display(int attackRow, int attackCol) {
+        Boolean endView = false;
+        String[] inputs;
+        do {
 
+            inputs = getInputs();
+
+            if (inputs.length < 1 || inputs[0].toUpperCase().equals("Q")) {
+                return;
+            }
+
+            endView = doAction(inputs, attackRow, attackCol);
+
+        } while (endView != true);
+    }
+    
+    public String[] getInputs() {
         String[] inputs = new String[1];
-        // display menu
-        this.console.println("\nA - Do you want to attack?");
-        this.console.println("B - Go back");
         
-        inputs[0] = this.getInput("Select item from menu by entering the appropriate letter: ");
+        Boolean valid = false; 
+        Scanner inFile;
+        inFile = new Scanner(System.in);
+        
+        while (valid == false) {
+                // display menu
+                System.out.println("\nA - Do you want to attack?"
+                                 + "\nB - Retreat");
+                
+                String answer = inFile.nextLine();
+                answer = answer.trim();
+
+                if (answer.length() < 1) {
+                    System.out.println("You must enter an answer");
+                    continue;
+                }
+                inputs[0] = answer;
+                valid = true;
+            }
+        
         return inputs;
     }
 
-    @Override
-    public Boolean doAction(String[] inputs) {
+    public Boolean doAction(String[] inputs, int attackRow, int attackCol) {
 
         String command = inputs[0].toUpperCase();
 
         switch (command) {
             case "A":
-                attack();
+                attack(attackRow, attackCol);
                 return true;
             case "B":
                 return true;
@@ -51,77 +82,11 @@ public class AttackSceneView extends View{
         return false;
     }
 
-    private void attack() {
-        
-        // create some method variables
-        int[] inputs = {-1, -1};
-        String command;
-        
-        // acquire the player's current row and column
-        int playerRow = MapControl.acquirePlayerCurrentRow();
-        int playerCol = MapControl.acquirePlayerCurrentColumn();
-        
-        // acquire the two-dimensional array of territories
-        Territory[][] territories = MapControl.acquireGameTerritories();
-        
-        
-        // get the row number for the territory
-        while((inputs[0] < 0 || inputs[0] > 4) 
-           || (inputs[0] < (playerRow - 1) || inputs[0] > (playerRow + 1))) {
-            command = this.getInput("\nEnter the row number for the territory you wish to attack: ");
-            
-            try {
-                inputs[0] = (Integer.parseInt(command) - 1);
-            }
-            catch (NumberFormatException nfe) {
-                ErrorView.display(this.getClass().getName(), "Value entered was not an integer");
-            }
-            
-            // check if the row entered is within the map size
-            if(inputs[0] < 0 || inputs[0] > 4) {
-                this.console.println("\nThat value is outside the allowed range. Pick a number between 1 and 5");
-            }
-            
-            // check to see if the user entered column they are on or adjacent to
-            else if(inputs[0] < (playerRow - 1) || inputs[0] > (playerRow + 1)) {
-                this.console.println("\nThat territory is not adjacent to you currently. Please pick an adjacent territory.");
-                this.console.println("Current Location: " + (playerRow + 1) + ":" + (playerCol + 1));
-            }
-        }
-        
-        // get the column number for the territory
-        while((inputs[1] < 0 || inputs[1] > 4) 
-           || (inputs[1] < (playerCol - 1) || inputs[1] > (playerCol + 1))) {
-            command = this.getInput("\nEnter the column number for the territory you wish to attack: ");
-            
-            try {
-                inputs[1] = (Integer.parseInt(command) - 1);
-            }
-            catch (NumberFormatException nfe) {
-                ErrorView.display(this.getClass().getName(), "Value entered was not an integer");
-            }
-            
-            // check if the column entered is within the map size
-            if(inputs[1] < 0 || inputs[1] > 4) {
-                this.console.println("\nThat value is outside the allowed range. Pick a number between 1 and 5");
-            }
-            
-            // check to see if the user entered column they are on or adjacent to
-            else if(inputs[1] < (playerCol - 1) || inputs[1] > (playerCol + 1)) {
-                this.console.println("\nThat territory is not adjacent to you currently. Please pick an adjacent territory.");
-                this.console.println("Current Location: " + (playerRow + 1) + ":" + (playerCol + 1));
-            }
-        }
-        
-        
-        String enemySpeach = territories[inputs[0]][inputs[1]].getSceneAttack().getDescription();
-        this.console.println(enemySpeach);
-        
+    private void attack(int attackRow, int attackCol) {
         AttackScene attackScene = new AttackScene();
         attackScene.setEnemyStrength(1);
         int enemyValue = attackScene.getEnemyStrength();
         
-
         Player player = KingdomsAndGlory.getPlayer();
         player.setLeaderValue(2);  
         int leaderValue = player.getLeaderValue();
@@ -130,7 +95,7 @@ public class AttackSceneView extends View{
         if(MapControl.determineWinOrLose(leaderValue, enemyValue).equals(true))
         {
             try {
-                String resultString = MapControl.movePlayerActor(actor, inputs[0], inputs[1], true);
+                String resultString = MapControl.movePlayerActor(actor, attackRow, attackCol, true);
             }
             catch (MapControlException mce) {
                 ErrorView.display(this.getClass().getName(), mce.getMessage());
@@ -139,7 +104,7 @@ public class AttackSceneView extends View{
             attackSceneResultView.display();
         }
         else {
-            this.console.println("Sorry, better luck next time");
+            System.out.println("Sorry, better luck next time");
         }
     }
 }

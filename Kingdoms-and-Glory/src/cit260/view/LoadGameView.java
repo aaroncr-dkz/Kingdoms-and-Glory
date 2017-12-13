@@ -37,6 +37,7 @@ public class LoadGameView extends View {
         }
         catch (Exception e) {
             ErrorView.display(this.getClass().getName(), e.getMessage());
+            return true;
         }
         
         // display the game menu

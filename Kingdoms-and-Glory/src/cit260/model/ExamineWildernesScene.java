@@ -6,7 +6,6 @@
 package cit260.model;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  *
@@ -15,7 +14,8 @@ import java.util.Objects;
 public class ExamineWildernesScene extends ExamineScene implements Serializable{
     
     private Boolean exploreRisk;
-    private Boolean exploreResult;
+    private String exploreEventBad;
+    private String exploreEventGood;
     
     public ExamineWildernesScene() {
     }
@@ -28,47 +28,24 @@ public class ExamineWildernesScene extends ExamineScene implements Serializable{
         this.exploreRisk = exploreRisk;
     }
 
-    public Boolean getExploreResult() {
-        return exploreResult;
+    /*--------------------------------------------------------------------------
+    * Explore Events Getter and Setters
+    ---------------------------------------------------------------------------*/
+    public String getExploreEventBad() {
+        return exploreEventBad;
     }
 
-    public void setExploreResult(Boolean exploreResult) {
-        this.exploreResult = exploreResult;
+    public void setExploreEventBad(String exploreEventBad) {
+        this.exploreEventBad = exploreEventBad;
     }
 
-    @Override
-    public String toString() {
-        return "ExamineWildernesScene{" + "exploreRisk=" + exploreRisk + ", exploreResult=" + exploreResult + '}';
+    public String getExploreEventGood() {
+        return exploreEventGood;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.exploreRisk);
-        hash = 23 * hash + Objects.hashCode(this.exploreResult);
-        return hash;
+    public void setExploreEventGood(String exploreEventGood) {
+        this.exploreEventGood = exploreEventGood;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final ExamineWildernesScene other = (ExamineWildernesScene) obj;
-        if (!Objects.equals(this.exploreRisk, other.exploreRisk)) {
-            return false;
-        }
-        if (!Objects.equals(this.exploreResult, other.exploreResult)) {
-            return false;
-        }
-        return true;
-    }
-    
     
 }

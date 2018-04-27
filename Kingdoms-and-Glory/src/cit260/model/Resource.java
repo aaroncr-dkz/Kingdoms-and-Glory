@@ -41,47 +41,12 @@ public class Resource implements Serializable {
         this.amount = amount;
     }
     
-    public void reduceAmount(int amount) {
-        this.amount -= amount;
-    }
-    
-    public void addToAmount(int amount) {
+    public void modifyAmount(int amount) {
         this.amount += amount;
+        
+        // prevent the resource from going below 0
+        if (this.amount < 0) {
+            this.amount = 0;
+        }
     }
-
-    @Override
-    public String toString() {
-        return "Resource{" + "name=" + name + ", amountOwned=" + amount + '}';
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 89 * hash + Objects.hashCode(this.name);
-        hash = 89 * hash + this.amount;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Resource other = (Resource) obj;
-        if (this.amount != other.amount) {
-            return false;
-        }
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
-        return true;
-    }
-
-    
 }

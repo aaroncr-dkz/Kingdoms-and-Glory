@@ -13,9 +13,9 @@ import java.io.Serializable;
  */
 public class PlayerActor extends Actor implements Serializable {
     
-    private int charisma;
-    private int diplomacy;
-    private int strategy;
+    private int charisma = 0;
+    private int diplomacy = 0;
+    private int strategy = 0;
     
     
     public PlayerActor() {

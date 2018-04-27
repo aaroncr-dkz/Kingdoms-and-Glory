@@ -95,8 +95,17 @@ public class MapControl {
             // we have entered a wilderness
             else {
                 Random rand = new Random();
-                int n = rand.nextInt(30) + 20; // random number from 20 to 50 
-                int result = determineExploreResult(2, 2, true, n);
+                int randNum = rand.nextInt(30) + 20; // random number from 20 to 50 
+                int charisma = KingdomsAndGlory.getPlayer().getPlayerCharacter().getCharisma();
+                int diplomacy = KingdomsAndGlory.getPlayer().getPlayerCharacter().getDiplomacy();
+                int n = rand.nextInt(10) + 1; // random number from 1 to 10
+                Boolean goodOrBad = false;
+                
+                if (n > 3) {
+                    goodOrBad = true;
+                }
+                
+                int result = determineExploreResult(charisma, diplomacy, goodOrBad, randNum);
                 int ordinal = 0;
                 String resourceName = acquireWildernessResource(newLocation).getName();
                 
@@ -118,10 +127,19 @@ public class MapControl {
                         break;
                 }
                 
-                ResourceControl.acquireResourceArray().get(ordinal).addToAmount(result);
+                ResourceControl.acquireResourceArray().get(ordinal).modifyAmount(result);
 
                 newLocation.setVisited(true);
-                String returnString = "You acquired " + result + " " + resourceName;
+                String returnString;
+                
+                if (result > 0) {
+                    returnString = "You acquired " + result + " " + resourceName;
+                }
+                else {
+                    System.out.println(newLocation.getSceneExamineWilderness().getExploreEventBad());
+                    returnString = "You lost " + result + " " + resourceName;
+                }
+                
                 return returnString;
             }
         }
@@ -296,6 +314,16 @@ public class MapControl {
 
         BoS_Examine.setResource(BoS);
         BoS_Examine.setDescription("The borders of the Sharom District.          ");
+        BoS_Examine.setExploreEventBad("============================================\n"
+                                     + "* So it's you... I'm suprised you're still *\n"
+                                     + "* alive. Just luck I supposed. I am Usar,  *\n"
+                                     + "* the leader of the bandits here along the *\n"
+                                     + "* border. Your luck has run out. Prepare   *\n"
+                                     + "* yourself for the day you follow your fa- *\n"
+                                     + "* ther King Gran down into the grave. Now, *\n"
+                                     + "* leave this place before I take anything  *\n"
+                                     + "* more from you!                           *\n"
+                                     + "============================================\n");
         
         locations[TerritoryEnum.Borders_of_Sharom.getX()][TerritoryEnum.Borders_of_Sharom.getY()].setSceneExamineWilderness(BoS_Examine);
         locations[TerritoryEnum.Borders_of_Sharom.getX()][TerritoryEnum.Borders_of_Sharom.getY()].setSceneExamineCity(null);
@@ -323,6 +351,14 @@ public class MapControl {
         SD_Examine.setEstimatedOpposition(35);
         SD_Examine.setResourcesNeeded("Stone");
         
+        SD_Captured.setDescription("=======================================================\n"
+                                 + "* I had thought that to stop fighting the Ruffians    *\n"
+                                 + "* was the best thing for my land. However, I now see  *\n"
+                                 + "* that a false peace is no peace at all. It's just a  *\n"
+                                 + "* lie. If you will forgive me, I will again pledge my *\n"
+                                 + "* life to you my king.                                *\n"
+                                 + "=======================================================\n");
+        
         locations[TerritoryEnum.Sharom_District.getX()][TerritoryEnum.Sharom_District.getY()].setSceneExamineWilderness(null);
         locations[TerritoryEnum.Sharom_District.getX()][TerritoryEnum.Sharom_District.getY()].setSceneExamineCity(SD_Examine);
         locations[TerritoryEnum.Sharom_District.getX()][TerritoryEnum.Sharom_District.getY()].setSceneAttack(SD_Attack);
@@ -337,6 +373,29 @@ public class MapControl {
         LJ_Examine.setResource(LJ);
         LJ_Examine.setDescription("Beautiful lake country where the Zenobian    *\n"
                                 + "* nobality once vacationed.                    ");
+        
+        LJ_Examine.setExploreEventGood("=========================================\n"
+                                     + "* Oh... It's you! You're here already!   *\n"
+                                     + "* This is rather embarresing. The name   *\n"
+                                     + "* is Sirius, and I watch over this lake  *\n"
+                                     + "* country. I can see that you fine folks *\n"
+                                     + "* are in a hurry, I can provide you with *\n"
+                                     + "* some lumber to help you on your way.   *\n"
+                                     + "* Just don't visit during the day again, *\n"
+                                     + "* I'm more of a night owl kind-of-guy.   *\n"
+                                     + "==========================================\n");
+        
+        LJ_Examine.setExploreEventBad("============================================\n"
+                                     + "* Welcome. The name is Sirius. So you're  *\n"
+                                     + "* the ones fighting the Ruffians, huh?    *\n"
+                                     + "* Hmmm... you all look a little silly to  *\n"
+                                     + "* me. Why don't you try a new wardrobe,   *\n"
+                                     + "* like mine? You'd get a lot more of what *\n"
+                                     + "* you want, I promise! Well, anyway I'm   *\n"
+                                     + "* kind of tired of looking at you. It's   *\n"
+                                     + "* dinner time, and you probably wouldn't  *\n"
+                                     + "* to be the ones on the menu! So get!     *\n"
+                                     + "===========================================\n");
 
         locations[TerritoryEnum.Lake_Jansenia.getX()][TerritoryEnum.Lake_Jansenia.getY()].setSceneExamineWilderness(LJ_Examine);
         locations[TerritoryEnum.Lake_Jansenia.getX()][TerritoryEnum.Lake_Jansenia.getY()].setSceneExamineCity(null);
@@ -353,6 +412,8 @@ public class MapControl {
         PF_Examine.setDescription("This old forest is filled with the lost      *\n"
                                 + "* souls of those who were killed here.         ");
         
+        PF_Examine.setExploreEventBad("");
+        
         locations[TerritoryEnum.Pogrom_Forest.getX()][TerritoryEnum.Pogrom_Forest.getY()].setSceneExamineWilderness(PF_Examine);
         locations[TerritoryEnum.Pogrom_Forest.getX()][TerritoryEnum.Pogrom_Forest.getY()].setSceneExamineCity(null);
         locations[TerritoryEnum.Pogrom_Forest.getX()][TerritoryEnum.Pogrom_Forest.getY()].setSceneAttack(null);
@@ -367,6 +428,7 @@ public class MapControl {
         DG_Examine.setResource(DG);
         DG_Examine.setDescription("A forested region watched over by a strange  *\n"
                                 + "* and beautiful witch named Deneb.             ");
+        DG_Examine.setExploreEventBad("");
         
         locations[TerritoryEnum.Denebs_Garden.getX()][TerritoryEnum.Denebs_Garden.getY()].setSceneExamineWilderness(DG_Examine);
         locations[TerritoryEnum.Denebs_Garden.getX()][TerritoryEnum.Denebs_Garden.getY()].setSceneExamineCity(null);
@@ -394,6 +456,18 @@ public class MapControl {
                                  + "* quickly fallen into decay and is now a       *\n" 
                                  + "* shadow of its former glory                  ");
         
+        SoZ_Captured.setDescription("=======================================================\n"
+                                  + "* I can't believe I've lost. I see now that my people *\n"
+                                  + "* have been manipulated by some force. Our Queen,     *\n"
+                                  + "* Endora has been placed to rule over this land, but  *\n"
+                                  + "* such power has changed her. She's not like she once *\n"
+                                  + "* was. I am willing to die for the sake of my Queen,  *\n"
+                                  + "* but... I will NOT die for an imposter! It seems     *\n"
+                                  + "* there was something I should have done before fight-*\n"
+                                  + "* you. I am forced by honour to admit defeat for now. *\n"
+                                  + "* We'll meet again.                                   *\n"
+                                  + "=======================================================\n");
+        
         locations[TerritoryEnum.Slums_of_Zenobia.getX()][TerritoryEnum.Slums_of_Zenobia.getY()].setSceneExamineWilderness(null);
         locations[TerritoryEnum.Slums_of_Zenobia.getX()][TerritoryEnum.Slums_of_Zenobia.getY()].setSceneExamineCity(SoZ_Examine);
         locations[TerritoryEnum.Slums_of_Zenobia.getX()][TerritoryEnum.Slums_of_Zenobia.getY()].setSceneAttack(SoZ_Attack);
@@ -408,6 +482,7 @@ public class MapControl {
         IA_Examine.setResource(IA);
         IA_Examine.setDescription("Neutral island inhabited by monks and        *\n" 
                                 + "* priests of the Church of Roshfel             ");
+        IA_Examine.setExploreEventBad("");
         
         locations[TerritoryEnum.Island_Avalon.getX()][TerritoryEnum.Island_Avalon.getY()].setSceneExamineWilderness(IA_Examine);
         locations[TerritoryEnum.Island_Avalon.getX()][TerritoryEnum.Island_Avalon.getY()].setSceneExamineCity(null);
@@ -423,6 +498,7 @@ public class MapControl {
         KP_Examine.setResource(KP);
         KP_Examine.setDescription("This peninsula has been eternally locked in  *\n" 
                                 + "* an endless winter                            ");
+        KP_Examine.setExploreEventBad("");
         
         locations[TerritoryEnum.Kalbi_Peninsula.getX()][TerritoryEnum.Kalbi_Peninsula.getY()].setSceneExamineWilderness(KP_Examine);
         locations[TerritoryEnum.Kalbi_Peninsula.getX()][TerritoryEnum.Kalbi_Peninsula.getY()].setSceneExamineCity(null);
@@ -437,6 +513,7 @@ public class MapControl {
         
         KS_Examine.setResource(KS);
         KS_Examine.setDescription("This sea is home to many mermaids            ");
+        KS_Examine.setExploreEventBad("");
         
         locations[TerritoryEnum.Kastolation_Sea.getX()][TerritoryEnum.Kastolation_Sea.getY()].setSceneExamineWilderness(KS_Examine);
         locations[TerritoryEnum.Kastolation_Sea.getX()][TerritoryEnum.Kastolation_Sea.getY()].setSceneExamineCity(null);
@@ -469,6 +546,18 @@ public class MapControl {
                                + "* sentenced here for life in prison. Many inno- *\n"
                                + "* cent of any crime.                           ");
         
+        D_Captured.setDescription("=========================================================\n"
+                                + "* So I've lost. But now I can finally be with Kaus!     *\n"
+                                + "*                                                       *\n"
+                                + "* ...                                                   *\n"
+                                + "*                                                       *\n"
+                                + "* What, Kaus is still alive? Is it true? I was lied to! *\n"
+                                + "* Endora told me you slew Kaus down in the old capital. *\n"
+                                + "* I see now that I must join you in order to find out   *\n"
+                                + "* what truely happened to him. Please accept me and my  *\n"
+                                + "* apologies for doing battle against you.               *\n"
+                                + "=========================================================\n");
+        
         locations[TerritoryEnum.Diaspola.getX()][TerritoryEnum.Diaspola.getY()].setSceneExamineWilderness(null);
         locations[TerritoryEnum.Diaspola.getX()][TerritoryEnum.Diaspola.getY()].setSceneExamineCity(D_Examine);
         locations[TerritoryEnum.Diaspola.getX()][TerritoryEnum.Diaspola.getY()].setSceneAttack(D_Attack);
@@ -484,6 +573,7 @@ public class MapControl {
         BR_Examine.setDescription("Ruins of an ancient civilization dot this    *\n"
                                 + "* valley. Wizards frequent this place in a     *\n"
                                 + "* quest to find great secrets of magic.        ");
+        BR_Examine.setExploreEventBad("");
         
         locations[TerritoryEnum.Balmorian_Ruins.getX()][TerritoryEnum.Balmorian_Ruins.getY()].setSceneExamineWilderness(BR_Examine);
         locations[TerritoryEnum.Balmorian_Ruins.getX()][TerritoryEnum.Balmorian_Ruins.getY()].setSceneExamineCity(null);
@@ -499,6 +589,7 @@ public class MapControl {
         VoK_Examine.setResource(VoK);
         VoK_Examine.setDescription("The Kastro river flows from the land of      *\n" 
                                  + "* Palatinus in the west into this valley       ");
+        VoK_Examine.setExploreEventBad("");
         
         locations[TerritoryEnum.Valley_of_Kastro.getX()][TerritoryEnum.Valley_of_Kastro.getY()].setSceneExamineWilderness(VoK_Examine);
         locations[TerritoryEnum.Valley_of_Kastro.getX()][TerritoryEnum.Valley_of_Kastro.getY()].setSceneExamineCity(null);
@@ -526,6 +617,8 @@ public class MapControl {
         CoM_Examine.setDescription("A mega-city that exists as the center of     *\n"
                                  + "* trade and commerce for the entire kingdom.  ");
         
+        CoM_Captured.setDescription("");
+        
         locations[TerritoryEnum.City_of_Malano.getX()][TerritoryEnum.City_of_Malano.getY()].setSceneExamineWilderness(null);
         locations[TerritoryEnum.City_of_Malano.getX()][TerritoryEnum.City_of_Malano.getY()].setSceneExamineCity(CoM_Examine);
         locations[TerritoryEnum.City_of_Malano.getX()][TerritoryEnum.City_of_Malano.getY()].setSceneAttack(CoM_Attack);
@@ -550,6 +643,8 @@ public class MapControl {
         
         Ana_Examine.setDescription("This region was a forbidden land, now it is  *\n"
                                  + "* overrun by the undead.                      ");
+        
+        Ana_Captured.setDescription("");
         
         locations[TerritoryEnum.Anatalia.getX()][TerritoryEnum.Anatalia.getY()].setSceneExamineWilderness(null);
         locations[TerritoryEnum.Anatalia.getX()][TerritoryEnum.Anatalia.getY()].setSceneExamineCity(Ana_Examine);
@@ -578,6 +673,8 @@ public class MapControl {
         Ant_Examine.setDescription("Rumors speak of a demon sealed within the    *\n"
                                  + "* mountains of this realm.                    ");
         
+        Ant_Captured.setDescription("");
+        
         locations[TerritoryEnum.Antanjyl.getX()][TerritoryEnum.Antanjyl.getY()].setSceneExamineWilderness(null);
         locations[TerritoryEnum.Antanjyl.getX()][TerritoryEnum.Antanjyl.getY()].setSceneExamineCity(Ant_Examine);
         locations[TerritoryEnum.Antanjyl.getX()][TerritoryEnum.Antanjyl.getY()].setSceneAttack(Ant_Attack);
@@ -592,6 +689,7 @@ public class MapControl {
         TT_Examine.setResource(TT);
         TT_Examine.setDescription("A frozen wasteland where it is said a fallen *\n" 
                                 + "* angel weeps, forever wracked by guilt.      ");
+        TT_Examine.setExploreEventBad("");
         
         locations[TerritoryEnum.The_Tundra.getX()][TerritoryEnum.The_Tundra.getY()].setSceneExamineWilderness(TT_Examine);
         locations[TerritoryEnum.The_Tundra.getX()][TerritoryEnum.The_Tundra.getY()].setSceneExamineCity(null);
@@ -633,6 +731,8 @@ public class MapControl {
         FA_Examine.setDescription("Built to guard the way to the north, this    *\n" 
                                 + "* citadel has never fallen.                    ");
         
+        FA_Captured.setDescription("");
+        
         locations[TerritoryEnum.Fort_Allamoot.getX()][TerritoryEnum.Fort_Allamoot.getY()].setSceneExamineWilderness(null);
         locations[TerritoryEnum.Fort_Allamoot.getX()][TerritoryEnum.Fort_Allamoot.getY()].setSceneExamineCity(FA_Examine);
         locations[TerritoryEnum.Fort_Allamoot.getX()][TerritoryEnum.Fort_Allamoot.getY()].setSceneAttack(FA_Attack);
@@ -647,6 +747,7 @@ public class MapControl {
         RS_Examine.setResource(RS);
         RS_Examine.setDescription("The region is known as the gateway to the north. " + 
                                   "Sailors travel to distant lands starting here");
+        RS_Examine.setExploreEventBad("");
         
         locations[TerritoryEnum.Ryhean_Sea.getX()][TerritoryEnum.Ryhean_Sea.getY()].setSceneExamineWilderness(RS_Examine);
         locations[TerritoryEnum.Ryhean_Sea.getX()][TerritoryEnum.Ryhean_Sea.getY()].setSceneExamineCity(null);
@@ -661,6 +762,7 @@ public class MapControl {
         
         SoK_Examine.setResource(SoK);
         SoK_Examine.setDescription("An old sanctuary to an unknown diety.");
+        SoK_Examine.setExploreEventBad("");
         
         locations[TerritoryEnum.Shrine_of_Kulyn.getX()][TerritoryEnum.Shrine_of_Kulyn.getY()].setSceneExamineWilderness(SoK_Examine);
         locations[TerritoryEnum.Shrine_of_Kulyn.getX()][TerritoryEnum.Shrine_of_Kulyn.getY()].setSceneExamineCity(null);
@@ -677,6 +779,7 @@ public class MapControl {
         DD_Examine.setDescription("This burning desert was once home to an      *\n" 
                                 + "* another, older kingdom which has long since  *\n" 
                                 + "* been buried beneath the sands.               ");
+        DD_Examine.setExploreEventBad("");
         
         locations[TerritoryEnum.Dahlmud_Desert.getX()][TerritoryEnum.Dahlmud_Desert.getY()].setSceneExamineWilderness(DD_Examine);
         locations[TerritoryEnum.Dahlmud_Desert.getX()][TerritoryEnum.Dahlmud_Desert.getY()].setSceneExamineCity(null);
@@ -702,6 +805,8 @@ public class MapControl {
         FS_Examine.setDescription("A fortress built by the northerners. It is   *\n"
                                 + "* surrounded by volcanos on three sides.      ");
         
+        FS_Captured.setDescription("");
+        
         locations[TerritoryEnum.Fort_Shulamana.getX()][TerritoryEnum.Fort_Shulamana.getY()].setSceneExamineWilderness(null);
         locations[TerritoryEnum.Fort_Shulamana.getX()][TerritoryEnum.Fort_Shulamana.getY()].setSceneExamineCity(FS_Examine);
         locations[TerritoryEnum.Fort_Shulamana.getX()][TerritoryEnum.Fort_Shulamana.getY()].setSceneAttack(FS_Attack);
@@ -726,6 +831,8 @@ public class MapControl {
         X_Examine.setDescription("A royal city, built to house the officers and *\n" 
                                + "* knights of the kingdom.                       ");
         
+        X_Captured.setDescription("");
+        
         locations[TerritoryEnum.Xanadu.getX()][TerritoryEnum.Xanadu.getY()].setSceneExamineWilderness(null);
         locations[TerritoryEnum.Xanadu.getX()][TerritoryEnum.Xanadu.getY()].setSceneExamineCity(X_Examine);
         locations[TerritoryEnum.Xanadu.getX()][TerritoryEnum.Xanadu.getY()].setSceneAttack(X_Attack);
@@ -745,11 +852,13 @@ public class MapControl {
                               + "* my generals? You think I will lose to you? I am   *\n"
                               + "* the ruler of this kingdom now! There is no other  *\n"
                               + "* worthy. Certainly not you, disgraced \"king\".    *\n"
-                              + "* Endora will show you proof!                       *\n" 
+                              + "* I, Endora,  will show you the proof!              *\n" 
                               + "=====================================================\n");
         
         Z_Examine.setDescription("The new capital, built by a queen from long ago "
                                + " who was later revealed to have gone mad");
+        
+        Z_Captured.setDescription("");
         
         locations[TerritoryEnum.Zeteginea.getX()][TerritoryEnum.Zeteginea.getY()].setSceneExamineWilderness(null);
         locations[TerritoryEnum.Zeteginea.getX()][TerritoryEnum.Zeteginea.getY()].setSceneExamineCity(Z_Examine);
@@ -774,6 +883,8 @@ public class MapControl {
         
         TS_Examine.setDescription("An old temple believed to be dedicated to darkness." +
                                   "Its location was kept secret for many generations");
+        
+        TS_Captured.setDescription("");
         
         locations[TerritoryEnum.Temple_Shalina.getX()][TerritoryEnum.Temple_Shalina.getY()].setSceneExamineWilderness(null);
         locations[TerritoryEnum.Temple_Shalina.getX()][TerritoryEnum.Temple_Shalina.getY()].setSceneExamineCity(TS_Examine);

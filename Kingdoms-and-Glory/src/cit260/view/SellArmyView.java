@@ -76,7 +76,7 @@ public class SellArmyView extends View {
             System.out.println("Cannot dismiss more men than you have");
         }
         else {
-            ResourceControl.addToResource(totalProfit, ResourceEnum.Gold.ordinal());
+            ResourceControl.modifyResource(totalProfit, ResourceEnum.Gold.ordinal());
             
             ArmyControl.sellArmy(inputs[0], type);
             this.console.println("You recieved " + totalProfit + " gold");

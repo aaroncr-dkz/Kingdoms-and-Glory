@@ -73,7 +73,7 @@ public class BuyArmyView extends View {
             System.out.println("Insufficient gold to hire that many");
         }
         else {
-            ResourceControl.reduceResource(totalCost, ResourceEnum.Gold.ordinal());
+            ResourceControl.modifyResource((totalCost * -1), ResourceEnum.Gold.ordinal());
             
             // convert the first letter to capital and reassign it back
             String temp = type.substring(0, 1).toUpperCase() + type.substring(1);

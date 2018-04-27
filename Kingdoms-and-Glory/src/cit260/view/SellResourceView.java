@@ -77,8 +77,8 @@ public class SellResourceView extends View {
             System.out.println("Cannot sell more than you have");
         }
         else {
-            ResourceControl.addToResource(totalProfit, ResourceEnum.Gold.ordinal());
-            ResourceControl.reduceResource(inputs[0], type);
+            ResourceControl.modifyResource(totalProfit, ResourceEnum.Gold.ordinal());
+            ResourceControl.modifyResource((inputs[0] * -1), type);
             
             this.console.println("You gained " + totalProfit + " gold");
         }

@@ -69,7 +69,7 @@ public class AttackSceneResultView extends View {
         Territory toLoot = MapControl.acquireGameTerritories()[row][col];
         int reward = toLoot.getSceneAttack().getResource().getAmount();
         
-        ResourceControl.acquireResourceArray().get(ResourceEnum.Gold.ordinal()).addToAmount(reward);
+        ResourceControl.acquireResourceArray().get(ResourceEnum.Gold.ordinal()).modifyAmount(reward);
         
         
     }

@@ -79,8 +79,8 @@ public class BuyResourceView extends View {
             System.out.println("Insufficient gold to buy that amount");
         }
         else {
-            ResourceControl.reduceResource(totalCost, ResourceEnum.Gold.ordinal());
-            ResourceControl.addToResource(inputs[0], type);
+            ResourceControl.modifyResource((totalCost * -1), ResourceEnum.Gold.ordinal());
+            ResourceControl.modifyResource(inputs[0], type);
             
             this.console.println("You spent " + totalCost + " gold");
         }

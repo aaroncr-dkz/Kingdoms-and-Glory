@@ -51,12 +51,8 @@ public class ResourceControl {
     /*--------------------------------------------------------------------------
     * modify resource method shortcuts
     --------------------------------------------------------------------------*/
-    public static void reduceResource(int amount, int type) {
-        KingdomsAndGlory.getCurrentGame().getResources().get(type).reduceAmount(amount);
-    }
-    
-    public static void addToResource(int amount, int type) {
-        KingdomsAndGlory.getCurrentGame().getResources().get(type).addToAmount(amount);
+    public static void modifyResource(int amount, int type) {
+        KingdomsAndGlory.getCurrentGame().getResources().get(type).modifyAmount(amount);
     }
     
     public static int getResourceValue(int type) {
